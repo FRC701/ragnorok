@@ -25,10 +25,10 @@ Chassis::Chassis() : Subsystem("Chassis"),
 }
 
 void Chassis::InitDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // SetDefaultCommand(new MySpecialCommand());
+  // Set the default command for a subsystem here.
+  // SetDefaultCommand(new MySpecialCommand());
 
-        SetDefaultCommand(new TankDrive());
+  SetDefaultCommand(new TankDrive());
 }
 
 
@@ -37,10 +37,5 @@ void Chassis::InitDefaultCommand() {
 
 void Chassis::SetTankDrive(double left, double right) {
   right1Wheel->Set(right);
-  right2Wheel->Set(right);
-  right3Wheel->Set(right);
-
   left1Wheel->Set(left);
-  left2Wheel->Set(left);
-  left3Wheel->Set(left);
 }
