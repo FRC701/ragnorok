@@ -1,26 +1,30 @@
 #ifndef CHASSIS_H
 #define CHASSIS_H
 #include "Commands/Subsystem.h"
-#include "WPILib.h"
+#include "CANTalon.h"
 
-class Chassis: public Subsystem {
+class Chassis: public frc::Subsystem {
 private:
 	// It's desirable that everything possible is private except
 	// for methods that implement subsystem capabilities
 
-	std::shared_ptr<CANTalon> right1Wheel;
-	std::shared_ptr<CANTalon> right2Wheel;
-	std::shared_ptr<CANTalon> right3Wheel;
-	std::shared_ptr<CANTalon> left1Wheel;
-	std::shared_ptr<CANTalon> left2Wheel;
-	std::shared_ptr<CANTalon> left3Wheel;
+  static const char kSubsystemName[];
+  static std::shared_ptr<Chassis> self;
+
+  CANTalon right1Wheel;
+	CANTalon right2Wheel;
+	CANTalon right3Wheel;
+	CANTalon left1Wheel;
+	CANTalon left2Wheel;
+	CANTalon left3Wheel;
 
 public:
+	static std::shared_ptr<Chassis> getInstance();
+
 	Chassis();
 	void InitDefaultCommand();
 
 	void SetTankDrive(double left, double right);
-
 };
 
 #endif

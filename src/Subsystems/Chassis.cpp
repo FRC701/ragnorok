@@ -3,25 +3,46 @@
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
 
-Chassis::Chassis() : Subsystem("Chassis"),
-  right1Wheel(RobotMap::chassisRight1Wheel),
-  right2Wheel(RobotMap::chassisRight2Wheel),
-  right3Wheel(RobotMap::chassisRight3Wheel),
-  left1Wheel(RobotMap::chassisLeft1Wheel),
-  left2Wheel(RobotMap::chassisLeft2Wheel),
-  left3Wheel(RobotMap::chassisLeft3Wheel) {
+const char Chassis::kSubsystemName[] = "Chassis";
 
-  right1Wheel->SetInverted(true);
+std::shared_ptr<Chassis> Chassis::self;
 
-  right2Wheel->SetControlMode(CANTalon::kFollower);
-  right2Wheel->Set(RobotMap::kIDRightWheel1);
-  right3Wheel->SetControlMode(CANTalon::kFollower);
-  right3Wheel->Set(RobotMap::kIDRightWheel1);
+std::shared_ptr<Chassis> Chassis::getInstance() {
+  if (! self) {
+     self = std::make_shared<Chassis>();
+  }
+  return self;
+}
 
-  left2Wheel->SetControlMode(CANTalon::kFollower);
-  left2Wheel->Set(RobotMap::kIDLeftWheel1);
-  left3Wheel->SetControlMode(CANTalon::kFollower);
-  left3Wheel->Set(RobotMap::kIDLeftWheel1);
+
+Chassis::Chassis() : Subsystem(kSubsystemName),
+  right1Wheel(RobotMap::kIDRightWheel1),
+  right2Wheel(RobotMap::kIDRightWheel2),
+  right3Wheel(RobotMap::kIDRightWheel3),
+  left1Wheel(RobotMap::kIDLeftWheel1),
+  left2Wheel(RobotMap::kIDLeftWheel2),
+  left3Wheel(RobotMap::kIDLeftWheel3) {
+
+  LiveWindow *lw = LiveWindow::GetInstance();
+
+  lw->AddActuator(kSubsystemName , "Right1Wheel", right1Wheel);
+  lw->AddActuator(kSubsystemName , "Right2Wheel", right2Wheel);
+  lw->AddActuator(kSubsystemName , "Right3Wheel", right3Wheel);
+  lw->AddActuator(kSubsystemName , "Left1Wheel", left1Wheel);
+  lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
+  lw->AddActuator(kSubsystemName , "Left3Wheel", left3Wheel);
+
+  right1Wheel.SetInverted(true);
+
+  right2Wheel.SetControlMode(CANTalon::kFollower);
+  right2Wheel.Set(RobotMap::kIDRightWheel1);
+  right3Wheel.SetControlMode(CANTalon::kFollower);
+  right3Wheel.Set(RobotMap::kIDRightWheel1);
+
+  left2Wheel.SetControlMode(CANTalon::kFollower);
+  left2Wheel.Set(RobotMap::kIDLeftWheel1);
+  left3Wheel.SetControlMode(CANTalon::kFollower);
+  left3Wheel.Set(RobotMap::kIDLeftWheel1);
 }
 
 void Chassis::InitDefaultCommand() {
@@ -36,6 +57,6 @@ void Chassis::InitDefaultCommand() {
 // here. Call these from Commands.
 
 void Chassis::SetTankDrive(double left, double right) {
-  right1Wheel->Set(right);
-  left1Wheel->Set(left);
+  right1Wheel.Set(right);
+  left1Wheel.Set(left);
 }
