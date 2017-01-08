@@ -4,16 +4,24 @@
 #include "../Commands/TankDrive.h"
 
 Chassis::Chassis() : Subsystem("Chassis"),
-right1Wheel(RobotMap::chassisRight1Wheel),
-right2Wheel(RobotMap::chassisRight2Wheel),
-right3Wheel(RobotMap::chassisRight3Wheel),
-left1Wheel(RobotMap::chassisLeft1Wheel),
-left2Wheel(RobotMap::chassisLeft2Wheel),
-left3Wheel(RobotMap::chassisLeft3Wheel) {
+  right1Wheel(RobotMap::chassisRight1Wheel),
+  right2Wheel(RobotMap::chassisRight2Wheel),
+  right3Wheel(RobotMap::chassisRight3Wheel),
+  left1Wheel(RobotMap::chassisLeft1Wheel),
+  left2Wheel(RobotMap::chassisLeft2Wheel),
+  left3Wheel(RobotMap::chassisLeft3Wheel) {
 
-    right1Wheel->SetInverted(true);
+  right1Wheel->SetInverted(true);
 
-    //TODO:look into follower mode's changes
+  right2Wheel->SetControlMode(CANTalon::kFollower);
+  right2Wheel->Set(RobotMap::kIDRightWheel1);
+  right3Wheel->SetControlMode(CANTalon::kFollower);
+  right3Wheel->Set(RobotMap::kIDRightWheel1);
+
+  left2Wheel->SetControlMode(CANTalon::kFollower);
+  left2Wheel->Set(RobotMap::kIDLeftWheel1);
+  left3Wheel->SetControlMode(CANTalon::kFollower);
+  left3Wheel->Set(RobotMap::kIDLeftWheel1);
 }
 
 void Chassis::InitDefaultCommand() {
