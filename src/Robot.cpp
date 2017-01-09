@@ -1,6 +1,10 @@
 #include "Robot.h"
-#include "Chassis.h"
-
+#include "Subsystems/Chassis.h"
+#include "Subsystems/BallConveyor.h"
+#include "Subsystems/Intake.h"
+#include "Subsystems/Shooter.h"
+#include "Subsystems/Turret.h"
+#include "Subsystems/Vision.h"
 std::unique_ptr<OI> Robot::oi;
 
 void Robot::RobotInit() {
@@ -14,7 +18,11 @@ void Robot::RobotInit() {
 	// yet. Thus, their requires() statements may grab null pointers. Bad
 	// news. Don't move it.
   Chassis::getInstance();
-
+  BallConveyor::getInstance();
+  Intake::getInstance();
+  Shooter::getInstance();
+  Turret::getInstance();
+  Vision::getInstance();
   oi.reset(new OI());
 
 
