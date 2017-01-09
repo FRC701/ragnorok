@@ -3,7 +3,7 @@
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
 
-class Lifter : public Subsystem {
+class Lifter : public frc::Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
