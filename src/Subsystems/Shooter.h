@@ -11,12 +11,20 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-
+  CANTalon kID1;
+  CANTalon kID2;
 public:
   static std::shared_ptr<Shooter> getInstance();
 
+
+
   Shooter();
   void InitDefaultCommand();
+
+  void SetShooter(double speed);
+
+  double GetShooterspeed();
+
 };
 
 #endif  // Shooter_H
