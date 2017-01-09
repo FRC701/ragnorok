@@ -6,38 +6,42 @@
 class OI {
 private:
 
+  static std::shared_ptr<OI> self;
+
 //..........driver..........
 
   std::shared_ptr<Joystick> driver;
 
-  std::shared_ptr<JoystickButton> dA;
-  std::shared_ptr<JoystickButton> dB;
-  std::shared_ptr<JoystickButton> dX;
-  std::shared_ptr<JoystickButton> dY;
-  std::shared_ptr<JoystickButton> dLB;
-  std::shared_ptr<JoystickButton> dRB;
-  std::shared_ptr<JoystickButton> dL3;
-  std::shared_ptr<JoystickButton> dR3;
-  std::shared_ptr<JoystickButton> dStart;
-  std::shared_ptr<JoystickButton> dBack;
+  JoystickButton dA;
+  JoystickButton dB;
+  JoystickButton dX;
+  JoystickButton dY;
+  JoystickButton dLB;
+  JoystickButton dRB;
+  JoystickButton dL3;
+  JoystickButton dR3;
+  JoystickButton dStart;
+  JoystickButton dBack;
 
 
 //..........codriver..........
 
   std::shared_ptr<Joystick> coDriver;
 
-  std::shared_ptr<JoystickButton> coA;
-  std::shared_ptr<JoystickButton> coB;
-  std::shared_ptr<JoystickButton> coX;
-  std::shared_ptr<JoystickButton> coY;
-  std::shared_ptr<JoystickButton> coLB;
-  std::shared_ptr<JoystickButton> coRB;
-  std::shared_ptr<JoystickButton> coL3;
-  std::shared_ptr<JoystickButton> coR3;
-  std::shared_ptr<JoystickButton> coStart;
-  std::shared_ptr<JoystickButton> coBack;
+  JoystickButton coA;
+  JoystickButton coB;
+  JoystickButton coX;
+  JoystickButton coY;
+  JoystickButton coLB;
+  JoystickButton coRB;
+  JoystickButton coL3;
+  JoystickButton coR3;
+  JoystickButton coStart;
+  JoystickButton coBack;
 
 public:
+  static std::shared_ptr<OI> getInstance();
+
 	OI();
 
 //..........driver..........

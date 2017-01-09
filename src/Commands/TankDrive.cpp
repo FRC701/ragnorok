@@ -15,8 +15,9 @@ void TankDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() {
-  double left = Robot::oi->getDriverLeftYAxis();
-  double right = Robot::oi->getDriverRightYAxis();
+  std::shared_ptr<OI> oi = OI::getInstance();
+  double left = oi->getDriverLeftYAxis();
+  double right = oi->getDriverRightYAxis();
 
   Chassis::getInstance()->SetTankDrive(left, right);
 }
