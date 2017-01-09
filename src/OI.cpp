@@ -3,16 +3,46 @@
 #include "Commands/AutonomousCommand.h"
 #include "Commands/TankDrive.h"
 
-OI::OI() {
-    // Process operator interface input here.
+std::shared_ptr<OI> OI::self;
 
-  driver.reset(new Joystick(0));
-    
-  dA.reset(new JoystickButton(driver.get(), 1));
-  dA->WhileHeld(new AutonomousCommand());
+std::shared_ptr<OI> OI::getInstance() {
+  if (! self) {
+    self = std::make_shared<OI>();
+  }
+  return self;
+ }
 
-    SmartDashboard::PutData("TankDrive", new TankDrive());
-    SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+
+OI::OI()
+: driver(new Joystick(0))
+, dA(driver.get(), kButtonA_ID)
+, dB(driver.get(), kButtonB_ID)
+, dX(driver.get(), kButtonX_ID)
+, dY(driver.get(), kButtonY_ID)
+, dLB(driver.get(), kButtonLB_ID)
+, dRB(driver.get(), kButtonRB_ID)
+, dL3(driver.get(), kButtonL3_ID)
+, dR3(driver.get(), kButtonR3_ID)
+, dStart(driver.get(), kButtonStart_ID)
+, dBack(driver.get(), kButtonBack_ID)
+, coDriver(new Joystick(0))
+, coA(coDriver.get(), kButtonA_ID)
+, coB(coDriver.get(), kButtonB_ID)
+, coX(coDriver.get(), kButtonX_ID)
+, coY(coDriver.get(), kButtonY_ID)
+, coLB(coDriver.get(), kButtonLB_ID)
+, coRB(coDriver.get(), kButtonRB_ID)
+, coL3(coDriver.get(), kButtonL3_ID)
+, coR3(coDriver.get(), kButtonR3_ID)
+, coStart(coDriver.get(), kButtonStart_ID)
+, coBack(coDriver.get(), kButtonBack_ID)
+{
+  // Process operator interface input here.
+
+  dA.WhileHeld(new AutonomousCommand());
+
+  SmartDashboard::PutData("TankDrive", new TankDrive());
+  SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
 
 }
 
