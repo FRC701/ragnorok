@@ -5,6 +5,8 @@
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Turret.h"
 #include "Subsystems/Vision.h"
+#include "Subsystems/Lifter.h"
+
 std::unique_ptr<OI> Robot::oi;
 
 void Robot::RobotInit() {
@@ -23,6 +25,7 @@ void Robot::RobotInit() {
   Shooter::getInstance();
   Turret::getInstance();
   Vision::getInstance();
+  Lifter::getInstance();
   oi.reset(new OI());
 
 
