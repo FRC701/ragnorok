@@ -4,6 +4,12 @@ std::shared_ptr<Shooter> shooter = Shooter::getInstance();
 
 
 // Called just before this Command runs the first time
+DefaultShooter::DefaultShooter(): Command() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(Robot::chassis.get());
+  Requires(Shooter::getInstance().get());
+}
+
 void DefaultShooter::Initialize() {
 
 }
