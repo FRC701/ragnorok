@@ -1,0 +1,34 @@
+#include "DefaultShooter.h"
+#include "../Subsystems/Shooter.h"
+std::shared_ptr<Shooter> shooter = Shooter::getInstance();
+DefaultShooter::DefaultShooter() : Command() {
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(Robot::chassis.get());
+	;
+}
+
+// Called just before this Command runs the first time
+void DefaultShooter::Initialize() {
+
+}
+
+// Called repeatedly when this Command is scheduled to run
+void DefaultShooter::Execute() {
+shooter->SetShooter(shooter->GetShooterspeed());
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool DefaultShooter::IsFinished() {
+	return false;
+}
+
+// Called once after isFinished returns true
+void DefaultShooter::End() {
+
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void DefaultShooter::Interrupted() {
+
+}
