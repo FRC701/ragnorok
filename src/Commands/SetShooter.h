@@ -3,7 +3,7 @@
 
 #include "Commands/InstantCommand.h"
 
-class SetShooter : public frc::InstantCommand {
+class SetShooter : public frc::Command {
 public:
 	SetShooter(double speed);
 	void Initialize();
