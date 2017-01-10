@@ -13,7 +13,7 @@ std::shared_ptr<Lifter> Lifter::getInstance() {
 	return self;
 }
 
-Lifter::Lifter() : Subsystem("ExampleSubsystem") {
+Lifter::Lifter() : Subsystem(kSubsystemName) {
 
 }
 

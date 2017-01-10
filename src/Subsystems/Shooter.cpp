@@ -38,7 +38,6 @@ void Shooter::SetShooter(double speed){
 double Shooter::GetShooterspeed(){
 
 	return kID1.Get();
-
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

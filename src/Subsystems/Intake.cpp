@@ -7,7 +7,7 @@ const char Intake::kSubsystemName[] = "Intake";
 std::shared_ptr<Intake> Intake::self;
 
 std::shared_ptr<Intake> Intake::getInstance() {
-	if (! self){
+	if (! self) {
 		self = std::make_shared<Intake>();
 	}
 	return self;
