@@ -16,7 +16,7 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
 	kID1(RobotMap::kID1),
 	kID2(RobotMap::kID2)
-		{
+{
 
 }
 
