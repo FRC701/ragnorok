@@ -11,11 +11,22 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Intake> self;
 
+	CANTalon kID3;
+	CANTalon kID4;
+
 public:
 	static std::shared_ptr<Intake> getInstance();
 
 	Intake();
 	void InitDefaultCommand();
+
+	void SetIntake(double speed);
+
+	double GetIntakespeed();
+
+
+
+
 };
 
 #endif  // Intake_H

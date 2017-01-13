@@ -13,7 +13,22 @@ std::shared_ptr<Intake> Intake::getInstance() {
 	return self;
 }
 
-Intake::Intake() : Subsystem(kSubsystemName) {
+Intake::Intake() : Subsystem(kSubsystemName),
+
+  kID3(RobotMap::kID3),
+  kID4(RobotMap::kID4){
+
+
+
+}
+
+
+
+
+
+
+}
+{
 
 }
 
