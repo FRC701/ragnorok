@@ -10,5 +10,26 @@ SetShooter::SetShooter(double speed) :
 
 // Called once when the command executes
 void SetShooter::Initialize() {
-	 Shooter::getInstance()->SetShooter(mSpeed);
 }
+
+// Called repeatedly when this Command is scheduled to run
+void SetShooter::Execute() {
+  Shooter::getInstance()->SetShooter(mSpeed);
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool SetShooter::IsFinished() {
+  return false;
+}
+
+// Called once after isFinished returns true
+void SetShooter::End() {
+
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void SetShooter::Interrupted() {
+
+}
+

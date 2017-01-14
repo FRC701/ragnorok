@@ -16,10 +16,12 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
 
-	kID1(RobotMap::kID1),
-	kID2(RobotMap::kID2){
 
-	kID2.SetInverted(true);
+	rightMotor(RobotMap::kIDShooterRight),
+	leftMotor(RobotMap::kIDShooterLeft)
+	{
+
+	leftMotor.SetInverted(true);
 
 }
 
@@ -31,13 +33,14 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::SetShooter(double speed){
 
-	kID1.Set(speed);
-	kID2.Set(speed);
+  rightMotor.Set(speed);
+  leftMotor.Set(speed);
+
 }
 
-double Shooter::GetShooterspeed(){
+double Shooter::GetShooter(){
 
-	return kID1.Get();
+	return leftMotor.Get();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
