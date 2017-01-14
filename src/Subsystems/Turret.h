@@ -11,11 +11,18 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Turret> self;
 
+
+	CANTalon spinner;
+
 public:
 	static std::shared_ptr<Turret> getInstance();
 
 	Turret();
 	void InitDefaultCommand();
+
+	void SetTurret(double speed);
+
+	double GetTurret();
 };
 
 #endif  // Turret_H
