@@ -1,8 +1,13 @@
 #include "SetIntake.h"
+#include "../Subsystems/Intake.h"
 
-SetIntake::SetIntake() {
+SetIntake::SetIntake(double speed)
+: mSpeed(speed)
+{
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
+
+   Requires(Intake::getInstance().get());
 }
 
 // Called just before this Command runs the first time
@@ -12,7 +17,7 @@ void SetIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void SetIntake::Execute() {
-
+  Intake::getInstance()->SetIntake(mSpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -30,3 +35,4 @@ void SetIntake::End() {
 void SetIntake::Interrupted() {
 
 }
+

@@ -1,16 +1,18 @@
 #ifndef SetIntake_H
 #define SetIntake_H
 
-#include "../CommandBase.h"
+#include "Commands/Command.h"
 
-class SetIntake : public CommandBase {
+class SetIntake : public Command {
 public:
-	SetIntake();
+	SetIntake(double speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+private:
+	double mSpeed;
 };
 
 #endif  // SetIntake_H

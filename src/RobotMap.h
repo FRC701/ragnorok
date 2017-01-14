@@ -15,10 +15,10 @@ public:
   static const int kIDLeftWheel3 = 15;
 
 //..........Testing/Implementation..........
- static const int kIDShooterRight = 1;
+  static const int kIDShooterRight = 1;
   static const int kIDShooterLeft = 2;
-  static const int kID3 = 3;
-  static const int kID4 = 4;
+  static const int kIDIntakeRight = 3;
+  static const int kIDIntakeLeft  = 4;
   static const int kIDBallConveyorLeft = 5;
   static const int kIDBallConveyorRight = 6;
   static const int kID7 = 7;
