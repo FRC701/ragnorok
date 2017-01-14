@@ -11,8 +11,8 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<BallConveyor> self;
 
-	CANTalon kID1;
-	CANTalon kID2;
+	CANTalon leftMotor;
+	CANTalon rightMotor;
 
 public:
 	static std::shared_ptr<BallConveyor> getInstance();
