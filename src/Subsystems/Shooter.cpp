@@ -1,7 +1,7 @@
 #include "Shooter.h"
 #include "../RobotMap.h"
 #include "CANTalon.h"
-#include "Commands/DefaultShooter.h"
+#include "Commands/SetShooter.h"
 
 const char Shooter::kSubsystemName[] = "Shooter";
 
@@ -28,7 +28,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 void Shooter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-	SetDefaultCommand(new DefaultShooter());
+	SetDefaultCommand(new ::SetShooter(0.0));
 }
 
 void Shooter::SetShooter(double speed){
