@@ -19,8 +19,8 @@ public:
   static const int kIDShooterLeft = 2;
   static const int kIDIntakeRight = 3;
   static const int kIDIntakeLeft  = 4;
-  static const int kIDBallConveyorLeft = 5;
-  static const int kIDBallConveyorRight = 6;
+  static const int kIDFeederLeft = 5;
+  static const int kIDFeederRight = 6;
   static const int kIDTurretSpinner = 7;
   static const int kID8 = 8;
   static const int kID9 = 9;
