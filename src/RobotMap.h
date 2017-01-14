@@ -22,7 +22,7 @@ public:
   static const int kIDFeederLeft = 5;
   static const int kIDFeederRight = 6;
   static const int kIDTurretSpinner = 7;
-  static const int kID8 = 8;
+  static const int kIDMover = 8;
   static const int kID9 = 9;
   static const int kID16 = 16;
 

@@ -5,7 +5,7 @@
 
 class ConveyorControl : public frc::Command {
 public:
-  ConveyorControl(double speed);
+  ConveyorControl(double conveyorSpeed, double moverSpeed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -13,7 +13,8 @@ public:
 	void Interrupted();
 
 private:
-	double mSpeed;
+	double mConveyorSpeed;
+	double mMoverSpeed;
 };
 
 #endif  // ConveyorControl_H

@@ -13,6 +13,7 @@ private:
 
 	CANTalon feederLeft;
 	CANTalon feederRight;
+	CANTalon moverMotor;
 
 public:
 	static std::shared_ptr<BallConveyor> getInstance();
@@ -21,7 +22,7 @@ public:
 
 	void InitDefaultCommand();
 
-	void ConveyorControl(double speed);
+	void ConveyorControl(double conveyorSpeed, double moverSpeed);
 
 	double GetConveyorControl();
 };

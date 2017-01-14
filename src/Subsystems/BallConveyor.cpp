@@ -16,7 +16,8 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
 	feederLeft(RobotMap::kIDFeederLeft),
-	feederRight(RobotMap::kIDFeederRight)
+	feederRight(RobotMap::kIDFeederRight),
+	moverMotor(RobotMap::kIDMover)
 {
   feederRight.SetInverted(true);
 }
@@ -24,16 +25,17 @@ BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
 void BallConveyor::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-  SetDefaultCommand(new ::ConveyorControl(0.0));
+  SetDefaultCommand(new ::ConveyorControl(0.0, 0.0));
 }
-void BallConveyor::ConveyorControl(double speed){
+void BallConveyor::ConveyorControl(double conveyorSpeed,double moverSpeed){
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-  feederLeft.Set(speed);
-  feederRight.Set(speed);
-
+  feederLeft.Set(conveyorSpeed);
+  feederRight.Set(conveyorSpeed);
+   moverMotor.Set(moverSpeed);
 }
+
   double BallConveyor::GetConveyorControl(){
 
   return feederLeft.Get();
