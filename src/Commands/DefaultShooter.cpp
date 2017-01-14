@@ -16,7 +16,7 @@ void DefaultShooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void DefaultShooter::Execute() {
   std::shared_ptr<Shooter> shooter = Shooter::getInstance();
-	shooter->SetShooter(shooter->GetShooterspeed());
+	shooter->SetShooter(shooter->GetShooter());
 }
 
 // Make this return true when this Command no longer needs to run execute()
