@@ -23,7 +23,6 @@ public:
 
 	void ConveyorControl(double conveyorSpeed, double moverSpeed);
 
-	double GetConveyorControl();
 };
 
 #endif  // BallConveyor_H
