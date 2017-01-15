@@ -15,9 +15,9 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 }
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
-	feederLeft(RobotMap::kIDFeederLeft),
-	feederRight(RobotMap::kIDFeederRight),
-	moverMotor(RobotMap::kIDMover)
+	feederLeft(RobotMap::kIDConveyorFeederLeft),
+	feederRight(RobotMap::kIDConveyorFeederRight),
+	moverMotor(RobotMap::kIDConveyorMover)
 {
   feederRight.SetInverted(true);
 }
@@ -36,8 +36,6 @@ void BallConveyor::ConveyorControl(double conveyorSpeed,double moverSpeed){
    moverMotor.Set(moverSpeed);
 }
 
-  double BallConveyor::GetConveyorControl(){
 
-  return feederLeft.Get();
-}
+
 
