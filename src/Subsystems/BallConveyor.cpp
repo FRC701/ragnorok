@@ -9,7 +9,7 @@ std::shared_ptr<BallConveyor> BallConveyor::self;
 
 std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 	if (! self) {
-	   self = std::make_shared<BallConveyor>();
+	  self = std::shared_ptr<BallConveyor>(new BallConveyor());
 	}
 	return self;
 }

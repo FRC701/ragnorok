@@ -10,6 +10,7 @@ private:
 
 	static const char kSubsystemName[];
 	static std::shared_ptr<BallConveyor> self;
+  BallConveyor();
 
 	CANTalon feederLeft;
 	CANTalon feederRight;
@@ -17,8 +18,6 @@ private:
 
 public:
 	static std::shared_ptr<BallConveyor> getInstance();
-
-	BallConveyor();
 
 	void InitDefaultCommand();
 
