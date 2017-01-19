@@ -2,6 +2,10 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/TankDrive.h"
+#include "Commands/ConveyorControl.h"
+#include "Commands/SetIntake.h"
+#include "Commands/SetShooter.h"
+#include "Commands/SetTurret.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -41,9 +45,13 @@ OI::OI()
 
   dA.WhileHeld(new AutonomousCommand());
 
-  SmartDashboard::PutData("TankDrive", new TankDrive());
+  SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-
+  SmartDashboard::PutData("Feeder On", new ConveyorControl(1.0, 0.0));
+  SmartDashboard::PutData("Mover On", new ConveyorControl(0.0, 1.0));
+  SmartDashboard::PutData("Intake On", new SetIntake(1.0));
+  SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
+  SmartDashboard::PutData("Turret On", new SetTurret(1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
