@@ -45,13 +45,13 @@ OI::OI()
 
   dA.WhileHeld(new AutonomousCommand());
 
-  SmartDashboard::PutData("TankDrive", new TankDrive());
+  SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("FeederOn", new ConveyorControl(1.0, 0.0));
-  SmartDashboard::PutData("MoverOn", new ConveyorControl(0.0, 1.0));
-  SmartDashboard::PutData("IntakeOn", new SetIntake(1.0));
-  SmartDashboard::PutData("ShooterOn", new SetShooter(1.0));
-  SmartDashboard::PutData("TurretOn", new SetTurret(1.0));
+  SmartDashboard::PutData("Feeder On", new ConveyorControl(1.0, 0.0));
+  SmartDashboard::PutData("Mover On", new ConveyorControl(0.0, 1.0));
+  SmartDashboard::PutData("Intake On", new SetIntake(1.0));
+  SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
+  SmartDashboard::PutData("Turret On", new SetTurret(1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
