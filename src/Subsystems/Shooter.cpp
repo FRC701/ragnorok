@@ -17,12 +17,9 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 }
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
-
-
 	rightMotor(RobotMap::kIDShooterRight),
 	leftMotor(RobotMap::kIDShooterLeft)
-	{
-
+{
   p = 0.005;
   i = 0;
   d = 0;
@@ -34,8 +31,6 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
   rightMotor.SetPID(p, i, d);
   nudge = 0;
-
-
 }
 
 void Shooter::InitDefaultCommand() {
@@ -44,7 +39,7 @@ void Shooter::InitDefaultCommand() {
 	SetDefaultCommand(new ::SetShooter(0.0));
 }
 
-void Shooter::SetShooter(double speed){
+void Shooter::SetShooter(double speed) {
 
   rightMotor.Set(speed + nudge);
  // leftMotor.Set(speed + nudge);
