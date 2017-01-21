@@ -24,13 +24,16 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 	d(0),
 	nudge(0)
 {
-	leftMotor.SetInverted(false);
-  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
-  leftMotor.Set(RobotMap::kIDShooterRight);
-	rightMotor.SetInverted(false);
+  rightMotor.SetInverted(false);
   rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
   rightMotor.SetPID(p, i, d);
+  rightMotor.SetSensorDirection(true);
+
+  leftMotor.SetInverted(false);
+  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
+  leftMotor.Set(RobotMap::kIDShooterRight);
+  leftMotor.SetClosedLoopOutputDirection(true);
 }
 
 void Shooter::InitDefaultCommand() {

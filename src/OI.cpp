@@ -57,7 +57,7 @@ OI::OI()
 
   SmartDashboard::PutData("TankDrive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("Set Shooter", new SetShooter(-20284.0));
+  SmartDashboard::PutData("Set Shooter", new SetShooter(20284.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
