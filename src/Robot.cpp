@@ -7,6 +7,7 @@
 #include "Subsystems/Turret.h"
 #include "Subsystems/Vision.h"
 #include "Subsystems/Lifter.h"
+#include "Commands/SetShooter.h"
 
 std::unique_ptr<OI> Robot::oi;
 
@@ -68,12 +69,20 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
   if(OI::getInstance()->getDriver()->GetRawButton(1)) {
-    Shooter::getInstance()->nudge += 50;
+    Command* currentCommand = Shooter::getInstance()->GetCurrentCommand();
+    SetShooter* setShooterCommand = dynamic_cast<SetShooter *>(currentCommand);
+    if (setShooterCommand) {
+      setShooterCommand->Nudge(10);
+    }
   }
 
   if(OI::getInstance()->getDriver()->GetRawButton(2)) {
-      Shooter::getInstance()->nudge -= 50;
+    Command* currentCommand = Shooter::getInstance()->GetCurrentCommand();
+    SetShooter* setShooterCommand = dynamic_cast<SetShooter *>(currentCommand);
+    if (setShooterCommand) {
+      setShooterCommand->Nudge(-10);
     }
+  }
 
   Scheduler::GetInstance()->Run();
 

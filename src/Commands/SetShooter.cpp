@@ -33,3 +33,6 @@ void SetShooter::Interrupted() {
 
 }
 
+void SetShooter::Nudge(double value) {
+  mSpeed += value;
+}

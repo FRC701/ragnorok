@@ -16,9 +16,9 @@ private:
   double p;
   double i;
   double d;
+  double nudge;
 public:
   static std::shared_ptr<Shooter> getInstance();
-  double nudge;
 
 
   Shooter();
@@ -29,6 +29,8 @@ public:
   double GetShooter() const;
 
   int GetEncoderVelocity() const;
+
+  void Nudge(double value);
 };
 
 #endif  // Shooter_H

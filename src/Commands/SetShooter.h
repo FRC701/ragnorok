@@ -11,6 +11,8 @@ public:
   bool IsFinished();
   void End();
   void Interrupted();
+
+  void Nudge(double value);
 private:
 	double mSpeed;
 };

@@ -40,18 +40,19 @@ void Shooter::InitDefaultCommand() {
 }
 
 void Shooter::SetShooter(double speed) {
-
   rightMotor.Set(speed + nudge);
- // leftMotor.Set(speed + nudge);
-
 }
 
 double Shooter::GetShooter() const{
-
-	return leftMotor.Get();
+	return rightMotor.Get();
 }
+
 int Shooter::GetEncoderVelocity() const{
-return rightMotor.GetEncVel();
+  return rightMotor.GetEncVel();
+}
+
+void Shooter::Nudge(double value){
+  nudge += value;
 }
 
 // Put methods for controlling this subsystem
