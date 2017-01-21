@@ -2,6 +2,9 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/TankDrive.h"
+#include "Commands/SetShooter.h"
+#include "Commands/SetIntake.h"
+#include "Subsystems/Shooter.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -39,10 +42,15 @@ OI::OI()
 {
   // Process operator interface input here.
 
-  dA.WhileHeld(new AutonomousCommand());
+  //dA.WhileHeld(new AutonomousCommand());
+  dX.WhenPressed(new SetIntake(-0.4));
+  dY.WhenPressed(new SetIntake(0.0));
+  dRB.WhenPressed(new SetShooter(0.0));
+  //dLB.WhenPressed(new SetShooter(0.0 - Shooter::getInstance()->nudge));
 
   SmartDashboard::PutData("TankDrive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+  SmartDashboard::PutData("Set Shooter", new SetShooter(2000));
 
 }
 

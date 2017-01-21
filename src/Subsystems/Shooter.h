@@ -13,9 +13,12 @@ private:
 
   CANTalon rightMotor;
   CANTalon leftMotor;
+  double p;
+  double i;
+  double d;
 public:
   static std::shared_ptr<Shooter> getInstance();
-
+  double nudge;
 
 
   Shooter();

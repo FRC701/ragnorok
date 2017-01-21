@@ -2,6 +2,8 @@
 #include "../RobotMap.h"
 #include "CANTalon.h"
 #include "Commands/SetShooter.h"
+#include "SmartDashboard/SmartDashboard.h"
+
 
 const char Shooter::kSubsystemName[] = "Shooter";
 
@@ -21,7 +23,17 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 	leftMotor(RobotMap::kIDShooterLeft)
 	{
 
-	leftMotor.SetInverted(true);
+  p = 0.05;
+  i = 0;
+  d = 0;
+	leftMotor.SetInverted(false);
+	leftMotor.SetControlMode(frc::CANSpeedController::kPercentVbus);
+	rightMotor.SetInverted(false);
+  rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+  rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
+  rightMotor.SetPID(p, i, d);
+  nudge = 0;
+
 
 }
 
@@ -33,8 +45,8 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::SetShooter(double speed){
 
-  rightMotor.Set(speed);
-  leftMotor.Set(speed);
+  rightMotor.Set(speed + nudge);
+  leftMotor.Set(0.4);
 
 }
 

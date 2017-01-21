@@ -1,6 +1,6 @@
 #include "Robot.h"
 #include "Subsystems/Chassis.h"
-
+#include "OI.h"
 #include "Subsystems/BallConveyor.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Shooter.h"
@@ -67,7 +67,16 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+  if(OI::getInstance()->getDriver()->GetRawButton(1)) {
+    Shooter::getInstance()->nudge += 1;
+  }
+
+  if(OI::getInstance()->getDriver()->GetRawButton(2)) {
+      Shooter::getInstance()->nudge -= 1;
+    }
+
   Scheduler::GetInstance()->Run();
+
 }
 
 void Robot::TestPeriodic() {

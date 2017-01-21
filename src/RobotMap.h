@@ -9,19 +9,19 @@ public:
 //..........Chassis..........
   static const int kIDRightWheel1 = 10;
   static const int kIDRightWheel2 = 11;
-  static const int kIDRightWheel3 = 12;
+  static const int kIDRightWheel3 = 1;
   static const int kIDLeftWheel1 = 13;
   static const int kIDLeftWheel2 = 14;
   static const int kIDLeftWheel3 = 15;
 
 //..........Testing/Implementation..........
-  static const int kIDShooterRight = 1;
+  static const int kIDShooterRight = 12;
   static const int kIDShooterLeft = 2;
-  static const int kIDIntakeRight = 3;
+  static const int kIDIntakeRight = 7;
   static const int kIDIntakeLeft  = 4;
   static const int kIDConveyorFeederLeft = 5;
   static const int kIDConveyorFeederRight = 6;
-  static const int kIDTurretSpinner = 7;
+  static const int kIDTurretSpinner = 3;
   static const int kIDConveyorMover = 8;
   static const int kID9 = 9;
   static const int kID16 = 16;

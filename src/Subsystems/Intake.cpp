@@ -18,6 +18,8 @@ Intake::Intake() : Subsystem(kSubsystemName),
   rightMotor(RobotMap::kIDIntakeRight),
   leftMotor(RobotMap::kIDIntakeLeft) {
 
+  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
+  leftMotor.Set(RobotMap::kIDIntakeRight);
 }
 
 void Intake::InitDefaultCommand() {
@@ -29,7 +31,7 @@ void Intake::InitDefaultCommand() {
 
 void Intake::SetIntake(double speed){
   rightMotor.Set(speed);
-  leftMotor.Set(speed);
+  //leftMotor.Set(speed);
 
 }
 
