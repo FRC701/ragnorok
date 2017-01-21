@@ -24,11 +24,12 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 	d(0),
 	nudge(0)
 {
-  rightMotor.SetInverted(false);
+  rightMotor.Enable();
+  rightMotor.SetInverted(true);
   rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
   rightMotor.SetPID(p, i, d);
-  rightMotor.SetSensorDirection(true);
+  rightMotor.SetSensorDirection(false);
 
   leftMotor.SetInverted(false);
   leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
@@ -43,7 +44,7 @@ void Shooter::InitDefaultCommand() {
 }
 
 void Shooter::SetShooter(double speed) {
-  if (rightMotor.IsEnabled() && speed != 0.0 && GetEncoderVelocity() == 0) {
+ /* if (rightMotor.IsEnabled() && speed != 0.0 && GetEncoderVelocity() == 0) {
     if (checkEmergencyStop()) {
       emergencyStop();
     } else {
@@ -54,6 +55,8 @@ void Shooter::SetShooter(double speed) {
     eStopTimerStarted = false;
     rightMotor.Set(speed + nudge);
   }
+  */
+  rightMotor.Set(speed + nudge);
 }
 
 bool Shooter::checkEmergencyStop() {
