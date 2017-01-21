@@ -1,7 +1,9 @@
 #ifndef Shooter_H
 #define Shooter_H
-#include <Commands/Subsystem.h>
-#include <CANTalon.h>
+
+#include "Commands/Subsystem.h"
+#include "CANTalon.h"
+#include "Timer.h"
 
 class Shooter : public frc::Subsystem {
 private:
@@ -11,12 +13,17 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
+  Timer eStopTimer;
+  bool eStopTimerStarted;
   CANTalon rightMotor;
   CANTalon leftMotor;
   double p;
   double i;
   double d;
   double nudge;
+
+  bool checkEmergencyStop();
+  void emergencyStop();
 public:
   static std::shared_ptr<Shooter> getInstance();
 
@@ -35,6 +42,8 @@ public:
   int GetEncoderVelocity() const;
 
   void Nudge(double value);
+
+  void Enable();
 };
 
 #endif  // Shooter_H

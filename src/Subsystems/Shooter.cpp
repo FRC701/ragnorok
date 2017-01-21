@@ -1,9 +1,7 @@
 #include "Shooter.h"
 #include "../RobotMap.h"
-#include "CANTalon.h"
 #include "Commands/SetShooter.h"
 #include "SmartDashboard/SmartDashboard.h"
-
 
 const char Shooter::kSubsystemName[] = "Shooter";
 
@@ -17,20 +15,22 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 }
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
+  eStopTimer(),
+  eStopTimerStarted(false),
 	rightMotor(RobotMap::kIDShooterRight),
-	leftMotor(RobotMap::kIDShooterLeft)
+	leftMotor(RobotMap::kIDShooterLeft),
+	p(0.05),
+	i(0),
+	d(0),
+	nudge(0)
 {
-  p = 0.05;
-  i = 0;
-  d = 0;
 	leftMotor.SetInverted(false);
   leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
   leftMotor.Set(RobotMap::kIDShooterRight);
 	rightMotor.SetInverted(false);
-  rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+  rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
   rightMotor.SetPID(p, i, d);
-  nudge = 0;
 }
 
 void Shooter::InitDefaultCommand() {
@@ -40,7 +40,34 @@ void Shooter::InitDefaultCommand() {
 }
 
 void Shooter::SetShooter(double speed) {
-  rightMotor.Set(speed + nudge);
+  if (rightMotor.IsEnabled() && speed != 0.0 && GetEncoderVelocity() == 0) {
+    if (checkEmergencyStop()) {
+      emergencyStop();
+    } else {
+      rightMotor.Set(speed + nudge);
+    }
+  } else {
+    eStopTimer.Stop();
+    eStopTimerStarted = false;
+    rightMotor.Set(speed + nudge);
+  }
+}
+
+bool Shooter::checkEmergencyStop() {
+  if (eStopTimerStarted) {
+    return eStopTimer.HasPeriodPassed(0.25);
+  }
+
+  eStopTimer.Start();
+  eStopTimerStarted = true;
+  return false;
+}
+
+void Shooter::emergencyStop() {
+  this->GetCurrentCommand()->Cancel();
+  rightMotor.Disable();
+  eStopTimer.Stop();
+  eStopTimerStarted = false;
 }
 
 double Shooter::GetShooter() const{
@@ -61,6 +88,10 @@ int Shooter::GetEncoderVelocity() const{
 
 void Shooter::Nudge(double value){
   nudge += value;
+}
+
+void Shooter::Enable() {
+  rightMotor.Enable();
 }
 
 // Put methods for controlling this subsystem
