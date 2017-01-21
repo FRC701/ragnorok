@@ -23,11 +23,12 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 	leftMotor(RobotMap::kIDShooterLeft)
 	{
 
-  p = 0.05;
+  p = 0.005;
   i = 0;
   d = 0;
 	leftMotor.SetInverted(false);
-	leftMotor.SetControlMode(frc::CANSpeedController::kPercentVbus);
+  leftMotor.SetControlMode(frc::CANSpeedController::kPercentVbus);
+  //leftMotor.Set(RobotMap::kIDShooterRight);
 	rightMotor.SetInverted(false);
   rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
@@ -46,7 +47,7 @@ void Shooter::InitDefaultCommand() {
 void Shooter::SetShooter(double speed){
 
   rightMotor.Set(speed + nudge);
-  leftMotor.Set(0.4);
+  leftMotor.Set(1);
 
 }
 

@@ -16,13 +16,13 @@ public:
 
 //..........Testing/Implementation..........
   static const int kIDShooterRight = 12;
-  static const int kIDShooterLeft = 2;
-  static const int kIDIntakeRight = 7;
+  static const int kIDShooterLeft = 7;
+  static const int kIDIntakeRight = 2;
   static const int kIDIntakeLeft  = 4;
-  static const int kIDConveyorFeederLeft = 5;
-  static const int kIDConveyorFeederRight = 6;
-  static const int kIDTurretSpinner = 3;
-  static const int kIDConveyorMover = 8;
+  static const int kIDConveyorFeederLeft = 8;
+  static const int kIDConveyorFeederRight = 3;
+  static const int kIDTurretSpinner = 6;
+  static const int kIDConveyorMover = 5;
   static const int kID9 = 9;
   static const int kID16 = 16;
 

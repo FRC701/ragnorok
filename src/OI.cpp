@@ -5,6 +5,7 @@
 #include "Commands/SetShooter.h"
 #include "Commands/SetIntake.h"
 #include "Subsystems/Shooter.h"
+#include "Commands/ConveyorControl.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -43,10 +44,16 @@ OI::OI()
   // Process operator interface input here.
 
   //dA.WhileHeld(new AutonomousCommand());
-  dX.WhenPressed(new SetIntake(-0.4));
-  dY.WhenPressed(new SetIntake(0.0));
+//  dX.WhenPressed(new SetIntake(-0.4));
+//  dY.WhenPressed(new SetIntake(0.0));
+//  dRB.WhenPressed(new SetShooter(0.0));
+//  dLB.WhenPressed(new SetShooter(0.0 - Shooter::getInstance()->nudge));
+//
+  //Conveyor:
+
+  dX.WhenPressed(new ConveyorControl(0.7 , 0.0));
+  dY.WhenPressed(new ConveyorControl(0.0 , 0.0));
   dRB.WhenPressed(new SetShooter(0.0));
-  //dLB.WhenPressed(new SetShooter(0.0 - Shooter::getInstance()->nudge));
 
   SmartDashboard::PutData("TankDrive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());

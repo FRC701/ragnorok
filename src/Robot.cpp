@@ -68,11 +68,11 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
   if(OI::getInstance()->getDriver()->GetRawButton(1)) {
-    Shooter::getInstance()->nudge += 1;
+    Shooter::getInstance()->nudge += 50;
   }
 
   if(OI::getInstance()->getDriver()->GetRawButton(2)) {
-      Shooter::getInstance()->nudge -= 1;
+      Shooter::getInstance()->nudge -= 50;
     }
 
   Scheduler::GetInstance()->Run();
