@@ -27,8 +27,8 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   i = 0;
   d = 0;
 	leftMotor.SetInverted(false);
-  leftMotor.SetControlMode(frc::CANSpeedController::kPercentVbus);
-  //leftMotor.Set(RobotMap::kIDShooterRight);
+  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
+  leftMotor.Set(RobotMap::kIDShooterRight);
 	rightMotor.SetInverted(false);
   rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
   rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
@@ -47,13 +47,17 @@ void Shooter::InitDefaultCommand() {
 void Shooter::SetShooter(double speed){
 
   rightMotor.Set(speed + nudge);
-  leftMotor.Set(1);
+ // leftMotor.Set(speed + nudge);
 
 }
 
-double Shooter::GetShooter(){
+double Shooter::GetShooter() const{
 
 	return leftMotor.Get();
 }
+int Shooter::GetEncoderVelocity() const{
+return rightMotor.GetEncVel();
+}
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

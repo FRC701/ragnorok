@@ -26,8 +26,9 @@ public:
 
   void SetShooter(double speed);
 
-  double GetShooter();
+  double GetShooter() const;
 
+  int GetEncoderVelocity() const;
 };
 
 #endif  // Shooter_H
