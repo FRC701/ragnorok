@@ -1,4 +1,5 @@
 #include "CANTalon.h"
+#include "LiveWindow/LiveWindow.h"
 #include "Chassis.h"
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
@@ -23,7 +24,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel(RobotMap::kIDLeftWheel2),
   left3Wheel(RobotMap::kIDLeftWheel3) {
 
-  LiveWindow *lw = LiveWindow::GetInstance();
+  frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 
   lw->AddActuator(kSubsystemName , "Right1Wheel", right1Wheel);
   lw->AddActuator(kSubsystemName , "Right2Wheel", right2Wheel);
