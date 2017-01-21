@@ -68,6 +68,11 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+
+  SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
+  SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
+  SmartDashboard::PutNumber("Shooter Current.", Shooter::getInstance()->GetOutputCurrent());
+
   if(OI::getInstance()->getDriver()->GetRawButton(1)) {
     Command* currentCommand = Shooter::getInstance()->GetCurrentCommand();
     SetShooter* setShooterCommand = dynamic_cast<SetShooter *>(currentCommand);

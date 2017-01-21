@@ -20,7 +20,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 	rightMotor(RobotMap::kIDShooterRight),
 	leftMotor(RobotMap::kIDShooterLeft)
 {
-  p = 0.005;
+  p = 0.05;
   i = 0;
   d = 0;
 	leftMotor.SetInverted(false);
@@ -45,6 +45,14 @@ void Shooter::SetShooter(double speed) {
 
 double Shooter::GetShooter() const{
 	return rightMotor.Get();
+}
+
+double Shooter::GetOutputCurrent() const{
+  return rightMotor.GetOutputCurrent();
+}
+
+double Shooter::GetOutputVoltage() const{
+  return rightMotor.GetOutputVoltage();
 }
 
 int Shooter::GetEncoderVelocity() const{

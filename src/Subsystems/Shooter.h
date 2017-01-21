@@ -28,6 +28,10 @@ public:
 
   double GetShooter() const;
 
+  double GetOutputVoltage() const;
+
+  double GetOutputCurrent() const;
+
   int GetEncoderVelocity() const;
 
   void Nudge(double value);
