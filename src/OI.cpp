@@ -49,9 +49,9 @@ OI::OI()
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new ConveyorControl(1.0, 0.0));
   SmartDashboard::PutData("Mover On", new ConveyorControl(0.0, 1.0));
+  SmartDashboard::PutData("Convevor On", new ConveyorControl(1.0, 1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
-  SmartDashboard::PutData("Turret On", new SetTurret(1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
