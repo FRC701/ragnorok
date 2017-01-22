@@ -43,7 +43,14 @@ public:
 
   void Nudge(double value);
 
+  double GetSetPoint() const;
+
+  double GetSpeed() const;
+
+  int GetShooterError() const;
+
   void Enable();
+
 };
 
 #endif  // Shooter_H

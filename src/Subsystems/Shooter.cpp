@@ -19,8 +19,8 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   eStopTimerStarted(false),
 	rightMotor(RobotMap::kIDShooterRight),
 	leftMotor(RobotMap::kIDShooterLeft),
-	p(0.05),
-	i(0),
+	p(0.06),
+	i(0.0001),
 	d(0),
 	nudge(0)
 {
@@ -40,7 +40,8 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 void Shooter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-	SetDefaultCommand(new ::SetShooter(0.0));
+	//SetDefaultCommand(new ::SetShooter(0.0));
+  SetDefaultCommand(new ::SetShooter(Shooter::GetSetPoint()));
 }
 
 void Shooter::SetShooter(double speed) {
@@ -56,7 +57,7 @@ void Shooter::SetShooter(double speed) {
     rightMotor.Set(speed + nudge);
   }
   */
-  rightMotor.Set(speed + nudge);
+  rightMotor.Set(speed);
 }
 
 bool Shooter::checkEmergencyStop() {
@@ -94,6 +95,18 @@ int Shooter::GetEncoderVelocity() const{
 
 void Shooter::Nudge(double value){
   nudge += value;
+}
+
+double Shooter::GetSetPoint() const{
+  return rightMotor.GetSetpoint();
+}
+
+double Shooter::GetSpeed() const{
+  return rightMotor.GetSpeed();
+}
+
+int Shooter::GetShooterError() const{
+  return rightMotor.GetClosedLoopError();
 }
 
 void Shooter::Enable() {
