@@ -1,5 +1,6 @@
 #include "SetShooter.h"
 #include "../Subsystems/Shooter.h"
+#include <iostream>
 
 SetShooter::SetShooter(double speed) :
     mSpeed(speed) {
@@ -15,11 +16,12 @@ void SetShooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void SetShooter::Execute() {
   Shooter::getInstance()->SetShooter(mSpeed);
+  std::cout << "Shooter speed Set" << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetShooter::IsFinished() {
-  return false;
+  return true;
 }
 
 // Called once after isFinished returns true

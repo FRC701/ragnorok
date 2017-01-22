@@ -6,6 +6,7 @@
 #include "Commands/SetIntake.h"
 #include "Subsystems/Shooter.h"
 #include "Commands/ConveyorControl.h"
+#include "Commands/NudgeShooter.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -49,15 +50,16 @@ OI::OI()
 //  dRB.WhenPressed(new SetShooter(0.0));
 //  dLB.WhenPressed(new SetShooter(0.0 - Shooter::getInstance()->nudge));
 //
-  //Conveyor:
-
+  //Conveyor
+  dA.WhenPressed(new NudgeShooter(10));
+  dB.WhenPressed(new NudgeShooter(-10));
   dX.WhenPressed(new ConveyorControl(0.7 , 0.0));
   dY.WhenPressed(new ConveyorControl(0.0 , 0.0));
   dRB.WhenPressed(new SetShooter(0.0));
 
   SmartDashboard::PutData("TankDrive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("Set Shooter", new SetShooter(20284.0));
+  SmartDashboard::PutData("Set Shooter", new SetShooter(3000));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
