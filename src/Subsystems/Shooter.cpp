@@ -41,7 +41,7 @@ void Shooter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 	//SetDefaultCommand(new ::SetShooter(0.0));
-  SetDefaultCommand(new ::SetShooter(Shooter::GetSetPoint()));
+ // SetDefaultCommand(new ::SetShooter(Shooter::getInstance()->GetSetPoint()));
 }
 
 void Shooter::SetShooter(double speed) {

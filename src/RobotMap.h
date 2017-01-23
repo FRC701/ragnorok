@@ -9,13 +9,13 @@ public:
 //..........Chassis..........
   static const int kIDRightWheel1 = 10;
   static const int kIDRightWheel2 = 11;
-  static const int kIDRightWheel3 = 1;
+  static const int kIDRightWheel3 = 33;
   static const int kIDLeftWheel1 = 13;
   static const int kIDLeftWheel2 = 14;
   static const int kIDLeftWheel3 = 15;
 
 //..........Testing/Implementation..........
-  static const int kIDShooterRight = 12;
+  static const int kIDShooterRight = 1;
   static const int kIDShooterLeft = 7;
   static const int kIDIntakeRight = 2;
   static const int kIDIntakeLeft  = 4;

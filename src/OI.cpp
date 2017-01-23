@@ -55,7 +55,7 @@ OI::OI()
   dB.WhenPressed(new NudgeShooter(-10));
   dX.WhenPressed(new ConveyorControl(0.7 , 0.0));
   dY.WhenPressed(new ConveyorControl(0.0 , 0.0));
-  dRB.WhenPressed(new SetShooter(0.0));
+  dRB.WhenPressed(new SetShooter(3000.0));
 
   SmartDashboard::PutData("TankDrive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
