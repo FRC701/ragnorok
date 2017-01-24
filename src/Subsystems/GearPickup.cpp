@@ -16,7 +16,7 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
-    Pickup(RobotMap::kIDpickup0, RobotMap::kIDpickup1)
+    Pickup(RobotMap::kIDpickupForward, RobotMap::kIDpickupReverse)
 
     {
 
