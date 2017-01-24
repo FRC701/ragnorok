@@ -2,6 +2,7 @@
 #define SetGear_H
 
 #include "Commands/Command.h"
+#include "Subsystems/GearPickup.h"
 
 class SetGear : public frc::Command {
 public:
