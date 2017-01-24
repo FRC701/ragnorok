@@ -26,6 +26,8 @@ public:
   static const int kID9 = 9;
   static const int kID16 = 16;
 
+  static const int kIDpickup0 = 0;
+  static const int kIDpickup1 = 1;
 
 	static void init();
 };
