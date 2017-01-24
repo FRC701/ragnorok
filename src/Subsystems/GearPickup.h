@@ -15,10 +15,19 @@ private:
 
 
 public:
+
+  enum PickupValue{kGearUp = DoubleSolenoid::kForward,kGearDown = DoubleSolenoid::kReverse};
+
   static std::shared_ptr<GearPickup> getInstance();
 
 	GearPickup();
+
 	void InitDefaultCommand();
+
+	void SetGear(PickupValue value);
+
+	bool IsGearUp() const;
+
 };
 
 #endif  // GearPickup_H

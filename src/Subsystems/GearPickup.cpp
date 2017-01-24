@@ -27,5 +27,13 @@ void GearPickup::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
+void GearPickup::SetGear(PickupValue value) {
+  Pickup.Set(static_cast<DoubleSolenoid::Value>(value));
+}
+
+bool GearPickup::IsGearUp() const {
+  return Pickup.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
+}
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
