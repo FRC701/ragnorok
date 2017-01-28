@@ -11,8 +11,7 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Intake> self;
 
-	CANTalon rightMotor;
-	CANTalon leftMotor;
+	CANTalon HopperRoller;
 
 public:
 	static std::shared_ptr<Intake> getInstance();
@@ -21,11 +20,6 @@ public:
 	void InitDefaultCommand();
 
 	void SetIntake(double speed);
-
-	double GetIntake();
-
-
-
 
 };
 
