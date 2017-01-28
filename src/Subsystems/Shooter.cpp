@@ -17,24 +17,28 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 Shooter::Shooter() : Subsystem(kSubsystemName),
   eStopTimer(),
   eStopTimerStarted(false),
-	rightMotor(RobotMap::kIDShooterRight),
-	leftMotor(RobotMap::kIDShooterLeft),
+	TopMotor1(RobotMap::kIDFlyWheelTop1),
+	TopMotor2(RobotMap::kIDFlyWheelTop2),
+	BottomMotor(RobotMap::kIDFlyWheelBottom),
 	p(0.06),
 	i(0.0001),
 	d(0),
 	nudge(0)
 {
-  rightMotor.Enable();
-  rightMotor.SetInverted(true);
-  rightMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-  rightMotor.SetControlMode(frc::CANSpeedController::kSpeed);
-  rightMotor.SetPID(p, i, d);
-  rightMotor.SetSensorDirection(false);
+  TopMotor1.Enable();
+  TopMotor1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  TopMotor1.SetControlMode(frc::CANSpeedController::kSpeed);
+  TopMotor1.SetPID(p, i, d);
+  TopMotor1.SetSensorDirection(false);
 
-  leftMotor.SetInverted(false);
-  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
-  leftMotor.Set(RobotMap::kIDShooterRight);
-  leftMotor.SetClosedLoopOutputDirection(true);
+  TopMotor2.Enable();
+  TopMotor2.SetControlMode(frc::CANSpeedController::kFollower);
+  TopMotor2.Set(RobotMap::kIDFlyWheelTop1);
+
+  BottomMotor.Enable();
+  BottomMotor.SetControlMode(frc::CANSpeedController::kFollower);
+  BottomMotor.Set(RobotMap::kIDFlyWheelTop1);
+
 }
 
 void Shooter::InitDefaultCommand() {
@@ -57,7 +61,7 @@ void Shooter::SetShooter(double speed) {
     rightMotor.Set(speed + nudge);
   }
   */
-  rightMotor.Set(speed);
+  TopMotor1.Set(speed);
 }
 
 bool Shooter::checkEmergencyStop() {
@@ -72,25 +76,25 @@ bool Shooter::checkEmergencyStop() {
 
 void Shooter::emergencyStop() {
   this->GetCurrentCommand()->Cancel();
-  rightMotor.Disable();
+  TopMotor1.Disable();
   eStopTimer.Stop();
   eStopTimerStarted = false;
 }
 
 double Shooter::GetShooter() const{
-	return rightMotor.Get();
+	return TopMotor1.Get();
 }
 
 double Shooter::GetOutputCurrent() const{
-  return rightMotor.GetOutputCurrent();
+  return TopMotor1.GetOutputCurrent();
 }
 
 double Shooter::GetOutputVoltage() const{
-  return rightMotor.GetOutputVoltage();
+  return TopMotor1.GetOutputVoltage();
 }
 
 int Shooter::GetEncoderVelocity() const{
-  return rightMotor.GetEncVel();
+  return TopMotor1.GetEncVel();
 }
 
 void Shooter::Nudge(double value){
@@ -98,19 +102,19 @@ void Shooter::Nudge(double value){
 }
 
 double Shooter::GetSetPoint() const{
-  return rightMotor.GetSetpoint();
+  return TopMotor1.GetSetpoint();
 }
 
 double Shooter::GetSpeed() const{
-  return rightMotor.GetSpeed();
+  return TopMotor1.GetSpeed();
 }
 
 int Shooter::GetShooterError() const{
-  return rightMotor.GetClosedLoopError();
+  return TopMotor1.GetClosedLoopError();
 }
 
 void Shooter::Enable() {
-  rightMotor.Enable();
+  TopMotor1.Enable();
 }
 
 // Put methods for controlling this subsystem

@@ -15,8 +15,9 @@ private:
 
   Timer eStopTimer;
   bool eStopTimerStarted;
-  CANTalon rightMotor;
-  CANTalon leftMotor;
+  CANTalon TopMotor1;
+  CANTalon TopMotor2;
+  CANTalon BottomMotor;
   double p;
   double i;
   double d;
