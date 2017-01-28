@@ -2,7 +2,7 @@
 #include "../Subsystems/BallConveyor.h"
 
 ConveyorControl::ConveyorControl(double conveyorSpeed, double moverSpeed) :
-  mConveyorSpeed(conveyorSpeed), mMoverSpeed(moverSpeed)
+  mConveyorSpeed(conveyorSpeed)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
@@ -16,7 +16,7 @@ void ConveyorControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ConveyorControl::Execute() {
-  BallConveyor::getInstance()->ConveyorControl(mConveyorSpeed, mMoverSpeed);
+  BallConveyor::getInstance()->ConveyorControl(mConveyorSpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()
