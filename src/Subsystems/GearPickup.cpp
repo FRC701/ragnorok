@@ -16,6 +16,7 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
+    GearRoller(RobotMap::kIDGearIntake),
     Pickup(RobotMap::kIDpickupForward, RobotMap::kIDpickupReverse)
 
     {
