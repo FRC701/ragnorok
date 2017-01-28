@@ -6,28 +6,50 @@
 class RobotMap {
 public:
 
+//..........Talons..........
+
 //..........Chassis..........
-  static const int kIDRightWheel1 = 10;
-  static const int kIDRightWheel2 = 11;
-  static const int kIDRightWheel3 = 12;
-  static const int kIDLeftWheel1 = 13;
-  static const int kIDLeftWheel2 = 14;
-  static const int kIDLeftWheel3 = 15;
+  static const int kIDRightWheel1 = 1;
+  static const int kIDRightWheel2 = 2;
+  static const int kIDLeftWheel1 = 3;
+  static const int kIDLeftWheel2 = 4;
 
-//..........Testing/Implementation..........
-  static const int kIDShooterRight = 1;
-  static const int kIDShooterLeft = 2;
-  static const int kIDIntakeRight = 3;
-  static const int kIDIntakeLeft  = 4;
-  static const int kIDConveyorFeederLeft = 5;
-  static const int kIDConveyorFeederRight = 6;
-  static const int kIDTurretSpinner = 7;
-  static const int kIDConveyorMover = 8;
-  static const int kID9 = 9;
-  static const int kID16 = 16;
+//..........Conveyor..........
+  static const int kIDConveyor = 13;
 
+//..........GearIntake..........
+  static const int kIDGearIntake = 10;
+
+//..........GearPneumatics..........
   static const int kIDpickupForward = 1;
   static const int kIDpickupReverse = 6;
+//..........GearPneumatics..........
+  static const int kIDpickupForward = 1;
+  static const int kIDpickupReverse = 6;
+
+//..........HopperIntake..........
+  static const int kIDHopperIntake = 9;
+
+//..........Lifter..........
+  static const int kIDLifterLeft = 11;
+  static const int kIDLifterRight = 12;
+
+//..........Turret..........
+  static const int kIDTurretSpinner = 8;
+
+//..........Pneumatics..........
+
+//..........ShiftingPneumatics..........
+  static const int kIDShitftingHigh = 0;
+  static const int kIDShitftingLow = 7;
+
+//..........Shooter..........
+  static const int kIDFlyWheelTop1 = 5;
+  static const int kIDFlyWheelTop2 = 6;
+  static const int kIDFlyWheelBottom = 7;
+
+
+
 
 	static void init();
 };
