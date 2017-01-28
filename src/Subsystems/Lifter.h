@@ -11,6 +11,9 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Lifter> self;
 
+	CANTalon LifterMotorLeft;
+	CANTalon LifterMotorRight;
+
 public:
 	static std::shared_ptr<Lifter> getInstance();
 
