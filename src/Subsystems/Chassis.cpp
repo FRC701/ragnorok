@@ -19,31 +19,24 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 Chassis::Chassis() : Subsystem(kSubsystemName),
   right1Wheel(RobotMap::kIDRightWheel1),
   right2Wheel(RobotMap::kIDRightWheel2),
-  right3Wheel(RobotMap::kIDRightWheel3),
   left1Wheel(RobotMap::kIDLeftWheel1),
-  left2Wheel(RobotMap::kIDLeftWheel2),
-  left3Wheel(RobotMap::kIDLeftWheel3) {
+  left2Wheel(RobotMap::kIDLeftWheel2) {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 
   lw->AddActuator(kSubsystemName , "Right1Wheel", right1Wheel);
   lw->AddActuator(kSubsystemName , "Right2Wheel", right2Wheel);
-  lw->AddActuator(kSubsystemName , "Right3Wheel", right3Wheel);
   lw->AddActuator(kSubsystemName , "Left1Wheel", left1Wheel);
   lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
-  lw->AddActuator(kSubsystemName , "Left3Wheel", left3Wheel);
 
   right1Wheel.SetInverted(true);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRightWheel1);
-  right3Wheel.SetControlMode(CANTalon::kFollower);
-  right3Wheel.Set(RobotMap::kIDRightWheel1);
 
   left2Wheel.SetControlMode(CANTalon::kFollower);
   left2Wheel.Set(RobotMap::kIDLeftWheel1);
-  left3Wheel.SetControlMode(CANTalon::kFollower);
-  left3Wheel.Set(RobotMap::kIDLeftWheel1);
+
 }
 
 void Chassis::InitDefaultCommand() {

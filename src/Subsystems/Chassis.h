@@ -13,10 +13,8 @@ private:
 
   CANTalon right1Wheel;
 	CANTalon right2Wheel;
-	CANTalon right3Wheel;
 	CANTalon left1Wheel;
 	CANTalon left2Wheel;
-	CANTalon left3Wheel;
 
 public:
 	static std::shared_ptr<Chassis> getInstance();
