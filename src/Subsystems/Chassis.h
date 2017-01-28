@@ -10,10 +10,9 @@ private:
 
 	std::shared_ptr<CANTalon> right1Wheel;
 	std::shared_ptr<CANTalon> right2Wheel;
-	std::shared_ptr<CANTalon> right3Wheel;
 	std::shared_ptr<CANTalon> left1Wheel;
 	std::shared_ptr<CANTalon> left2Wheel;
-	std::shared_ptr<CANTalon> left3Wheel;
+
 
 public:
 	Chassis();

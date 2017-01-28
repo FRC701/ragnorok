@@ -6,13 +6,10 @@
 class RobotMap {
 public:
 
-  static const int kIDRightWheel1 = 10;
-  static const int kIDRightWheel2 = 11;
-  static const int kIDRightWheel3 = 12;
-  static const int kIDLeftWheel1 = 13;
-  static const int kIDLeftWheel2 = 14;
-  static const int kIDLeftWheel3 = 15;
-
+  static const int kIDRightWheel1 = 1;
+  static const int kIDRightWheel2 = 2;
+  static const int kIDLeftWheel1 = 3;
+  static const int kIDLeftWheel2 = 4;
 
   static std::shared_ptr<CANTalon> chassisRight1Wheel;
 	static std::shared_ptr<CANTalon> chassisRight2Wheel;
