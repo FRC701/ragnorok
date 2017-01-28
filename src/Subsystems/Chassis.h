@@ -1,7 +1,8 @@
 #ifndef CHASSIS_H
 #define CHASSIS_H
-#include "Commands/Subsystem.h"
 #include "CANTalon.h"
+#include "DoubleSolenoid.h"
+#include "Commands/Subsystem.h"
 
 class Chassis: public frc::Subsystem {
 private:
@@ -15,11 +16,16 @@ private:
 	CANTalon right2Wheel;
 	CANTalon left1Wheel;
 	CANTalon left2Wheel;
+	DoubleSolenoid (Shifter);
 
 public:
+
+	enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
+//TODO Check to make sure shifter is high when forward
 	static std::shared_ptr<Chassis> getInstance();
 
 	Chassis();
+
 	void InitDefaultCommand();
 
 	void SetTankDrive(double left, double right);
