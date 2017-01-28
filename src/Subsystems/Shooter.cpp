@@ -16,12 +16,17 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
 
+  FlyWheelTop1(RobotMap::kIDFlyWheelTop1),
+	FlyWheelTop2(RobotMap::kIDFlyWheelTop2),
+	FlyWheelBottom(RobotMap::kIDFlyWheelBottom)
 
-	rightMotor(RobotMap::kIDShooterRight),
-	leftMotor(RobotMap::kIDShooterLeft)
-	{
+  {
 
-	leftMotor.SetInverted(true);
+  FlyWheelTop1.Enable();
+  FlyWheelTop2.Enable();
+  FlyWheelBottom.Enable();
+  FlyWheelTop2.SetControlMode(frc::CANSpeedController::kFollower);
+  FlyWheelTop2.Set(RobotMap::kIDFlyWheelTop1);
 
 }
 
@@ -31,16 +36,11 @@ void Shooter::InitDefaultCommand() {
 	SetDefaultCommand(new ::SetShooter(0.0));
 }
 
-void Shooter::SetShooter(double speed){
+void Shooter::SetShooter(double RPM){
 
-  rightMotor.Set(speed);
-  leftMotor.Set(speed);
+  FlyWheelTop1.Set(RPM);
+  FlyWheelBottom.Set(RPM * .75);
 
-}
-
-double Shooter::GetShooter(){
-
-	return leftMotor.Get();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
