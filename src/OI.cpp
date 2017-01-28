@@ -5,6 +5,8 @@
 #include "Commands/ConveyorControl.h"
 #include "Commands/SetIntake.h"
 #include "Commands/SetShooter.h"
+#include "Commands/ToggleGear.h"
+#include "Subsystems/GearPickup.h"
 
 
 std::shared_ptr<OI> OI::self;
@@ -44,6 +46,7 @@ OI::OI()
   // Process operator interface input here.
 
   dA.WhileHeld(new AutonomousCommand());
+  dB.WhenPressed(new ToggleGear());
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());

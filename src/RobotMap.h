@@ -26,8 +26,8 @@ public:
   static const int kID9 = 9;
   static const int kID16 = 16;
 
-  static const int kIDpickupForward = 0;
-  static const int kIDpickupReverse = 1;
+  static const int kIDpickupForward = 1;
+  static const int kIDpickupReverse = 6;
 
 	static void init();
 };

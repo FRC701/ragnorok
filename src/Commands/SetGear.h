@@ -6,7 +6,7 @@
 
 class SetGear : public frc::Command {
 public:
-	SetGear(GearPickup::PickupValue value);
+  SetGear(GearPickup::PickupValue value);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
