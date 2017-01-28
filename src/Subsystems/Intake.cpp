@@ -15,8 +15,8 @@ std::shared_ptr<Intake> Intake::getInstance() {
 }
 
 Intake::Intake() : Subsystem(kSubsystemName),
-  rightMotor(RobotMap::kIDIntakeRight),
-  leftMotor(RobotMap::kIDIntakeLeft) {
+  HopperRoller(RobotMap::kIDHopperIntake)
+  {
 
 }
 
@@ -28,16 +28,9 @@ void Intake::InitDefaultCommand() {
 }
 
 void Intake::SetIntake(double speed){
-  rightMotor.Set(speed);
-  leftMotor.Set(speed);
+
+  HopperRoller.Set(speed);
 
 }
-
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-
-double Intake::GetIntake() {
-  return rightMotor.Get();
-}
-
-
