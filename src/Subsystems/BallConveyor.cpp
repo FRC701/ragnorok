@@ -17,7 +17,7 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
 	ConveyorMotor(RobotMap::kIDConveyor)
 {
-
+  ConveyorMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void BallConveyor::InitDefaultCommand() {
