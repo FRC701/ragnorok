@@ -21,7 +21,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   right2Wheel(RobotMap::kIDRightWheel2),
   left1Wheel(RobotMap::kIDLeftWheel1),
   left2Wheel(RobotMap::kIDLeftWheel2),
-  Shifter(RobotMap::kIDShitftingHigh, RobotMap::kIDShitftingLow)
+  Shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse)
   {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -60,4 +60,12 @@ void Chassis::InitDefaultCommand() {
 void Chassis::SetTankDrive(double left, double right) {
   right1Wheel.Set(right);
   left1Wheel.Set(left);
+}
+
+bool Chassis::IsForwardTurretAlligned() const{
+  return right2Wheel.IsFwdLimitSwitchClosed();
+}
+
+bool Chassis::IsRightTurretAlligned() const{
+  return right2Wheel.IsRevLimitSwitchClosed();
 }
