@@ -16,9 +16,9 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
 
-  FlyWheelTop1(RobotMap::kIDFlyWheelTop1),
-	FlyWheelTop2(RobotMap::kIDFlyWheelTop2),
-	FlyWheelBottom(RobotMap::kIDFlyWheelBottom)
+  FlyWheelTop1(RobotMap::kIDTop1FlyWheel),
+	FlyWheelTop2(RobotMap::kIDTop2FlyWheel),
+	FlyWheelBottom(RobotMap::kIDBottomFlyWheel)
 
   {
 
@@ -27,7 +27,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 
   FlyWheelTop2.Enable();
   FlyWheelTop2.SetControlMode(frc::CANSpeedController::kFollower);
-  FlyWheelTop2.Set(RobotMap::kIDFlyWheelTop1);
+  FlyWheelTop2.Set(RobotMap::kIDTop1FlyWheel);
 
   FlyWheelBottom.Enable();
   FlyWheelBottom.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -44,14 +44,6 @@ void Shooter::SetShooter(double RPM){
   FlyWheelTop1.Set(RPM);
   FlyWheelBottom.Set(RPM * .75);
 
-}
-
-bool Shooter::IsLeftTurretAlligned() const{
-  return FlyWheelTop2.IsFwdLimitSwitchClosed();
-}
-
-bool Shooter::IsRightTurretAlligned() const{
-  return FlyWheelTop2.IsRevLimitSwitchClosed();
 }
 
 double Shooter::GetTopShooterRPM() const{

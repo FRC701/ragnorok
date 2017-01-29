@@ -28,6 +28,9 @@ public:
 
 	void InitDefaultCommand();
 	void SetTankDrive(double left, double right);
+
+	bool IsForwardTurretAlligned() const;
+	bool IsRightTurretAlligned() const;
 };
 
 #endif
