@@ -18,6 +18,8 @@ Intake::Intake() : Subsystem(kSubsystemName),
   HopperRoller(RobotMap::kIDHopperIntake)
   {
 
+  HopperRoller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+
 }
 
 void Intake::InitDefaultCommand() {
