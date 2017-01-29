@@ -46,6 +46,9 @@ bool GearPickup::IsGearAlligned() const{
   }
     }
 
+double GearPickup::GetGearIntakeRPM() const{
+  return GearRoller.GetSpeed();
+}
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
