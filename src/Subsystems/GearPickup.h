@@ -2,6 +2,7 @@
 #define GearPickup_H
 #include <DoubleSolenoid.h>
 #include <Commands/Subsystem.h>
+#include "CANTalon.h"
 
 class GearPickup : public Subsystem {
 private:
