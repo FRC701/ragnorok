@@ -30,6 +30,10 @@ void BallConveyor::ConveyorControl(double conveyorSpeed){
   ConveyorMotor.Set(conveyorSpeed);
 
 }
+
+bool BallConveyor::IsGearIn() const {
+  return ConveyorMotor.IsFwdLimitSwitchClosed();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
