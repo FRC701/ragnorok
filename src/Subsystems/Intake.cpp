@@ -34,5 +34,9 @@ void Intake::SetIntake(double speed){
   HopperRoller.Set(speed);
 
 }
+
+double Intake::GetIntakeRPM() const{
+  return HopperRoller.GetSpeed();
+  }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
