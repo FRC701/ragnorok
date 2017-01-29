@@ -26,7 +26,10 @@ The shooter is made of a two-motor transmission to a single drive shaft and a si
 ## Gear Intake
 * 1 Talon (10)
 * 1 Encoder
-* 3 Switches
+* 5 Switches
+    * 2 Banner sensors for identifying the reflective tape
+    * 1 Banner sensor for detecting the gear in the slot
+    * 2 Pneumatic switch sensors
 
 ## Climber
 * 2 Talon (11, 12)
@@ -42,15 +45,15 @@ Disable limit switches, except where noted.
 | Subsystem   | Talon       | ID  | Encoder | Switches | Comment  |
 | ----------- | ----------- | --- | ------- | -------- | -------- |
 | Chassis     | Right 1     | 1   | Wobot   | Yes      | WCP Hall Effect Sensors for Turret |
-| Chassis     | Right 2     | 2   |  No     | No       | Follower |
-| Chassis     | Left 1      | 3   | Wobot   | No       | |
+| Chassis     | Right 2     | 2   | No      | No       | Follower |
+| Chassis     | Left 1      | 3   | Wobot   | Yes      | Gear Intake Pneumatic Switch Sensors |
 | Chassis     | Left 2      | 4   | No      | No       | Follower |
 | Shooter     | Top 1       | 5   | Versa   | No       | |
 | Shooter     | Top 2       | 6   | No      | No       | Follower |
 | Shooter     | Bottom      | 7   | Versa   | No       | |
 | Turret      | Turret      | 8   | Versa   | Yes      | **Enable Limit Switches** |
 | Ball Intake | Intake      | 9   | Versa   | No       | |
-| Gear Intake | Gear Intake | 10  | Versa   | Yes      | Banner Sensor |
+| Gear Intake | Gear Intake | 10  | Versa   | Yes      | 2 Banner Sensors |
 | Climber     | Climber 1   | 11  | No      | No       | |
 | Climber     | Climber 2   | 12  | No      | No       | |
 | Conveyor    | Conveyor    | 13  | Versa   | Yes      | Banner Sensor for Gear Intake |
@@ -59,5 +62,7 @@ Disable limit switches, except where noted.
 * 6 Versa Planetary Encoder Modules
     * 3 with switches
 * 2 Wobot Sentinel Interfaces
+    * 1 for Hall Effect Sensors
+    * 1 for pneumatic switch sensors
 * 2 WCP Hall Effect Sensors
 
