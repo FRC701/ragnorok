@@ -21,17 +21,13 @@ public:
 
   Shooter();
   void InitDefaultCommand();
-
   void SetShooter(double RPM);
-
-  bool IsLeftTurretAlligned() const;
 //TODO Make sure these values allign with what is on the Robot
+  bool IsLeftTurretAlligned() const;
   bool IsRightTurretAlligned() const;
 
   double GetTopShooterRPM() const;
-
   double GetBottomShooterRPM() const;
-
 };
 
 #endif  // Shooter_H

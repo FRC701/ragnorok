@@ -18,13 +18,11 @@ public:
 	static std::shared_ptr<BallConveyor> getInstance();
 
 	void InitDefaultCommand();
-
 	void ConveyorControl(double conveyorSpeed);
 
 	bool IsGearIn() const;
 
 	double GetBallConveyorRPM() const;
-
 };
 
 #endif  // BallConveyor_H

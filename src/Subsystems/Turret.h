@@ -19,13 +19,11 @@ public:
 
 	Turret();
 	void InitDefaultCommand();
-
 	void SetTurret(double speed);
 
 	double GetTurret();
-
+	//TODO Right Make sure these values correlate with how they go on the robot
 	bool IsLeftSwitchPressed() const;
-//TODO Right Make sure these values correlate with how they go on the robot
 	bool IsRightSwitchPressed() const;
 };
 
