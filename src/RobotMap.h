@@ -24,13 +24,13 @@ public:
   static const int kIDHopperIntake = 9;
 
   //..........Lifter..........
-  static const int kIDLifterLeft = 11;
-  static const int kIDLifterRight = 12;
+  static const int kIDLeftClimber = 11;
+  static const int kIDRightClimber = 12;
 
   //..........Shooter..........
-  static const int kIDFlyWheelTop1 = 5;
-  static const int kIDFlyWheelTop2 = 6;
-  static const int kIDFlyWheelBottom = 7;
+  static const int kIDTop1FlyWheel = 5;
+  static const int kIDTop2FlyWheel = 6;
+  static const int kIDBottomFlyWheel = 7;
 
   //..........Turret..........
   static const int kIDTurretSpinner = 8;
@@ -42,14 +42,9 @@ public:
   static const int kIDpickupReverse = 6;
 
   //..........ShiftingPneumatics..........
-  static const int kIDShitftingHigh = 0;
-  static const int kIDShitftingLow = 7;
+  static const int kIDShitftingForward = 0;
+  static const int kIDShitftingReverse = 7;
 
-
-
-
-
-
-	static void init();
+  static void init();
 };
 #endif
