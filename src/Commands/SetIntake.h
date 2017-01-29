@@ -3,7 +3,7 @@
 
 #include "Commands/Command.h"
 
-class SetIntake : public Command {
+class SetIntake : public frc::Command {
 public:
 	SetIntake(double speed);
 	void Initialize();
