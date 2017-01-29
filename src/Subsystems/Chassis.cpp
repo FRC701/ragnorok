@@ -33,8 +33,10 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 
   right1Wheel.SetInverted(true);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.ConfigEncoderCodesPerRev(128);
 
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.ConfigEncoderCodesPerRev(128);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRightWheel1);
