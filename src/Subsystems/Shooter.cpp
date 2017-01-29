@@ -50,8 +50,16 @@ bool Shooter::IsLeftTurretAlligned() const{
   return FlyWheelTop2.IsFwdLimitSwitchClosed();
 }
 
-bool Shooter::IsrightTurretAlligned() const{
+bool Shooter::IsRightTurretAlligned() const{
   return FlyWheelTop2.IsRevLimitSwitchClosed();
+}
+
+double Shooter::GetTopShooterRPM() const{
+  return FlyWheelTop1.GetSpeed();
+}
+
+double Shooter::GetBottomShooterRPM() const{
+  return FlyWheelBottom.GetSpeed();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
