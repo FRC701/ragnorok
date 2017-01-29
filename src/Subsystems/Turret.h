@@ -23,6 +23,10 @@ public:
 	void SetTurret(double speed);
 
 	double GetTurret();
+
+	bool IsLeftSwitchPressed() const;
+//TODO Right Make sure these values correlate with how they go on the robot
+	bool IsRightSwitchPressed() const;
 };
 
 #endif  // Turret_H
