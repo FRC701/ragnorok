@@ -15,6 +15,7 @@ public:
 	static std::shared_ptr<Vision> getInstance();
 
 	Vision();
+
 	void InitDefaultCommand();
 };
 
