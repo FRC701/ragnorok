@@ -28,7 +28,6 @@ void BallConveyor::InitDefaultCommand() {
 void BallConveyor::ConveyorControl(double conveyorSpeed){
 
   ConveyorMotor.Set(conveyorSpeed);
-
 }
 
 bool BallConveyor::IsGearIn() const {
