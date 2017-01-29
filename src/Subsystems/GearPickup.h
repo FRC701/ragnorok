@@ -28,6 +28,8 @@ public:
 
 	bool IsGearUp() const;
 
+	bool IsGearAlligned() const;
+
 };
 
 #endif  // GearPickup_H
