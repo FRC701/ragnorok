@@ -36,5 +36,13 @@ double Turret::GetTurret(){
 
   return spinner.Get();
 }
+
+bool Turret::IsLeftSwitchPressed() const{
+  return spinner.IsFwdLimitSwitchClosed();
+}
+
+bool Turret::IsRightSwitchPressed() const{
+  return spinner.IsRevLimitSwitchClosed();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
