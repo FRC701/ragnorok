@@ -14,10 +14,10 @@ std::shared_ptr<Lifter> Lifter::getInstance() {
 }
 
 Lifter::Lifter() : Subsystem(kSubsystemName),
-  LifterMotorLeft(RobotMap::kIDLifterLeft),
-  LifterMotorRight(RobotMap::kIDLifterRight)
-    {
-  LifterMotorLeft.SetInverted(true);
+  LeftClimber(RobotMap::kIDLifterLeft),
+  RightClimber(RobotMap::kIDLifterRight) {
+
+  LeftClimber.SetInverted(true);
 }
 
 void Lifter::InitDefaultCommand() {
