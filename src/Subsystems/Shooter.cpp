@@ -45,5 +45,13 @@ void Shooter::SetShooter(double RPM){
   FlyWheelBottom.Set(RPM * .75);
 
 }
+
+bool Shooter::IsLeftTurretAlligned() const{
+  return FlyWheelTop2.IsFwdLimitSwitchClosed();
+}
+
+bool Shooter::IsrightTurretAlligned() const{
+  return FlyWheelTop2.IsRevLimitSwitchClosed();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
