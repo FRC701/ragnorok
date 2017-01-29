@@ -1,6 +1,7 @@
 #include "GearPickup.h"
 #include "../RobotMap.h"
 #include <DoubleSolenoid.h>
+#include "CANTalon.h"
 
 
 const char GearPickup::kSubsystemName[] = "GearPickup";
@@ -16,10 +17,11 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
+    GearRoller(RobotMap::kIDGearIntake),
     Pickup(RobotMap::kIDpickupForward, RobotMap::kIDpickupReverse)
 
     {
-
+  GearRoller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void GearPickup::InitDefaultCommand() {
@@ -33,6 +35,19 @@ void GearPickup::SetGear(PickupValue value) {
 
 bool GearPickup::IsGearUp() const {
   return Pickup.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
+}
+
+bool GearPickup::IsGearAlligned() const{
+  if(GearRoller.IsFwdLimitSwitchClosed() && GearRoller.IsRevLimitSwitchClosed()){
+    return true;
+  }
+  else {
+    return false;
+  }
+    }
+
+double GearPickup::GetGearIntakeRPM() const{
+  return GearRoller.GetSpeed();
 }
 
 // Put methods for controlling this subsystem

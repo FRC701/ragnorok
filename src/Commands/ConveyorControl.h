@@ -14,7 +14,6 @@ public:
 
 private:
 	double mConveyorSpeed;
-	double mMoverSpeed;
 };
 
 #endif  // ConveyorControl_H

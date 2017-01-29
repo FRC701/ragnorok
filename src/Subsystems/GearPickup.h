@@ -2,6 +2,7 @@
 #define GearPickup_H
 #include <DoubleSolenoid.h>
 #include <Commands/Subsystem.h>
+#include "CANTalon.h"
 
 class GearPickup : public Subsystem {
 private:
@@ -11,8 +12,8 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
 
+  CANTalon GearRoller;
   DoubleSolenoid (Pickup);
-
 
 public:
 
@@ -23,11 +24,12 @@ public:
 	GearPickup();
 
 	void InitDefaultCommand();
-
 	void SetGear(PickupValue value);
 
 	bool IsGearUp() const;
+	bool IsGearAlligned() const;
 
+	double GetGearIntakeRPM() const;
 };
 
 #endif  // GearPickup_H
