@@ -24,13 +24,12 @@ public:
 	GearPickup();
 
 	void InitDefaultCommand();
-
 	void SetGear(PickupValue value);
 
 	bool IsGearUp() const;
-
 	bool IsGearAlligned() const;
 
+	double GetGearIntakeRPM() const;
 };
 
 #endif  // GearPickup_H

@@ -15,11 +15,8 @@ std::shared_ptr<Intake> Intake::getInstance() {
 }
 
 Intake::Intake() : Subsystem(kSubsystemName),
-  HopperRoller(RobotMap::kIDHopperIntake)
-  {
-
+  HopperRoller(RobotMap::kIDHopperIntake) {
   HopperRoller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-
 }
 
 void Intake::InitDefaultCommand() {
@@ -30,9 +27,11 @@ void Intake::InitDefaultCommand() {
 }
 
 void Intake::SetIntake(double speed){
-
   HopperRoller.Set(speed);
-
 }
+
+double Intake::GetIntakeRPM() const{
+  return HopperRoller.GetSpeed();
+  }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
