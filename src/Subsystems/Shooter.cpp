@@ -23,11 +23,14 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   {
 
   FlyWheelTop1.Enable();
+  FlyWheelTop1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+
   FlyWheelTop2.Enable();
-  FlyWheelBottom.Enable();
   FlyWheelTop2.SetControlMode(frc::CANSpeedController::kFollower);
   FlyWheelTop2.Set(RobotMap::kIDFlyWheelTop1);
 
+  FlyWheelBottom.Enable();
+  FlyWheelBottom.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void Shooter::InitDefaultCommand() {
