@@ -36,5 +36,15 @@ bool GearPickup::IsGearUp() const {
   return Pickup.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
 }
 
+bool GearPickup::IsGearAlligned() const{
+  if(GearRoller.IsFwdLimitSwitchClosed() && GearRoller.IsRevLimitSwitchClosed()){
+    return true;
+  }
+  else {
+    return false;
+  }
+    }
+
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
