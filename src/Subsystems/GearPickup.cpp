@@ -1,6 +1,7 @@
 #include "GearPickup.h"
 #include "../RobotMap.h"
 #include <DoubleSolenoid.h>
+#include "CANTalon.h"
 
 
 const char GearPickup::kSubsystemName[] = "GearPickup";
