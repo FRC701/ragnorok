@@ -20,7 +20,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
     Pickup(RobotMap::kIDpickupForward, RobotMap::kIDpickupReverse)
 
     {
-
+  GearRoller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void GearPickup::InitDefaultCommand() {
