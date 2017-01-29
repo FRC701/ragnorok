@@ -21,6 +21,8 @@ public:
 
 	void ConveyorControl(double conveyorSpeed);
 
+	bool IsGearIn() const;
+
 };
 
 #endif  // BallConveyor_H
