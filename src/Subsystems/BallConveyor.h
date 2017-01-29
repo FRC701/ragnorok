@@ -23,6 +23,8 @@ public:
 
 	bool IsGearIn() const;
 
+	double GetBallConveyorRPM() const;
+
 };
 
 #endif  // BallConveyor_H
