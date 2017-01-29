@@ -28,11 +28,14 @@ void BallConveyor::InitDefaultCommand() {
 void BallConveyor::ConveyorControl(double conveyorSpeed){
 
   ConveyorMotor.Set(conveyorSpeed);
-
 }
 
 bool BallConveyor::IsGearIn() const {
   return ConveyorMotor.IsFwdLimitSwitchClosed();
+}
+
+double BallConveyor::GetBallConveyorRPM() const{
+  return ConveyorMotor.GetSpeed();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
