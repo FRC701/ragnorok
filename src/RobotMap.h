@@ -15,8 +15,9 @@ public:
   static const int kIDLeftWheel3 = 15;
 
 //..........Testing/Implementation..........
-  static const int kIDShooterRight = 1;
-  static const int kIDShooterLeft = 2;
+  static const int kIDTop1FlyWheel = 1;
+  static const int kIDTop2FlyWheel = 2;
+  static const int kIDBottomFlyWheel = 17;
   static const int kIDIntakeRight = 3;
   static const int kIDIntakeLeft  = 4;
   static const int kIDConveyorFeederLeft = 5;

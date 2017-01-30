@@ -1,6 +1,6 @@
 #include "Robot.h"
+#include "OI.h"
 #include "Subsystems/Chassis.h"
-
 #include "Subsystems/BallConveyor.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Shooter.h"
@@ -67,7 +67,13 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+
+  SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
+  SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
+  SmartDashboard::PutNumber("Shooter Current.", Shooter::getInstance()->GetOutputCurrent());
+
   Scheduler::GetInstance()->Run();
+
 }
 
 void Robot::TestPeriodic() {
