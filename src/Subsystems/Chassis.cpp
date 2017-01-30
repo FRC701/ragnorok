@@ -17,11 +17,11 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
-  right1Wheel(RobotMap::kIDRightWheel1),
-  right2Wheel(RobotMap::kIDRightWheel2),
-  left1Wheel(RobotMap::kIDLeftWheel1),
-  left2Wheel(RobotMap::kIDLeftWheel2),
-  Shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse)
+  right1Wheel(RobotMap::kIDRight1Wheel),
+  right2Wheel(RobotMap::kIDRight2Wheel),
+  left1Wheel(RobotMap::kIDLeft1Wheel),
+  left2Wheel(RobotMap::kIDLeft2Wheel),
+  shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse)
   {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -39,10 +39,10 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left1Wheel.ConfigEncoderCodesPerRev(128);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
-  right2Wheel.Set(RobotMap::kIDRightWheel1);
+  right2Wheel.Set(RobotMap::kIDRight1Wheel);
 
   left2Wheel.SetControlMode(CANTalon::kFollower);
-  left2Wheel.Set(RobotMap::kIDLeftWheel1);
+  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
 
 }
 

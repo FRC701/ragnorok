@@ -6,14 +6,14 @@
 
 class GearPickup : public Subsystem {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
 
-  CANTalon GearRoller;
-  DoubleSolenoid (Pickup);
+  CANTalon roller;
+  DoubleSolenoid actuator;
 
 public:
 
@@ -21,15 +21,15 @@ public:
 //TODO Check this value when robot is done
   static std::shared_ptr<GearPickup> getInstance();
 
-	GearPickup();
+  GearPickup();
 
-	void InitDefaultCommand();
-	void SetGear(PickupValue value);
+  void InitDefaultCommand();
+  void SetGear(PickupValue value);
 
-	bool IsGearUp() const;
-	bool IsGearAlligned() const;
+  bool IsGearUp() const;
+  bool IsGearAlligned() const;
 
-	double GetGearIntakeRPM() const;
+  double GetGearIntakeRPM() const;
 };
 
 #endif  // GearPickup_H

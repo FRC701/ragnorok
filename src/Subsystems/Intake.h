@@ -11,7 +11,7 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Intake> self;
 
-	CANTalon hopperRoller;
+	CANTalon floorPickup;
 
 public:
 	static std::shared_ptr<Intake> getInstance();

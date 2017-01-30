@@ -12,7 +12,7 @@ private:
 	static std::shared_ptr<Turret> self;
 
 
-	CANTalon spinner;
+	CANTalon turretSpinner;
 
 public:
 	static std::shared_ptr<Turret> getInstance();

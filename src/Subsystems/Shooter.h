@@ -5,15 +5,15 @@
 
 class Shooter : public frc::Subsystem {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  CANTalon FlyWheelTop1;
-  CANTalon FlyWheelTop2;
-  CANTalon FlyWheelBottom;
+  CANTalon top1FlyWheel;
+  CANTalon top2FlyWheel;
+  CANTalon bottomFlyWheel;
 public:
   static std::shared_ptr<Shooter> getInstance();
 

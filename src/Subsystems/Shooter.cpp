@@ -8,50 +8,50 @@ const char Shooter::kSubsystemName[] = "Shooter";
 std::shared_ptr<Shooter> Shooter::self;
 
 std::shared_ptr<Shooter> Shooter::getInstance() {
-	if (! self) {
-		self = std::make_shared<Shooter>();
-	}
-	return self;
+  if (! self) {
+    self = std::make_shared<Shooter>();
+  }
+  return self;
 }
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
 
-  FlyWheelTop1(RobotMap::kIDTop1FlyWheel),
-	FlyWheelTop2(RobotMap::kIDTop2FlyWheel),
-	FlyWheelBottom(RobotMap::kIDBottomFlyWheel)
+  top1FlyWheel(RobotMap::kIDTop1FlyWheel),
+  top2FlyWheel(RobotMap::kIDTop2FlyWheel),
+  bottomFlyWheel(RobotMap::kIDBottomFlyWheel)
 
   {
 
-  FlyWheelTop1.Enable();
-  FlyWheelTop1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  top1FlyWheel.Enable();
+  top1FlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 
-  FlyWheelTop2.Enable();
-  FlyWheelTop2.SetControlMode(frc::CANSpeedController::kFollower);
-  FlyWheelTop2.Set(RobotMap::kIDTop1FlyWheel);
+  top2FlyWheel.Enable();
+  top2FlyWheel.SetControlMode(frc::CANSpeedController::kFollower);
+  top2FlyWheel.Set(RobotMap::kIDTop1FlyWheel);
 
-  FlyWheelBottom.Enable();
-  FlyWheelBottom.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  bottomFlyWheel.Enable();
+  bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void Shooter::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
-	SetDefaultCommand(new ::SetShooter(0.0));
+  // Set the default command for a subsystem here.
+  // SetDefaultCommand(new MySpecialCommand());
+  SetDefaultCommand(new ::SetShooter(0.0));
 }
 
 void Shooter::SetShooter(double RPM){
 
-  FlyWheelTop1.Set(RPM);
-  FlyWheelBottom.Set(RPM * .75);
+  top1FlyWheel.Set(RPM);
+  bottomFlyWheel.Set(RPM * .75);
 
 }
 
 double Shooter::GetTopShooterRPM() const{
-  return FlyWheelTop1.GetSpeed();
+  return top1FlyWheel.GetSpeed();
 }
 
 double Shooter::GetBottomShooterRPM() const{
-  return FlyWheelBottom.GetSpeed();
+  return bottomFlyWheel.GetSpeed();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
