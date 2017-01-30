@@ -16,7 +16,7 @@ std::shared_ptr<Turret> Turret::getInstance() {
 
 Turret::Turret() : Subsystem(kSubsystemName),
 
-    spinner(RobotMap::kIDTurretSpinner)
+    turretSpinner(RobotMap::kIDTurretSpinner)
     {
 
 }
@@ -29,20 +29,20 @@ void Turret::InitDefaultCommand() {
 
 void Turret::SetTurret(double speed){
 
-  spinner.Set(speed);
+  turretSpinner.Set(speed);
 
 }
 double Turret::GetTurret(){
 
-  return spinner.Get();
+  return turretSpinner.Get();
 }
 
 bool Turret::IsLeftSwitchPressed() const{
-  return spinner.IsFwdLimitSwitchClosed();
+  return turretSpinner.IsFwdLimitSwitchClosed();
 }
 
 bool Turret::IsRightSwitchPressed() const{
-  return spinner.IsRevLimitSwitchClosed();
+  return turretSpinner.IsRevLimitSwitchClosed();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

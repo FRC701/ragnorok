@@ -11,9 +11,9 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  CANTalon FlyWheelTop1;
-  CANTalon FlyWheelTop2;
-  CANTalon FlyWheelBottom;
+  CANTalon flyWheelTop1;
+  CANTalon flyWheelTop2;
+  CANTalon flyWheelBottom;
 public:
   static std::shared_ptr<Shooter> getInstance();
 

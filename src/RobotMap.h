@@ -9,19 +9,19 @@ public:
 //..........Talons..........
 
   //..........Chassis..........
-  static const int kIDRightWheel1 = 1;
-  static const int kIDRightWheel2 = 2;
-  static const int kIDLeftWheel1 = 3;
-  static const int kIDLeftWheel2 = 4;
+  static const int kIDRight1Wheel = 1;
+  static const int kIDRight2Wheel = 2;
+  static const int kIDLeft1Wheel = 3;
+  static const int kIDLeft2Wheel = 4;
 
-  //..........Conveyor..........
-  static const int kIDConveyor = 13;
+  //..........BallConveyor..........
+  static const int kIDShooterFeeder = 13;
 
-  //..........GearIntake..........
-  static const int kIDGearIntake = 10;
+  //..........GearPickup..........
+  static const int kIDRoller = 10;
 
-  //..........HopperIntake..........
-  static const int kIDHopperIntake = 9;
+  //..........Intake..........
+  static const int kIDFloorPickup = 9;
 
   //..........Lifter..........
   static const int kIDLeftClimber = 11;
@@ -37,13 +37,14 @@ public:
 
 //..........Pneumatics..........
 
+  //..........GearPneumatics..........
+  static const int kIDActuatorForward = 1;
+  static const int kIDActuatorReverse = 6;
+
   //..........ShiftingPneumatics..........
   static const int kIDShitftingForward = 0;
   static const int kIDShitftingReverse = 7;
-
-  //..........GearPneumatics..........
-  static const int kIDpickupForward = 1;
-  static const int kIDpickupReverse = 6;
+//TODO Check to make sure these values work on the Robot
 
   static void init();
 };

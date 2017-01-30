@@ -12,7 +12,7 @@ private:
 	static std::shared_ptr<BallConveyor> self;
   BallConveyor();
 
-	CANTalon ConveyorMotor;
+	CANTalon shooterFeeder;
 
 public:
 	static std::shared_ptr<BallConveyor> getInstance();

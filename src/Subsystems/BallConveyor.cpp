@@ -15,9 +15,9 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 }
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
-	ConveyorMotor(RobotMap::kIDConveyor)
+  shooterFeeder(RobotMap::kIDShooterFeeder)
 {
-  ConveyorMotor.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  shooterFeeder.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void BallConveyor::InitDefaultCommand() {
@@ -27,15 +27,15 @@ void BallConveyor::InitDefaultCommand() {
 }
 void BallConveyor::ConveyorControl(double conveyorSpeed){
 
-  ConveyorMotor.Set(conveyorSpeed);
+  shooterFeeder.Set(conveyorSpeed);
 }
 
 bool BallConveyor::IsGearIn() const {
-  return ConveyorMotor.IsFwdLimitSwitchClosed();
+  return shooterFeeder.IsFwdLimitSwitchClosed();
 }
 
 double BallConveyor::GetBallConveyorRPM() const{
-  return ConveyorMotor.GetSpeed();
+  return shooterFeeder.GetSpeed();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
