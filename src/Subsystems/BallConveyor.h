@@ -18,7 +18,7 @@ public:
 	static std::shared_ptr<BallConveyor> getInstance();
 
 	void InitDefaultCommand();
-	void ConveyorControl(double conveyorSpeed);
+	void SetConveyor(double conveyorSpeed);
 
 	bool IsGearIn() const;
 

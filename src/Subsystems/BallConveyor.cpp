@@ -1,7 +1,7 @@
+#include <Commands/SetConveyor.h>
 #include "BallConveyor.h"
 #include "../RobotMap.h"
 #include "CANTalon.h"
-#include "Commands/ConveyorControl.h"
 
 const char BallConveyor::kSubsystemName[] = "BallConveyor";
 
@@ -23,9 +23,9 @@ BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
 void BallConveyor::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-  SetDefaultCommand(new ::ConveyorControl(0.0, 0.0));
+  SetDefaultCommand(new ::SetConveyor(0.0));
 }
-void BallConveyor::ConveyorControl(double conveyorSpeed){
+void BallConveyor::SetConveyor(double conveyorSpeed){
 
   shooterFeeder.Set(conveyorSpeed);
 }
