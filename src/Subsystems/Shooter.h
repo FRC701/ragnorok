@@ -11,8 +11,9 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  CANTalon rightMotor;
-  CANTalon leftMotor;
+  CANTalon flyWheel1Top;
+  CANTalon flyWheel2Top;
+  CANTalon flyWheelBottom;
 public:
   static std::shared_ptr<Shooter> getInstance();
 
@@ -20,11 +21,10 @@ public:
 
   Shooter();
   void InitDefaultCommand();
+  void SetShooter(double RPM);
 
-  void SetShooter(double speed);
-
-  double GetShooter();
-
+  double GetTopShooterRPM() const;
+  double GetBottomShooterRPM() const;
 };
 
 #endif  // Shooter_H

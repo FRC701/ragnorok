@@ -17,33 +17,33 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
-  right1Wheel(RobotMap::kIDRightWheel1),
-  right2Wheel(RobotMap::kIDRightWheel2),
-  right3Wheel(RobotMap::kIDRightWheel3),
-  left1Wheel(RobotMap::kIDLeftWheel1),
-  left2Wheel(RobotMap::kIDLeftWheel2),
-  left3Wheel(RobotMap::kIDLeftWheel3) {
+  right1Wheel(RobotMap::kIDRight1Wheel),
+  right2Wheel(RobotMap::kIDRight2Wheel),
+  left1Wheel(RobotMap::kIDLeft1Wheel),
+  left2Wheel(RobotMap::kIDLeft2Wheel),
+  shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse)
+  {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 
   lw->AddActuator(kSubsystemName , "Right1Wheel", right1Wheel);
   lw->AddActuator(kSubsystemName , "Right2Wheel", right2Wheel);
-  lw->AddActuator(kSubsystemName , "Right3Wheel", right3Wheel);
   lw->AddActuator(kSubsystemName , "Left1Wheel", left1Wheel);
   lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
-  lw->AddActuator(kSubsystemName , "Left3Wheel", left3Wheel);
 
   right1Wheel.SetInverted(true);
+  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.ConfigEncoderCodesPerRev(128);
+
+  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.ConfigEncoderCodesPerRev(128);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
-  right2Wheel.Set(RobotMap::kIDRightWheel1);
-  right3Wheel.SetControlMode(CANTalon::kFollower);
-  right3Wheel.Set(RobotMap::kIDRightWheel1);
+  right2Wheel.Set(RobotMap::kIDRight1Wheel);
 
   left2Wheel.SetControlMode(CANTalon::kFollower);
-  left2Wheel.Set(RobotMap::kIDLeftWheel1);
-  left3Wheel.SetControlMode(CANTalon::kFollower);
-  left3Wheel.Set(RobotMap::kIDLeftWheel1);
+  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
+
 }
 
 void Chassis::InitDefaultCommand() {
@@ -60,4 +60,12 @@ void Chassis::InitDefaultCommand() {
 void Chassis::SetTankDrive(double left, double right) {
   right1Wheel.Set(right);
   left1Wheel.Set(left);
+}
+
+bool Chassis::IsForwardTurretAlligned() const{
+  return right2Wheel.IsFwdLimitSwitchClosed();
+}
+
+bool Chassis::IsRightTurretAlligned() const{
+  return right2Wheel.IsRevLimitSwitchClosed();
 }
