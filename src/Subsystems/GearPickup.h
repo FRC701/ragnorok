@@ -12,8 +12,8 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
 
-  CANTalon Roller;
-  DoubleSolenoid Actuator;
+  CANTalon roller;
+  DoubleSolenoid actuator;
 
 public:
 

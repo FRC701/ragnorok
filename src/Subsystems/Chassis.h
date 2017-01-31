@@ -16,7 +16,7 @@ private:
 	CANTalon right2Wheel;
 	CANTalon left1Wheel;
 	CANTalon left2Wheel;
-	DoubleSolenoid Shifter;
+	DoubleSolenoid shifter;
 
 public:
 

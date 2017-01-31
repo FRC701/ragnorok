@@ -17,11 +17,11 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
-    Roller(RobotMap::kIDRoller),
-    Actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse)
+    roller(RobotMap::kIDRoller),
+    actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse)
 
     {
-  Roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 }
 
 void GearPickup::InitDefaultCommand() {
@@ -30,15 +30,15 @@ void GearPickup::InitDefaultCommand() {
 }
 
 void GearPickup::SetGear(PickupValue value) {
-  Actuator.Set(static_cast<DoubleSolenoid::Value>(value));
+  actuator.Set(static_cast<DoubleSolenoid::Value>(value));
 }
 
 bool GearPickup::IsGearUp() const {
-  return Actuator.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
+  return actuator.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
 }
 
 bool GearPickup::IsGearAlligned() const{
-  if(Roller.IsFwdLimitSwitchClosed() && Roller.IsRevLimitSwitchClosed()){
+  if(roller.IsFwdLimitSwitchClosed() && roller.IsRevLimitSwitchClosed()){
     return true;
   }
   else {
@@ -47,7 +47,7 @@ bool GearPickup::IsGearAlligned() const{
     }
 
 double GearPickup::GetGearIntakeRPM() const{
-  return Roller.GetSpeed();
+  return roller.GetSpeed();
 }
 
 // Put methods for controlling this subsystem
