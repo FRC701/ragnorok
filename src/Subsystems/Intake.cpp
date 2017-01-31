@@ -15,11 +15,11 @@ std::shared_ptr<Intake> Intake::getInstance() {
 }
 
 Intake::Intake() : Subsystem(kSubsystemName),
-  rightMotor(RobotMap::kIDIntakeRight),
-  leftMotor(RobotMap::kIDIntakeLeft) {
+	rightFloorPickup(RobotMap::kIDRightFloorPickup),
+	leftFloorPickup(RobotMap::kIDLeftFloorPickup) {
 
-  leftMotor.SetControlMode(frc::CANSpeedController::kFollower);
-  leftMotor.Set(RobotMap::kIDIntakeRight);
+	leftFloorPickup.SetControlMode(frc::CANSpeedController::kFollower);
+	leftFloorPickup.Set(RobotMap::kIDRightFloorPickup);
 }
 
 void Intake::InitDefaultCommand() {
@@ -30,14 +30,14 @@ void Intake::InitDefaultCommand() {
 }
 
 void Intake::SetIntake(double speed){
-  rightMotor.Set(speed);
+	rightFloorPickup.Set(speed);
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
 double Intake::GetIntake() {
-  return rightMotor.Get();
+  return rightFloorPickup.Get();
 }
 
 
