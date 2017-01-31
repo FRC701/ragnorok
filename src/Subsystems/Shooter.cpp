@@ -16,18 +16,18 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
 
-  flyWheelTop1(RobotMap::kIDTop1FlyWheel),
-	flyWheelTop2(RobotMap::kIDTop2FlyWheel),
+  flyWheel1Top(RobotMap::kIDTop1FlyWheel),
+	flyWheel2Top(RobotMap::kIDTop2FlyWheel),
 	flyWheelBottom(RobotMap::kIDBottomFlyWheel)
 
   {
 
-  flyWheelTop1.Enable();
-  flyWheelTop1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	flyWheel1Top.Enable();
+	flyWheel1Top.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 
-  flyWheelTop2.Enable();
-  flyWheelTop2.SetControlMode(frc::CANSpeedController::kFollower);
-  flyWheelTop2.Set(RobotMap::kIDTop1FlyWheel);
+	flyWheel2Top.Enable();
+	flyWheel2Top.SetControlMode(frc::CANSpeedController::kFollower);
+	flyWheel2Top.Set(RobotMap::kIDTop1FlyWheel);
 
   flyWheelBottom.Enable();
   flyWheelBottom.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -41,13 +41,13 @@ void Shooter::InitDefaultCommand() {
 
 void Shooter::SetShooter(double RPM){
 
-  flyWheelTop1.Set(RPM);
+	flyWheel1Top.Set(RPM);
   flyWheelBottom.Set(RPM * .75);
 
 }
 
 double Shooter::GetTopShooterRPM() const{
-  return flyWheelTop1.GetSpeed();
+  return flyWheel1Top.GetSpeed();
 }
 
 double Shooter::GetBottomShooterRPM() const{
