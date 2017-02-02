@@ -2,7 +2,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/TankDrive.h"
-#include "Commands/ConveyorControl.h"
+#include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
@@ -50,9 +50,9 @@ OI::OI()
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("Feeder On", new ConveyorControl(1.0, 0.0));
-  SmartDashboard::PutData("Mover On", new ConveyorControl(0.0, 1.0));
-  SmartDashboard::PutData("Convevor On", new ConveyorControl(1.0, 1.0));
+  SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
+  SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
+  SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
 }
