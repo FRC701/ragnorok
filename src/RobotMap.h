@@ -6,30 +6,46 @@
 class RobotMap {
 public:
 
-//..........Chassis..........
-  static const int kIDRightWheel1 = 10;
-  static const int kIDRightWheel2 = 11;
-  static const int kIDRightWheel3 = 12;
-  static const int kIDLeftWheel1 = 13;
-  static const int kIDLeftWheel2 = 14;
-  static const int kIDLeftWheel3 = 15;
+//..........Talons..........
 
-//..........Testing/Implementation..........
-  static const int kIDTop1FlyWheel = 1;
-  static const int kIDTop2FlyWheel = 2;
-  static const int kIDBottomFlyWheel = 17;
-  static const int kIDIntakeRight = 3;
-  static const int kIDIntakeLeft  = 4;
-  static const int kIDConveyorFeederLeft = 5;
-  static const int kIDConveyorFeederRight = 6;
-  static const int kIDTurretSpinner = 7;
-  static const int kIDConveyorMover = 8;
-  static const int kID9 = 9;
-  static const int kID16 = 16;
+  //..........Chassis..........
+  static const int kIDRight1Wheel = 1;
+  static const int kIDRight2Wheel = 2;
+  static const int kIDLeft1Wheel = 3;
+  static const int kIDLeft2Wheel = 4;
 
-  static const int kIDpickupForward = 1;
-  static const int kIDpickupReverse = 6;
+  //..........BallConveyor..........
+  static const int kIDShooterFeeder = 13;
 
-	static void init();
+  //..........GearPickup..........
+  static const int kIDRoller = 10;
+
+  //..........Intake..........
+  static const int kIDFloorPickup = 9;
+
+  //..........Lifter..........
+  static const int kIDLeftClimber = 11;
+  static const int kIDRightClimber = 12;
+
+  //..........Shooter..........
+  static const int kIDTop1FlyWheel = 5;
+  static const int kIDTop2FlyWheel = 6;
+  static const int kIDBottomFlyWheel = 7;
+
+  //..........Turret..........
+  static const int kIDTurretSpinner = 8;
+
+//..........Pneumatics..........
+
+  //..........GearPneumatics..........
+  static const int kIDActuatorForward = 1;
+  static const int kIDActuatorReverse = 6;
+
+  //..........ShiftingPneumatics..........
+  static const int kIDShitftingForward = 0;
+  static const int kIDShitftingReverse = 7;
+//TODO Check to make sure these values work on the Robot
+
+  static void init();
 };
 #endif
