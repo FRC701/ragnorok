@@ -18,7 +18,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
-  p(0.06), i(0.0001), d(0),
+  p(0.06), i(0.0001), d(0)
 {
   top1FlyWheel.Enable();
   top1FlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -32,6 +32,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+}
 
 void Shooter::InitDefaultCommand() {
   // Set the default command for a subsystem here.

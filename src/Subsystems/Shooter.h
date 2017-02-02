@@ -11,7 +11,7 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
-  Shooter();
+
   
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
@@ -19,9 +19,11 @@ private:
   double p;
   double i;
   double d;
-  double nudge;
   
 public:
+
+  Shooter();
+
   static std::shared_ptr<Shooter> getInstance();
 
   void InitDefaultCommand();
