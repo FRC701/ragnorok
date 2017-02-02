@@ -5,14 +5,15 @@
 
 class Shooter : public frc::Subsystem {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  CANTalon rightMotor;
-  CANTalon leftMotor;
+  CANTalon top1FlyWheel;
+  CANTalon top2FlyWheel;
+  CANTalon bottomFlyWheel;
 public:
   static std::shared_ptr<Shooter> getInstance();
 
@@ -20,11 +21,10 @@ public:
 
   Shooter();
   void InitDefaultCommand();
+  void SetShooter(double RPM);
 
-  void SetShooter(double speed);
-
-  double GetShooter();
-
+  double GetTopShooterRPM() const;
+  double GetBottomShooterRPM() const;
 };
 
 #endif  // Shooter_H

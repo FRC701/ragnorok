@@ -12,17 +12,19 @@ private:
 	static std::shared_ptr<Turret> self;
 
 
-	CANTalon spinner;
+	CANTalon turretSpinner;
 
 public:
 	static std::shared_ptr<Turret> getInstance();
 
 	Turret();
 	void InitDefaultCommand();
-
 	void SetTurret(double speed);
 
 	double GetTurret();
+	//TODO Right Make sure these values correlate with how they go on the robot
+	bool IsLeftSwitchPressed() const;
+	bool IsRightSwitchPressed() const;
 };
 
 #endif  // Turret_H
