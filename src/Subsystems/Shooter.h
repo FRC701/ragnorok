@@ -31,7 +31,7 @@ public:
 
   void InitDefaultCommand();
 
-  SetShooter* GetSetShooterCommand() const;
+  robovikes::SetShooter* GetSetShooterCommand();
 
 
   void SetShooter(double RPM);

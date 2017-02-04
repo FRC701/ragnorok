@@ -1,6 +1,8 @@
 #include "SetShooter.h"
 #include "../Subsystems/Shooter.h"
 
+using namespace robovikes;
+
 SetShooter::SetShooter(double speed) :
     mSpeed(speed) {
   // Use Requires() here to declare subsystem dependencies

@@ -3,6 +3,8 @@
 
 #include "Commands/Command.h"
 
+namespace robovikes {
+
 class SetShooter : public frc::Command {
 public:
   SetShooter(double speed);
@@ -17,5 +19,7 @@ public:
 private:
   double mSpeed;
 };
+
+}
 
 #endif  // SetShooter_H
