@@ -20,6 +20,7 @@ public:
 	Lifter();
 
 	void InitDefaultCommand();
+	void SetLifter(double speed);
 };
 
 #endif  // Lifter_H
