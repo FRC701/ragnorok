@@ -15,6 +15,7 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 }
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
+  defaultCommand(nullptr),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
@@ -37,9 +38,16 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 void Shooter::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-  SetDefaultCommand(new ::SetShooter(0.0));
+  defaultCommand = new robovikes::SetShooter(0.0),
+  SetDefaultCommand(defaultCommand);
 }
-  
+
+SetShooter* Shooter::GetSetShooterCommand() const
+{
+  return defaultCommand;
+}
+
+
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
   bottomFlyWheel.Set(RPM * .75);
