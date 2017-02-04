@@ -15,9 +15,13 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 }
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
-  shooterFeeder(RobotMap::kIDShooterFeeder)
+  shooterFeeder(RobotMap::kIDShooterFeeder),
+  p(0.06), i(0.0), d(0.0)
 {
+  shooterFeeder.Enable();
   shooterFeeder.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  shooterFeeder.SetControlMode(frc::CANSpeedController::kSpeed);
+  shooterFeeder.SetPID(p, i, d);
 }
 
 void BallConveyor::InitDefaultCommand() {
