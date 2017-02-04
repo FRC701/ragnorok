@@ -4,6 +4,7 @@
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
+#include "Commands/SetLifter.h"
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
@@ -45,8 +46,9 @@ OI::OI()
 {
   // Process operator interface input here.
 
-  dA.WhileHeld(new AutonomousCommand());
-  dB.WhenPressed(new ToggleGear());
+  dA.WhileHeld(new SetLifter(-1.0));
+  dX.WhenPressed(new SetLifter(0));
+  dY.WhenPressed(new SetLifter(1.0));
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
