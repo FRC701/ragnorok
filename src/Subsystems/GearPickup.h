@@ -14,6 +14,9 @@ private:
 
   CANTalon roller;
   DoubleSolenoid actuator;
+  double p;
+  double i;
+  double d;
 
 public:
 
