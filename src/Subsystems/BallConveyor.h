@@ -13,6 +13,9 @@ private:
   BallConveyor();
 
 	CANTalon shooterFeeder;
+	double p;
+	double i;
+	double d;
 
 public:
 	static std::shared_ptr<BallConveyor> getInstance();
