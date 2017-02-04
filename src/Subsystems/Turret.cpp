@@ -16,9 +16,13 @@ std::shared_ptr<Turret> Turret::getInstance() {
 
 Turret::Turret() : Subsystem(kSubsystemName),
 
-    turretSpinner(RobotMap::kIDTurretSpinner)
+    turretSpinner(RobotMap::kIDTurretSpinner),
+    p(0.06), i(0.0), d(0.0)
     {
-
+  turretSpinner.Enable();
+  turretSpinner.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  turretSpinner.SetControlMode(frc::CANSpeedController::kSpeed);
+  turretSpinner.SetPID(p, i, d);
 }
 
 void Turret::InitDefaultCommand() {
