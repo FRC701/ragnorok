@@ -15,10 +15,14 @@ std::shared_ptr<Intake> Intake::getInstance() {
 }
 
 Intake::Intake() : Subsystem(kSubsystemName),
-  floorPickup(RobotMap::kIDFloorPickup) {
+  floorPickup(RobotMap::kIDFloorPickup),
+  p(0.06), i(0.0), d(0)
+  {
+  floorPickup.Enable();
   floorPickup.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-}
-
+  floorPickup.SetControlMode(frc::CANSpeedController::kSpeed);
+  floorPickup.SetPID(p, i, d);
+  }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());

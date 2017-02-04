@@ -12,6 +12,9 @@ private:
 	static std::shared_ptr<Intake> self;
 
 	CANTalon floorPickup;
+	double p;
+	double i;
+	double d;
 
 public:
 	static std::shared_ptr<Intake> getInstance();
