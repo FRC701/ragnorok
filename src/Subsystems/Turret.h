@@ -13,6 +13,9 @@ private:
 
 
 	CANTalon turretSpinner;
+  double p;
+  double i;
+  double d;
 
 public:
 	static std::shared_ptr<Turret> getInstance();
