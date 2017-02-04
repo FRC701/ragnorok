@@ -46,7 +46,7 @@ OI::OI()
 {
   // Process operator interface input here.
 
-  dA.WhileHeld(new SetLifter(-1.0));
+  dA.WhileHeld(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0));
   dY.WhenPressed(new SetLifter(1.0));
 

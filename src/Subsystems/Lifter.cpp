@@ -17,6 +17,9 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
   leftClimber(RobotMap::kIDLeftClimber),
   rightClimber(RobotMap::kIDRightClimber) {
 
+  leftClimber.Set(CANTalon::kNeutralMode_Brake);
+  rightClimber.Set(CANTalon::kNeutralMode_Brake);
+
   leftClimber.SetInverted(true);
 }
 
@@ -30,5 +33,9 @@ void Lifter::SetLifter(double speed){
 	rightClimber.Set(speed);
 }
 
+void Lifter::SetBrake() {
+  leftClimber.Set(CANTalon::kNeutralMode_Brake);
+  rightClimber.Set(CANTalon::kNeutralMode_Brake);
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

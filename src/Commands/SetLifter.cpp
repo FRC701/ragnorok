@@ -10,7 +10,7 @@ SetLifter::SetLifter(double speed) :
 
 // Called just before this Command runs the first time
 void SetLifter::Initialize() {
-
+  Lifter::getInstance()->SetBrake();
 }
 
 // Called repeatedly when this Command is scheduled to run
