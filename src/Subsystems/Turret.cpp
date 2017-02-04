@@ -21,7 +21,7 @@ Turret::Turret() : Subsystem(kSubsystemName),
     {
   turretSpinner.Enable();
   turretSpinner.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-  turretSpinner.SetControlMode(frc::CANSpeedController::kSpeed);
+  turretSpinner.SetControlMode(frc::CANSpeedController::kPosition);
   turretSpinner.SetPID(p, i, d);
 }
 
