@@ -47,8 +47,10 @@ void Robot::DisabledInit(){
 }
 
 void Robot::DisabledPeriodic() {
-  Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
   Scheduler::GetInstance()->Run();
+  // Scheduler must start running before doing any operations
+  // on subsystems or commands.
+  Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
 }
 
 void Robot::AutonomousInit() {
