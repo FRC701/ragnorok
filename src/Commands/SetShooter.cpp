@@ -33,3 +33,11 @@ void SetShooter::Interrupted() {
 
 }
 
+double SetShooter::GetSpeed() const {
+  return mSpeed;
+}
+
+void SetShooter::SetSpeed(double speed) {
+  mSpeed = speed;
+}
+

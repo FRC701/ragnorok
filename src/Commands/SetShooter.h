@@ -11,6 +11,9 @@ public:
   bool IsFinished();
   void End();
   void Interrupted();
+
+  double GetSpeed() const;
+  void SetSpeed(double speed);
 private:
 	double mSpeed;
 };

@@ -4,6 +4,8 @@
 #include "Commands/Subsystem.h"
 #include "CANTalon.h"
 
+#include "Commands/SetShooter.h"
+
 class Shooter : public frc::Subsystem {
 private:
   // It's desirable that everything possible under private except
@@ -12,7 +14,8 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  
+  SetShooter defaultCommand;
+
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
   CANTalon bottomFlyWheel;
@@ -27,6 +30,10 @@ public:
   static std::shared_ptr<Shooter> getInstance();
 
   void InitDefaultCommand();
+
+  SetShooter* GetSetShooterCommand() const;
+
+
   void SetShooter(double RPM);
   
   double GetOutputCurrent() const;

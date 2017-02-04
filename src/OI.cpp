@@ -1,6 +1,7 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
+#include <Commands/NudgeShooter.h>
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
@@ -45,8 +46,9 @@ OI::OI()
 {
   // Process operator interface input here.
 
-  dA.WhileHeld(new AutonomousCommand());
-  dB.WhenPressed(new ToggleGear());
+  static const double kNudge = 10.0;
+  dA.WhenPressed(new NudgeShooter(kNudge));
+  dB.WhenPressed(new NudgeShooter(-kNudge));
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
