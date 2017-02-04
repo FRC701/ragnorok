@@ -14,7 +14,7 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  SetShooter defaultCommand;
+  robovikes::SetShooter defaultCommand;
 
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
@@ -31,7 +31,7 @@ public:
 
   void InitDefaultCommand();
 
-  SetShooter* GetSetShooterCommand() const;
+  robovikes::SetShooter* GetSetShooterCommand();
 
 
   void SetShooter(double RPM);

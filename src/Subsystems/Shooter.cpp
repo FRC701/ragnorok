@@ -41,16 +41,16 @@ void Shooter::InitDefaultCommand() {
   SetDefaultCommand(&defaultCommand);
 }
 
-SetShooter* Shooter::GetSetShooterCommand() const
+robovikes::SetShooter* Shooter::GetSetShooterCommand()
 {
   return &defaultCommand;
 }
-
 
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
   bottomFlyWheel.Set(RPM * .75);
 }
+
 double Shooter::GetOutputCurrent() const {
   return top1FlyWheel.GetOutputCurrent();
 }

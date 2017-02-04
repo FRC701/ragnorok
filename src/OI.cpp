@@ -56,7 +56,7 @@ OI::OI()
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
-  SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
+  SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
