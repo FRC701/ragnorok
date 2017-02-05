@@ -3,6 +3,7 @@
 #include "Chassis.h"
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
+#include "DoubleSolenoid.h"
 
 const char Chassis::kSubsystemName[] = "Chassis";
 
@@ -44,6 +45,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel.SetControlMode(CANTalon::kFollower);
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
 
+  shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
 void Chassis::InitDefaultCommand() {
@@ -61,11 +63,25 @@ void Chassis::SetTankDrive(double left, double right) {
   right1Wheel.Set(right);
   left1Wheel.Set(left);
 }
-
+void Chassis::SetShifter(ShifterValue value){
+	shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+}
 bool Chassis::IsForwardTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
 }
 
 bool Chassis::IsRightTurretAlligned() const{
   return right2Wheel.IsRevLimitSwitchClosed();
+}
+
+double Chassis::GetLeftEncRPM() const {
+  return left1Wheel.GetSpeed();
+}
+
+double Chassis::GetRightEncRPM() const {
+  return right1Wheel.GetSpeed();
+}
+
+bool Chassis::IsShifterHigh() const {
+ return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
 }
