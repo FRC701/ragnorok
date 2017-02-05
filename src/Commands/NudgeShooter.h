@@ -4,10 +4,12 @@
 #include "Commands/InstantCommand.h"
 
 class NudgeShooter : public InstantCommand {
-  double mNudge;
 public:
-	NudgeShooter(double nudge);
-	void Initialize();
+  NudgeShooter(double nudge);
+  void Initialize();
+
+private:
+  double mNudge;
 };
 
 #endif  // NudgeShooter_H

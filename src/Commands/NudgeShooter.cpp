@@ -4,8 +4,8 @@
 
 NudgeShooter::NudgeShooter(double nudge)
 : mNudge(nudge) {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+  // Use Requires() here to declare subsystem dependencies
+  // eg. Requires(Robot::chassis.get());
 }
 
 // Called once when the command executes
