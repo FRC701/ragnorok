@@ -24,32 +24,31 @@ void TankDrive::Execute() {
   //Automatic Shifters
   SmartDashboard::PutNumber("EncodeValue chassisrightmotor2",
       Chassis::getInstance()->GetRightEncRPM());
-  double shiftUpVelocity = SmartDashboard::GetNumber("UpVelocity", 3000);
+  double shiftUpVelocity = SmartDashboard::GetNumber("UpVelocity", 100);
 
-  double shiftDownVelocity = SmartDashboard::GetNumber("DownVelocity", 1000);
+  double shiftDownVelocity = SmartDashboard::GetNumber("DownVelocity", 50);
 
   const double kThrottle = 0.8;
 
-  if ((Chassis::getInstance()->IsShifterHigh() == ShifterValue::kShifterHigh)
+  if ((Chassis::getInstance()->IsShifterHigh() == Chassis::ShifterValue::kShifterHigh)
       && (Chassis::getInstance()->GetLeftEncRPM() >= shiftUpVelocity
       || Chassis::getInstance()->GetRightEncRPM() >= shiftUpVelocity)
      && (left >= kThrottle
         || right >= kThrottle) )
   {
-    RobotMap::chassisshift->Set(DoubleSolenoid::kForward);
+    Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterHigh);
   }
 
-  if ((RobotMap::chassisshift->Get() == DoubleSolenoid::kForward)
-        && (RobotMap::chassisleftMotor1->GetEncVel() <= shiftDownVelocity
-        && RobotMap::chassisrightMotor2->GetEncVel() <= shiftDownVelocity)
-        && (Robot::oi->getdriver()->GetRawAxis(1) <= 0.1
-        && Robot::oi->getdriver()->GetRawAxis(5) <= 0.1))
+  if ((Chassis::getInstance()->IsShifterHigh() == !Chassis::ShifterValue::kShifterHigh)
+        && (Chassis::getInstance()->GetLeftEncRPM() <= shiftDownVelocity
+        && Chassis::getInstance()->GetRightEncRPM() <= shiftDownVelocity)
+        && (left <= 0.1
+        && right <= 0.1))
   {
-    RobotMap::chassisshift->Set(DoubleSolenoid::kReverse);
+    Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterLow);
   }
 
 }
-
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
   return false;

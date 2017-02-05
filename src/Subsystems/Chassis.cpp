@@ -62,7 +62,9 @@ void Chassis::SetTankDrive(double left, double right) {
   right1Wheel.Set(right);
   left1Wheel.Set(left);
 }
-
+void Chassis::SetShifter(ShifterValue value){
+	shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+}
 bool Chassis::IsForwardTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
 }
@@ -79,6 +81,6 @@ double Chassis::GetRightEncRPM() const {
   return right1Wheel.GetSpeed();
 }
 
-bool Chassis::IsShifterHigh(ShifterValue value) const{
+bool Chassis::IsShifterHigh() const {
  return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
 }

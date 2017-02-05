@@ -28,10 +28,11 @@ public:
 
 	void InitDefaultCommand();
 	void SetTankDrive(double left, double right);
+	void SetShifter(ShifterValue value);
 
 	bool IsForwardTurretAlligned() const;
 	bool IsRightTurretAlligned() const;
-	bool IsShifterHigh(ShifterValue value) const;
+	bool IsShifterHigh() const;
 
 	double GetLeftEncRPM() const;
 	double GetRightEncRPM() const;
