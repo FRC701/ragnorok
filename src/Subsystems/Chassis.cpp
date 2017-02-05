@@ -3,6 +3,7 @@
 #include "Chassis.h"
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
+#include "DoubleSolenoid.h"
 
 const char Chassis::kSubsystemName[] = "Chassis";
 
@@ -68,4 +69,16 @@ bool Chassis::IsForwardTurretAlligned() const{
 
 bool Chassis::IsRightTurretAlligned() const{
   return right2Wheel.IsRevLimitSwitchClosed();
+}
+
+double Chassis::GetLeftEncRPM() const {
+  return left1Wheel.GetSpeed();
+}
+
+double Chassis::GetRightEncRPM() const {
+  return right1Wheel.GetSpeed();
+}
+
+bool Chassis::IsShifterHigh(ShifterValue value) const{
+ return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
 }

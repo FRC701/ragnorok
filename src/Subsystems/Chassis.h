@@ -31,6 +31,10 @@ public:
 
 	bool IsForwardTurretAlligned() const;
 	bool IsRightTurretAlligned() const;
+	bool IsShifterHigh(ShifterValue value) const;
+
+	double GetLeftEncRPM() const;
+	double GetRightEncRPM() const;
 };
 
 #endif
