@@ -1,6 +1,7 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
+#include <Commands/NudgeShooter.h>
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
@@ -45,8 +46,9 @@ OI::OI()
 {
   // Process operator interface input here.
 
-  dA.WhileHeld(new AutonomousCommand());
-  dB.WhenPressed(new ToggleGear());
+  static const double kNudge = 10.0;
+  dA.WhenPressed(new NudgeShooter(kNudge));
+  dB.WhenPressed(new NudgeShooter(-kNudge));
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
@@ -54,7 +56,7 @@ OI::OI()
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
-  SmartDashboard::PutData("Shooter On", new SetShooter(1.0));
+  SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {

@@ -1,11 +1,13 @@
 #include "SetShooter.h"
 #include "../Subsystems/Shooter.h"
 
+using namespace robovikes;
+
 SetShooter::SetShooter(double speed) :
     mSpeed(speed) {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
-	Requires(Shooter::getInstance().get());
+  // Use Requires() here to declare subsystem dependencies
+  // eg. Requires(Robot::chassis.get());
+  Requires(Shooter::getInstance().get());
 }
 
 // Called once when the command executes
@@ -31,5 +33,13 @@ void SetShooter::End() {
 // subsystems is scheduled to run
 void SetShooter::Interrupted() {
 
+}
+
+double SetShooter::GetSpeed() const {
+  return mSpeed;
+}
+
+void SetShooter::SetSpeed(double speed) {
+  mSpeed = speed;
 }
 

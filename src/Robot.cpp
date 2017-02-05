@@ -8,6 +8,8 @@
 #include "Subsystems/Vision.h"
 #include "Subsystems/Lifter.h"
 
+#include "Commands/SetShooter.h"
+
 std::unique_ptr<OI> Robot::oi;
 
 void Robot::RobotInit() {
@@ -46,6 +48,9 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() {
   Scheduler::GetInstance()->Run();
+  // Scheduler must start running before doing any operations
+  // on subsystems or commands.
+  Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
 }
 
 void Robot::AutonomousInit() {

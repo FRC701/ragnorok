@@ -4,6 +4,8 @@
 #include "Commands/Subsystem.h"
 #include "CANTalon.h"
 
+#include "Commands/SetShooter.h"
+
 class Shooter : public frc::Subsystem {
 private:
   // It's desirable that everything possible under private except
@@ -12,14 +14,15 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
 
-  
+  robovikes::SetShooter* defaultCommand;
+
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
   CANTalon bottomFlyWheel;
   double p;
   double i;
   double d;
-  
+
 public:
 
   Shooter();
@@ -27,10 +30,14 @@ public:
   static std::shared_ptr<Shooter> getInstance();
 
   void InitDefaultCommand();
+
+  robovikes::SetShooter* GetSetShooterCommand();
+
+
   void SetShooter(double RPM);
-  
+
   double GetOutputCurrent() const;
-  
+
   double GetOutputVoltage() const;
 
   int GetEncoderVelocity() const;
