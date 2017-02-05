@@ -24,27 +24,21 @@ void TankDrive::Execute() {
   //Automatic Shifters
  SmartDashboard::PutNumber("Right Drive Encoder Value",Chassis::getInstance()->GetRightEncRPM());
  SmartDashboard::PutNumber("Right Throttle Value", right);
- SmartDashboard::PutNumber("Right Throttle Value", left);
-  double shiftUpVelocity =  100;
+ SmartDashboard::PutNumber("Left Throttle Value", left);
+  double shiftUpVelocity =  1000;
 
-  double shiftDownVelocity = 50;
-
-  const double kThrottle = 0.8;
+  double shiftDownVelocity = 500;
 
   if ((Chassis::getInstance()->IsShifterHigh() == !Chassis::ShifterValue::kShifterHigh)
       && (Chassis::getInstance()->GetLeftEncRPM() >= shiftUpVelocity
-      || Chassis::getInstance()->GetRightEncRPM() >= shiftUpVelocity)
-     && (left >= kThrottle
-        || right >= kThrottle) )
+      || Chassis::getInstance()->GetRightEncRPM() >= shiftUpVelocity))
   {
     Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterHigh);
   }
 
   if ((Chassis::getInstance()->IsShifterHigh() == Chassis::ShifterValue::kShifterHigh)
         && (Chassis::getInstance()->GetLeftEncRPM() <= shiftDownVelocity
-        && Chassis::getInstance()->GetRightEncRPM() <= shiftDownVelocity)
-        && (left <= 0.1
-        && right <= 0.1))
+        && Chassis::getInstance()->GetRightEncRPM() <= shiftDownVelocity))
   {
     Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterLow);
   }

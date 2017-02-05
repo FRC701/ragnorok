@@ -35,9 +35,13 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   right1Wheel.SetInverted(true);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.ConfigEncoderCodesPerRev(128);
+  right1Wheel.SetSensorDirection(true);// this is test code make sure to remove
+  right1Wheel.ConfigEncoderCodesPerRev(4096);//This is test code make sure to remove
 
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.ConfigEncoderCodesPerRev(128);
+  left1Wheel.SetSensorDirection(true);// this is test code make sure to remove
+  left1Wheel.ConfigEncoderCodesPerRev(4096);//this is test code make sure to remove
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRight1Wheel);
