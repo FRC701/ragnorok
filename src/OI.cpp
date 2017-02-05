@@ -48,7 +48,7 @@ OI::OI()
 
   dA.WhileHeld(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0));
-  dY.WhenPressed(new SetLifter(1.0));
+  dY.WhileHeld(new SetLifter(-1.0));
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
