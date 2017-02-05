@@ -45,6 +45,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel.SetControlMode(CANTalon::kFollower);
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
 
+  shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
 void Chassis::InitDefaultCommand() {
