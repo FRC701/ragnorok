@@ -66,7 +66,7 @@ double OI::getDriverLeftXAxis() const {
 }
 
 double OI::getDriverLeftYAxis() const {
-  return driver->GetRawAxis(kLeftYAxis_ID);
+  return driver->GetRawAxis(kLeftYAxis_ID) * -1;
 }
 
 double OI::getDriverRightXAxis() const {
@@ -74,11 +74,15 @@ double OI::getDriverRightXAxis() const {
 }
 
 double OI::getDriverRightYAxis() const {
-  return driver->GetRawAxis(kRightYAxis_ID);
+  return driver->GetRawAxis(kRightYAxis_ID) * -1;
 }
 
-double OI::getDriverTriggers() const {
-  return driver->GetRawAxis(kTriggers_ID);
+double OI::getDriverLeftTrigger() const {
+  return driver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getDriverRightTrigger() const {
+  return driver->GetRawAxis(kRightTrigger_ID);
 }
 
 
@@ -91,7 +95,7 @@ double OI::getCoDriverLeftXAxis() const {
 }
 
 double OI::getCoDriverLeftYAxis() const {
-  return coDriver->GetRawAxis(kLeftYAxis_ID);
+  return coDriver->GetRawAxis(kLeftYAxis_ID) * -1;
 }
 
 double OI::getCoDriverRightXAxis() const {
@@ -99,9 +103,13 @@ double OI::getCoDriverRightXAxis() const {
 }
 
 double OI::getCoDriverRightYAxis() const {
-  return coDriver->GetRawAxis(kRightYAxis_ID);
+  return coDriver->GetRawAxis(kRightYAxis_ID) * -1;
 }
 
-double OI::getCoDriverTriggers() const {
-  return coDriver->GetRawAxis(kTriggers_ID);
+double OI::getCoDriverLeftTrigger() const {
+  return coDriver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getCoDriverRightTrigger() const {
+  return coDriver->GetRawAxis(kRightTrigger_ID);
 }
