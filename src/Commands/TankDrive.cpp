@@ -36,7 +36,7 @@ void TankDrive::Execute() {
   }
   else {
     if (chassis->GetLeftEncRPM() >= kShiftUpVelocity
-        || chassis->GetRightEncRPM() <= kShiftUpVelocity) {
+        || chassis->GetRightEncRPM() >= kShiftUpVelocity) {
     chassis->SetShifter(Chassis::kShifterHigh);
     }
   }
