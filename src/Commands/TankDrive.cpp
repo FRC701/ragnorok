@@ -16,33 +16,30 @@ void TankDrive::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() {
   std::shared_ptr<OI> oi = OI::getInstance();
+  std::shared_ptr<Chassis> chassis = Chassis::getInstance();
   double left = oi->getDriverLeftYAxis();
   double right = oi->getDriverRightYAxis();
 
   Chassis::getInstance()->SetTankDrive(left, right);
 
-  //Automatic Shifters
- SmartDashboard::PutNumber("Right Drive Encoder Value",Chassis::getInstance()->GetRightEncRPM());
- SmartDashboard::PutNumber("Right Throttle Value", right);
- SmartDashboard::PutNumber("Left Throttle Value", left);
-  double shiftUpVelocity =  1000;
+  SmartDashboard::PutNumber("Right Drive Encoder Value",Chassis::getInstance()->GetRightEncRPM());
 
-  double shiftDownVelocity = 500;
+  static const double kShiftUpVelocity =  1000;
 
-  if ((Chassis::getInstance()->IsShifterHigh() == !Chassis::ShifterValue::kShifterHigh)
-      && (Chassis::getInstance()->GetLeftEncRPM() >= shiftUpVelocity
-      || Chassis::getInstance()->GetRightEncRPM() >= shiftUpVelocity))
-  {
-    Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterHigh);
+  static const double kShiftDownVelocity = 0.75 * kShiftUpVelocity;
+
+  if (chassis->IsShifterHigh()) {
+    if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
+      || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
+    chassis->SetShifter(Chassis::kShifterLow);
+    }
   }
-
-  if ((Chassis::getInstance()->IsShifterHigh() == Chassis::ShifterValue::kShifterHigh)
-        && (Chassis::getInstance()->GetLeftEncRPM() <= shiftDownVelocity
-        && Chassis::getInstance()->GetRightEncRPM() <= shiftDownVelocity))
-  {
-    Chassis::getInstance()->SetShifter(Chassis::ShifterValue::kShifterLow);
+  else {
+    if (chassis->GetLeftEncRPM() >= kShiftUpVelocity
+        || chassis->GetRightEncRPM() <= kShiftUpVelocity) {
+    chassis->SetShifter(Chassis::kShifterHigh);
+    }
   }
-
 }
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
