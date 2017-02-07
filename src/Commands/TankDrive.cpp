@@ -2,7 +2,10 @@
 #include "TankDrive.h"
 #include "../Subsystems/Chassis.h"
 
-TankDrive::TankDrive(): Command() {
+using namespace robovikes;
+
+TankDrive::TankDrive(bool automaticShifting) :
+	mAutomaticShifting(automaticShifting) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
@@ -24,13 +27,9 @@ void TankDrive::Execute() {
 
   SmartDashboard::PutNumber("Right Drive Encoder Value",chassis->GetRightEncRPM());
 
-  if (oi->getDriverAButtonPressed()){
-
+  if (mAutomaticShifting){
+  	 AutoShifting();
   }
-  else {
-    AutoShifting();
-  }
-
 }
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
