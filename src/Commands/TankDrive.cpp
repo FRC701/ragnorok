@@ -2,7 +2,8 @@
 #include "TankDrive.h"
 #include "../Subsystems/Chassis.h"
 
-TankDrive::TankDrive(): Command() {
+TankDrive::TankDrive(bool automaticShifting) :
+  mAutomaticShifting(automaticShifting) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
@@ -24,13 +25,10 @@ void TankDrive::Execute() {
 
   SmartDashboard::PutNumber("Right Drive Encoder Value",chassis->GetRightEncRPM());
 
-  if (oi->getDriverAButtonPressed()){
-
+  if (mAutomaticShifting){
+  	 AutoShifting();
   }
-  else {
-    AutoShifting();
-  }
-
+  SmartDashboard::PutBoolean("AutoShifting", mAutomaticShifting);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
@@ -48,12 +46,21 @@ void TankDrive::Interrupted() {
 
 }
 
+void TankDrive::SetAutomaticShifting(bool automaticShifting) {
+  mAutomaticShifting = automaticShifting;
+}
+
+bool TankDrive::IsAutoShifterEnabled(){
+  return mAutomaticShifting;
+}
+
 void TankDrive::AutoShifting() {
   std::shared_ptr<Chassis> chassis = Chassis::getInstance();
+
   if (chassis->IsShifterHigh()) {
-    if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
-      || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
-    chassis->SetShifter(Chassis::kShifterLow);
+  	if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
+        || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
+      chassis->SetShifter(Chassis::kShifterLow);
     }
   }
   else {
