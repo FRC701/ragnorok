@@ -18,6 +18,7 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
+	defaultCommand(nullptr),
   right1Wheel(RobotMap::kIDRight1Wheel),
   right2Wheel(RobotMap::kIDRight2Wheel),
   left1Wheel(RobotMap::kIDLeft1Wheel),
@@ -51,11 +52,13 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-
-  SetDefaultCommand(new TankDrive());
+  defaultCommand = new TankDrive(true);
+  SetDefaultCommand(defaultCommand);
 }
 
-
+TankDrive* Chassis::GetTankDriveCommand(){
+  return defaultCommand;
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
@@ -64,7 +67,7 @@ void Chassis::SetTankDrive(double left, double right) {
   left1Wheel.Set(left);
 }
 void Chassis::SetShifter(ShifterValue value){
-	shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+  shifter.Set(static_cast<DoubleSolenoid::Value>(value));
 }
 bool Chassis::IsForwardTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
@@ -84,4 +87,8 @@ double Chassis::GetRightEncRPM() const {
 
 bool Chassis::IsShifterHigh() const {
  return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
+}
+
+bool Chassis::IsAutoShifterOn() const {
+  return defaultCommand->IsAutoShifterEnabled();
 }
