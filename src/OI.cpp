@@ -50,7 +50,7 @@ OI::OI()
   dA.WhenPressed(new NudgeShooter(kNudge));
   dB.WhenPressed(new NudgeShooter(-kNudge));
 
-  SmartDashboard::PutData("Tank Drive", new TankDrive());
+  SmartDashboard::PutData("Tank Drive", new robovikes::TankDrive(false));
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
