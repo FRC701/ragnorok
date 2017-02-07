@@ -1,5 +1,6 @@
 #ifndef CHASSIS_H
 #define CHASSIS_H
+
 #include "CANTalon.h"
 #include "DoubleSolenoid.h"
 #include "Commands/Subsystem.h"
@@ -11,6 +12,8 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<Chassis> self;
+
+  robovikes::TankDrive* defaultCommand;
 
   CANTalon right1Wheel;
 	CANTalon right2Wheel;
@@ -26,7 +29,12 @@ public:
 
 	Chassis();
 
+	static std::shared_ptr<Chassis> getInstance();
+
 	void InitDefaultCommand();
+
+	robovikes::TankDrive* GetTankDriveCommand();
+
 	void SetTankDrive(double left, double right);
 	void SetShifter(ShifterValue value);
 

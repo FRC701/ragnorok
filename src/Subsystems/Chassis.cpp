@@ -18,6 +18,7 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
+	defaultCommand(nullptr),
   right1Wheel(RobotMap::kIDRight1Wheel),
   right2Wheel(RobotMap::kIDRight2Wheel),
   left1Wheel(RobotMap::kIDLeft1Wheel),
@@ -51,9 +52,11 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-
-  SetDefaultCommand(new TankDrive());
+	defaultCommand = new robovikes::TankDrive(false);
+  SetDefaultCommand(defaultCommand);
 }
+
+robovikes::TankDrive* Chassis::GetTankDriveCommand();
 
 
 // Put methods for controlling this subsystem
