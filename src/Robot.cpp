@@ -9,6 +9,7 @@
 #include "Subsystems/Lifter.h"
 
 #include "Commands/SetShooter.h"
+#include "Commands/TankDrive.h"
 
 std::unique_ptr<OI> Robot::oi;
 
@@ -51,6 +52,7 @@ void Robot::DisabledPeriodic() {
   // Scheduler must start running before doing any operations
   // on subsystems or commands.
   Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
+  Chassis::getInstance()->GetTankDriveCommand()->TankDrive(true);
 }
 
 void Robot::AutonomousInit() {
