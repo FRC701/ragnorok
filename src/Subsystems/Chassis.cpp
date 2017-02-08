@@ -52,13 +52,9 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-	defaultCommand = new robovikes::TankDrive(false);
+	defaultCommand = new TankDrive(true);
   SetDefaultCommand(defaultCommand);
 }
-
-robovikes::TankDrive* Chassis::GetTankDriveCommand();
-
-
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
@@ -87,4 +83,8 @@ double Chassis::GetRightEncRPM() const {
 
 bool Chassis::IsShifterHigh() const {
  return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
+}
+
+bool Chassis::IsAutoShifterOn() const {
+  return defaultCommand->IsAutoShifterEnabled();
 }

@@ -8,6 +8,7 @@
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
+#include "Commands/ToggleAutoShifting.h"
 
 
 std::shared_ptr<OI> OI::self;
@@ -47,10 +48,11 @@ OI::OI()
   // Process operator interface input here.
 
   static const double kNudge = 10.0;
+
   dA.WhenPressed(new NudgeShooter(kNudge));
   dB.WhenPressed(new NudgeShooter(-kNudge));
+  dX.WhenPressed(new ToggleAutoShifting());
 
-  SmartDashboard::PutData("Tank Drive", new robovikes::TankDrive(false));
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));

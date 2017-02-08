@@ -4,6 +4,7 @@
 #include "CANTalon.h"
 #include "DoubleSolenoid.h"
 #include "Commands/Subsystem.h"
+#include "Commands/TankDrive.h"
 
 class Chassis: public frc::Subsystem {
 private:
@@ -13,8 +14,6 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Chassis> self;
 
-  robovikes::TankDrive* defaultCommand;
-
   CANTalon right1Wheel;
 	CANTalon right2Wheel;
 	CANTalon left1Wheel;
@@ -23,9 +22,11 @@ private:
 
 public:
 
+	TankDrive* defaultCommand;
+
 	enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
+	enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
 //TODO Check to make sure shifter is high when forward
-	static std::shared_ptr<Chassis> getInstance();
 
 	Chassis();
 
@@ -33,14 +34,13 @@ public:
 
 	void InitDefaultCommand();
 
-	robovikes::TankDrive* GetTankDriveCommand();
-
 	void SetTankDrive(double left, double right);
 	void SetShifter(ShifterValue value);
 
 	bool IsForwardTurretAlligned() const;
 	bool IsRightTurretAlligned() const;
 	bool IsShifterHigh() const;
+	bool IsAutoShifterOn() const;
 
 	double GetLeftEncRPM() const;
 	double GetRightEncRPM() const;

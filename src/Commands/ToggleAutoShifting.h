@@ -5,7 +5,7 @@
 
 class ToggleAutoShifting : public InstantCommand {
 public:
-	ToggleAutoShifting(bool autoShift);
+	ToggleAutoShifting();
 	void Initialize();
 
 private:

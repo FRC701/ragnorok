@@ -13,7 +13,6 @@
 
 #include "Commands/Command.h"
 
-namespace robovikes {
 /**
  *
  *
@@ -32,6 +31,9 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 
+	void SetAutomaticShifting(bool automaticShifting);
+	bool IsAutoShifterEnabled();
+
 private:
   bool mAutomaticShifting;
   static const int kShiftUpVelocity =  1000;
@@ -40,5 +42,4 @@ private:
   void AutoShifting();
 };
 
-}
 #endif

@@ -10,6 +10,6 @@ ToggleShifter::ToggleShifter() {
 // Called once when the command executes
 void ToggleShifter::Initialize() {
   Chassis::ShifterValue value
-    = Chassis::getInstance()->IsShifterHigh() ? Chassis::kShifterHigh : Chassis::kShifterLow;
+    = Chassis::getInstance()->IsShifterHigh() ? Chassis::kShifterLow : Chassis::kShifterHigh;
   Chassis::getInstance()->SetShifter(value);
 }
