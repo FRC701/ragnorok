@@ -9,6 +9,9 @@ ToggleShifter::ToggleShifter() {
 
 // Called once when the command executes
 void ToggleShifter::Initialize() {
+  if(Chassis::getInstance()->GetTankDriveCommand()->IsAutoShifterEnabled()){
+  	 Chassis::getInstance()->GetTankDriveCommand()->SetAutomaticShifting(false);
+  }
   Chassis::ShifterValue value
     = Chassis::getInstance()->IsShifterHigh() ? Chassis::kShifterLow : Chassis::kShifterHigh;
   Chassis::getInstance()->SetShifter(value);
