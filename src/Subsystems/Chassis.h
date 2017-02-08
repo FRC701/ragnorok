@@ -14,6 +14,8 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<Chassis> self;
 
+  TankDrive* defaultCommand;
+
   CANTalon right1Wheel;
 	CANTalon right2Wheel;
 	CANTalon left1Wheel;
@@ -22,7 +24,7 @@ private:
 
 public:
 
-	TankDrive* defaultCommand;
+
 
 	enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
 	enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
@@ -33,6 +35,8 @@ public:
 	static std::shared_ptr<Chassis> getInstance();
 
 	void InitDefaultCommand();
+
+	TankDrive* GetTankDriveCommand();
 
 	void SetTankDrive(double left, double right);
 	void SetShifter(ShifterValue value);

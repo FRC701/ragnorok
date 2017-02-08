@@ -52,8 +52,12 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
-	defaultCommand = new TankDrive(true);
+  defaultCommand = new TankDrive(true);
   SetDefaultCommand(defaultCommand);
+}
+
+TankDrive* Chassis::GetTankDriveCommand(){
+return defaultCommand;
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
