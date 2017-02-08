@@ -15,7 +15,4 @@ void ToggleAutoShifting::Initialize() {
 bool mAutoShift =
 	    chassis->IsAutoShifterOn() ? Chassis::kAutoShiftOff : Chassis::kAutoShiftOn;
 	    chassis->GetTankDriveCommand()->SetAutomaticShifting(mAutoShift);
-	    SmartDashboard::PutNumber("AutoShifter", mAutoShift);
-
-
 }

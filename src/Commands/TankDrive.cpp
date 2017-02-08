@@ -28,6 +28,7 @@ void TankDrive::Execute() {
   if (mAutomaticShifting){
   	 AutoShifting();
   }
+  SmartDashboard::PutBoolean("AutoShifting", mAutomaticShifting);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {

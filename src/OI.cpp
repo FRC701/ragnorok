@@ -9,6 +9,7 @@
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
 #include "Commands/ToggleAutoShifting.h"
+#include "Commands/ToggleShifter.h"
 
 
 std::shared_ptr<OI> OI::self;
@@ -52,6 +53,7 @@ OI::OI()
   dA.WhenPressed(new NudgeShooter(kNudge));
   dB.WhenPressed(new NudgeShooter(-kNudge));
   dX.WhenPressed(new ToggleAutoShifting());
+  dLB.WhenPressed(new ToggleShifter());
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
