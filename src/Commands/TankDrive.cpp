@@ -3,7 +3,7 @@
 #include "../Subsystems/Chassis.h"
 
 TankDrive::TankDrive(bool automaticShifting) :
-	mAutomaticShifting(true) {
+  mAutomaticShifting(automaticShifting) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
@@ -57,15 +57,12 @@ void TankDrive::AutoShifting() {
   std::shared_ptr<Chassis> chassis = Chassis::getInstance();
 
   if (chassis->IsShifterHigh()) {
-
-    if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
+  	if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
         || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
       chassis->SetShifter(Chassis::kShifterLow);
     }
   }
-
   else {
-
     if (chassis->GetLeftEncRPM() >= kShiftUpVelocity
         || chassis->GetRightEncRPM() >= kShiftUpVelocity) {
     chassis->SetShifter(Chassis::kShifterHigh);
