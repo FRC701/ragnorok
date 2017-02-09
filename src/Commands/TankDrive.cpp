@@ -47,7 +47,7 @@ void TankDrive::Interrupted() {
 }
 
 void TankDrive::SetAutomaticShifting(bool automaticShifting) {
- mAutomaticShifting = automaticShifting;
+  mAutomaticShifting = automaticShifting;
 }
 
 bool TankDrive::IsAutoShifterEnabled(){

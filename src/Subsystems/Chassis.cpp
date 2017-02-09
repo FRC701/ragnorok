@@ -57,7 +57,7 @@ void Chassis::InitDefaultCommand() {
 }
 
 TankDrive* Chassis::GetTankDriveCommand(){
-return defaultCommand;
+  return defaultCommand;
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
@@ -67,7 +67,7 @@ void Chassis::SetTankDrive(double left, double right) {
   left1Wheel.Set(left);
 }
 void Chassis::SetShifter(ShifterValue value){
-	shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+  shifter.Set(static_cast<DoubleSolenoid::Value>(value));
 }
 bool Chassis::IsForwardTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
