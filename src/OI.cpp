@@ -8,6 +8,8 @@
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
+#include "Commands/ToggleAutoShifting.h"
+#include "Commands/ToggleShifter.h"
 
 
 std::shared_ptr<OI> OI::self;
@@ -47,10 +49,12 @@ OI::OI()
   // Process operator interface input here.
 
   static const double kNudge = 10.0;
+
   dA.WhenPressed(new NudgeShooter(kNudge));
   dB.WhenPressed(new NudgeShooter(-kNudge));
+  dX.WhenPressed(new ToggleAutoShifting());
+  dLB.WhenPressed(new ToggleShifter());
 
-  SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
@@ -79,8 +83,12 @@ double OI::getDriverRightYAxis() const {
   return driver->GetRawAxis(kRightYAxis_ID);
 }
 
-double OI::getDriverTriggers() const {
-  return driver->GetRawAxis(kTriggers_ID);
+double OI::getDriverLeftTrigger() const {
+  return driver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getDriverRightTrigger() const {
+  return driver->GetRawAxis(kRightTrigger_ID);
 }
 
 
@@ -104,6 +112,10 @@ double OI::getCoDriverRightYAxis() const {
   return coDriver->GetRawAxis(kRightYAxis_ID);
 }
 
-double OI::getCoDriverTriggers() const {
-  return coDriver->GetRawAxis(kTriggers_ID);
+double OI::getCoDriverLeftTrigger() const {
+  return coDriver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getCoDriverRightTrigger() const {
+  return coDriver->GetRawAxis(kRightTrigger_ID);
 }
