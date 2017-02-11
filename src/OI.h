@@ -54,8 +54,8 @@ public:
   double getDriverRightXAxis() const;
   double getDriverRightYAxis() const;
 
-  double getDriverTriggers() const;
-
+  double getDriverLeftTrigger() const;
+  double getDriverRightTrigger() const;
 
 //..........driver..........
 
@@ -67,11 +67,11 @@ public:
   double getCoDriverRightXAxis() const;
   double getCoDriverRightYAxis() const;
 
-  double getCoDriverTriggers() const;
+  double getCoDriverLeftTrigger() const;
+  double getCoDriverRightTrigger() const;
 
 
 //..........ids..........
-  //TODO: check axis ids
 
   static const int kButtonA_ID = 1;
   static const int kButtonB_ID = 2;
@@ -84,13 +84,14 @@ public:
   static const int kButtonL3_ID = 9;
   static const int kButtonR3_ID = 10;
 
-  static const int kLeftXAxis_ID = 1;
-  static const int kLeftYAxis_ID = 2;
+  static const int kLeftXAxis_ID = 0;
+  static const int kLeftYAxis_ID = 1;
 
   static const int kRightXAxis_ID = 4;
   static const int kRightYAxis_ID = 5;
 
-  static const int kTriggers_ID = 3;
+  static const int kLeftTrigger_ID = 2;
+  static const int kRightTrigger_ID = 3;
 };
 
 #endif
