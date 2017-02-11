@@ -4,6 +4,8 @@
 #include <Commands/Subsystem.h>
 #include "CANTalon.h"
 
+#include "EStop.h"
+
 class GearPickup : public Subsystem {
 private:
   // It's desirable that everything possible under private except
@@ -12,6 +14,7 @@ private:
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
 
+  EStop eStop;
   CANTalon roller;
   DoubleSolenoid actuator;
   double p;
