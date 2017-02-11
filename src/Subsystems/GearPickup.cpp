@@ -16,16 +16,15 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 }
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
-
-    roller(RobotMap::kIDRoller),
-    actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
-    p(0.06), i(0.0), d(0.0)
-    {
+  roller(RobotMap::kIDRoller),
+  actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
+  p(0.06), i(0.0), d(0.0)
+{
   roller.Enable();
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   roller.SetControlMode(frc::CANSpeedController::kSpeed);
   roller.SetPID(p, i, d);
-    }
+}
 
 void GearPickup::InitDefaultCommand() {
   // Set the default command for a subsystem here.
