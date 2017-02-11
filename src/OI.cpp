@@ -9,6 +9,7 @@
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
+#include "Commands/SetFullIntake.h"
 
 
 std::shared_ptr<OI> OI::self;
@@ -51,8 +52,10 @@ OI::OI()
   static const double kPositionNudge = 1.0;
   dA.WhenPressed(new NudgeShooter(kRPMNudge));
   dB.WhenPressed(new NudgeShooter(-kRPMNudge));
-  dX.WhenPressed(new NudgeTurret(kPositionNudge));
-  dY.WhenPressed(new NudgeTurret(-kPositionNudge));
+  dX.WhenPressed(new SetFullIntake(1.0));
+  dY.WhenPressed(new SetFullIntake(-1.0));
+
+
 
   SmartDashboard::PutData("Tank Drive", new TankDrive());
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());

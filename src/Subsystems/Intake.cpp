@@ -21,7 +21,8 @@ Intake::Intake() : Subsystem(kSubsystemName),
   floorPickup.Enable();
   floorPickup.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   floorPickup.SetControlMode(frc::CANSpeedController::kSpeed);
-  floorPickup.SetPID(p, i, d);
+  floorPickup.SetControlMode(frc::CANSpeedController::kPercentVbus);//This is test code make sure to remove
+  //floorPickup.SetPID(p, i, d);
   }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
