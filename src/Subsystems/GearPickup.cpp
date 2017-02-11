@@ -10,7 +10,7 @@ std::shared_ptr<GearPickup> GearPickup::self;
 
 std::shared_ptr<GearPickup> GearPickup::getInstance() {
   if(! self) {
-    self = std::make_shared<GearPickup>();
+    self = std::shared_ptr<GearPickup>(new GearPickup());
   }
   return self;
 }
