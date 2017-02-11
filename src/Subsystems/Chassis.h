@@ -41,8 +41,8 @@ public:
 	void SetTankDrive(double left, double right);
 	void SetShifter(ShifterValue value);
 
-	bool IsForwardTurretAlligned() const;
-	bool IsRightTurretAlligned() const;
+	bool Is0DegTurretAlligned() const;
+	bool Is90DegTurretAlligned() const;
 	bool IsShifterHigh() const;
 	bool IsAutoShifterOn() const;
 

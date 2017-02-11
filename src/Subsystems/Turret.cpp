@@ -39,10 +39,13 @@ robovikes::SetTurret* Turret::GetSetPositionCommand(){
 void Turret::SetTurret(double speed){
 
   turretSpinner.Set(speed);
-
 }
-double Turret::GetTurret(){
 
+void Turret::SetTurretPosition(double position) {
+  turretSpinner.SetPosition(position);
+}
+
+double Turret::GetTurret() const {
   return turretSpinner.Get();
 }
 
@@ -51,15 +54,23 @@ double Turret::GetSetPoint() const {
 }
 
 double Turret::GetTurretPosition() const {
-	return turretSpinner.GetEncPosition();
+  return turretSpinner.GetPosition();
 }
 
-bool Turret::IsLeftSwitchPressed() const{
+bool Turret::IsLeftStopperHit() const{
   return turretSpinner.IsFwdLimitSwitchClosed();
 }
 
-bool Turret::IsRightSwitchPressed() const{
+bool Turret::IsRightStopperHit() const{
   return turretSpinner.IsRevLimitSwitchClosed();
+}
+
+void Turret::Calibrate(){
+  turretSpinner.SetControlMode(CANTalon::kPercentVbus);
+}
+
+void Turret::FinishCalibrate(double position){
+  turretSpinner.SetControlMode(CANTalon::kSpeed);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
