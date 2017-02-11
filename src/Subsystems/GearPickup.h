@@ -32,6 +32,7 @@ public:
   bool IsGearUp() const;
   bool IsGearAlligned() const;
 
+  void SetRollerSpeedRPM(double RPM);
   double GetGearIntakeRPM() const;
 };
 

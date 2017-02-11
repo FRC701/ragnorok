@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 #include <DoubleSolenoid.h>
 #include "CANTalon.h"
-
+#include "Commands/SetGearRoller.h"
 
 const char GearPickup::kSubsystemName[] = "GearPickup";
 
@@ -28,7 +28,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
 void GearPickup::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+  SetDefaultCommand(new SetGearRoller(0.0));
 }
 
 void GearPickup::SetGear(PickupValue value) {
@@ -47,6 +47,11 @@ bool GearPickup::IsGearAlligned() const{
     return false;
   }
     }
+
+void GearPickup::SetRollerSpeedRPM(double RPM)
+{
+  roller.Set(RPM);
+}
 
 double GearPickup::GetGearIntakeRPM() const{
   return roller.GetSpeed();
