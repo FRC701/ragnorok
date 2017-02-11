@@ -13,8 +13,10 @@ std::shared_ptr<Vision> Vision::getInstance() {
 	return self;
 }
 
-Vision::Vision() : Subsystem(kSubsystemName) {
-
+Vision::Vision()
+: Subsystem(kSubsystemName)
+, vision(RobotMap::kIDPi)
+{
 }
 
 void Vision::InitDefaultCommand() {
