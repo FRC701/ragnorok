@@ -1,7 +1,10 @@
 #ifndef Turret_H
 #define Turret_H
+
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+
+#include "Commands/SetTurret.h"
 
 class Turret : public frc::Subsystem {
 private:
@@ -11,6 +14,7 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Turret> self;
 
+	robovikes::SetTurret* defaultCommand;
 
 	CANTalon turretSpinner;
   double p;
@@ -22,9 +26,14 @@ public:
 
 	Turret();
 	void InitDefaultCommand();
+
+	robovikes::SetTurret* GetSetPositionCommand();
+
 	void SetTurret(double speed);
 
 	double GetTurret();
+	double GetSetPoint() const;
+	double GetTurretPosition() const;
 	//TODO Right Make sure these values correlate with how they go on the robot
 	bool IsLeftSwitchPressed() const;
 	bool IsRightSwitchPressed() const;

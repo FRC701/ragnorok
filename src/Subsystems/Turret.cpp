@@ -15,7 +15,7 @@ std::shared_ptr<Turret> Turret::getInstance() {
 }
 
 Turret::Turret() : Subsystem(kSubsystemName),
-
+		defaultCommand(nullptr),
     turretSpinner(RobotMap::kIDTurretSpinner),
     p(0.06), i(0.0), d(0.0)
     {
@@ -28,7 +28,12 @@ Turret::Turret() : Subsystem(kSubsystemName),
 void Turret::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-  SetDefaultCommand(new ::SetTurret(0.0));
+  defaultCommand = new robovikes::SetTurret(0.0);
+	SetDefaultCommand(defaultCommand);
+}
+
+robovikes::SetTurret* Turret::GetSetPositionCommand(){
+	return defaultCommand;
 }
 
 void Turret::SetTurret(double speed){
@@ -39,6 +44,14 @@ void Turret::SetTurret(double speed){
 double Turret::GetTurret(){
 
   return turretSpinner.Get();
+}
+
+double Turret::GetSetPoint() const {
+	return turretSpinner.GetSetpoint();
+}
+
+double Turret::GetTurretPosition() const {
+	return turretSpinner.GetEncPosition();
 }
 
 bool Turret::IsLeftSwitchPressed() const{

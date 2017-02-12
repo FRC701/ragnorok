@@ -2,7 +2,8 @@
 #include "TankDrive.h"
 #include "../Subsystems/Chassis.h"
 
-TankDrive::TankDrive(): Command() {
+TankDrive::TankDrive(bool automaticShifting) :
+  mAutomaticShifting(automaticShifting) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
@@ -10,18 +11,25 @@ TankDrive::TankDrive(): Command() {
 
 // Called just before this Command runs the first time
 void TankDrive::Initialize() {
-
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() {
+  std::shared_ptr<Chassis> chassis = Chassis::getInstance();
   std::shared_ptr<OI> oi = OI::getInstance();
+
   double left = oi->getDriverLeftYAxis();
   double right = oi->getDriverRightYAxis();
 
-  Chassis::getInstance()->SetTankDrive(left, right);
-}
+  chassis->SetTankDrive(left, right);
 
+  SmartDashboard::PutNumber("Right Drive Encoder Value",chassis->GetRightEncRPM());
+
+  if (mAutomaticShifting){
+  	 AutoShifting();
+  }
+  SmartDashboard::PutBoolean("AutoShifting", mAutomaticShifting);
+}
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
   return false;
@@ -36,4 +44,29 @@ void TankDrive::End() {
 // subsystems is scheduled to run
 void TankDrive::Interrupted() {
 
+}
+
+void TankDrive::SetAutomaticShifting(bool automaticShifting) {
+  mAutomaticShifting = automaticShifting;
+}
+
+bool TankDrive::IsAutoShifterEnabled(){
+  return mAutomaticShifting;
+}
+
+void TankDrive::AutoShifting() {
+  std::shared_ptr<Chassis> chassis = Chassis::getInstance();
+
+  if (chassis->IsShifterHigh()) {
+  	if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
+        || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
+      chassis->SetShifter(Chassis::kShifterLow);
+    }
+  }
+  else {
+    if (chassis->GetLeftEncRPM() >= kShiftUpVelocity
+        || chassis->GetRightEncRPM() >= kShiftUpVelocity) {
+    chassis->SetShifter(Chassis::kShifterHigh);
+    }
+  }
 }

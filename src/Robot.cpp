@@ -8,6 +8,8 @@
 #include "Subsystems/Vision.h"
 #include "Subsystems/Lifter.h"
 
+#include "Commands/SetShooter.h"
+
 std::unique_ptr<OI> Robot::oi;
 
 void Robot::RobotInit() {
@@ -46,6 +48,10 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() {
   Scheduler::GetInstance()->Run();
+  // Scheduler must start running before doing any operations
+  // on subsystems or commands.
+  Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
+  Turret::getInstance()->GetSetPositionCommand()->SetPosition(0.0);
 }
 
 void Robot::AutonomousInit() {
@@ -71,7 +77,7 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
   SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
   SmartDashboard::PutNumber("Shooter Current.", Shooter::getInstance()->GetOutputCurrent());
-
+  SmartDashboard::PutNumber("TurretPosition", Turret::getInstance()->GetSetPoint());
   Scheduler::GetInstance()->Run();
 
 }
