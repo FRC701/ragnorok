@@ -6,6 +6,7 @@
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
+#include "Commands/SetLifter.h"
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
 #include "Subsystems/GearPickup.h"
