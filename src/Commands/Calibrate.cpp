@@ -15,9 +15,8 @@ static bool IsAligned() {
   bool isRightStopperHit = turret->IsRightStopperHit();
   bool isLeftStopperHit = turret->IsLeftStopperHit();
   bool is0DegTurretAlligned = chassis->Is0DegTurretAlligned();
-  bool is90DegTurretAlligned = chassis->Is90DegTurretAlligned();
 
-  return isRightStopperHit || isLeftStopperHit || is0DegTurretAlligned || is90DegTurretAlligned;
+  return isRightStopperHit || isLeftStopperHit || is0DegTurretAlligned;
 }
 
 double GetHeading() {
@@ -54,7 +53,7 @@ double GetHeading() {
 }
 // Called just before this Command runs the first time
 void Calibrate::Initialize() {
-
+  Turret::getInstance()->Calibrate();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -65,7 +64,7 @@ void Calibrate::Execute() {
     //Do nothing
   }
   else {
-    turret->SetTurret(0.1);  //TODO check if this is positive or negative
+    turret->SetTurret(0.5);  //TODO check if this is positive or negative
   }
 }
 

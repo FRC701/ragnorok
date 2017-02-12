@@ -69,7 +69,7 @@ void Turret::Calibrate(){
   turretSpinner.SetControlMode(CANTalon::kPercentVbus);
 }
 
-void Turret::FinishCalibrate(double position){
+void Turret::FinishCalibrate(){
   turretSpinner.SetControlMode(CANTalon::kSpeed);
 }
 // Put methods for controlling this subsystem

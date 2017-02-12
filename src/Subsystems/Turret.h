@@ -30,10 +30,10 @@ public:
 
 	void SetTurret(double speed);
 	double GetTurret() const;
-	void SetTurretPosition(double position);
 
 	double GetSetPoint() const;
 	double GetTurretPosition() const;
+	void SetTurretPosition(double position);
 
   bool IsRightStopperHit() const;
   bool IsLeftStopperHit() const;
