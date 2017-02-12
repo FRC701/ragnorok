@@ -10,7 +10,7 @@
 class EStop
 {
 public:
-  EStop ();
+  EStop (double defaultStallTime);
   virtual ~EStop ();
 
   enum {
@@ -21,9 +21,14 @@ public:
   bool ShouldStop(double setSpeed, double currentSpeed);
 private:
     Timer timer;
+    double stallTime;
+    double mDefaultStallTime;
+
     bool timerStarted;
+    bool wasSetSpeedStopped;
 
     void StopTimer();
+
 };
 
 #endif /* SRC_SUBSYSTEMS_ESTOP_H_ */

@@ -8,6 +8,7 @@
 #include "Commands/SetIntake.h"
 #include "Commands/SetShooter.h"
 #include "Commands/ToggleGear.h"
+#include "Commands/SetGearRoller.h"
 #include "Subsystems/GearPickup.h"
 
 
@@ -61,6 +62,9 @@ OI::OI()
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
+  SmartDashboard::PutData("GearPickup On", new SetGearRoller(3123));
+
+  //SmartDashboard::put
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {

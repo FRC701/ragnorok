@@ -4,9 +4,13 @@
  */
 
 #include "EStop.h"
+#include <cmath>
 
-EStop::EStop()
-: timerStarted(false)
+EStop::EStop(double defaultStallTime)
+: stallTime(0.0),
+  mDefaultStallTime(defaultStallTime),
+  timerStarted(false),
+  wasSetSpeedStopped(true)
 {
 
 }
@@ -26,11 +30,28 @@ bool EStop::ShouldStop(double setSpeed, double currentSpeed)
   bool isSetSpeedStopped = fabs(setSpeed) < kMinStopped;
   bool isCurrentSpeedStopped = fabs(currentSpeed) < kMinSpeed;
 
+  static const double kRampTimeSeconds = 0.5;
+
   if (isCurrentSpeedStopped && !isSetSpeedStopped) {
-    shouldStop = kStop;
-  } else {
+    if (!timerStarted) {
+
+      if (wasSetSpeedStopped) {
+        stallTime = mDefaultStallTime + kRampTimeSeconds;
+      }
+      else {
+        stallTime = mDefaultStallTime;
+      }
+
+      timer.Start();
+      timerStarted = true;
+    }
+    shouldStop = timer.HasPeriodPassed(stallTime);
+  }
+  else {
     StopTimer();
   }
+
+  wasSetSpeedStopped = isSetSpeedStopped;
 
   return shouldStop;
 }

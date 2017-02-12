@@ -26,6 +26,7 @@ std::shared_ptr<GearPickup> GearPickup::getInstance() {
 }
 
 GearPickup::GearPickup() : Subsystem(kSubsystemName),
+  eStop(0.5),
   roller(RobotMap::kIDRoller),
   actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
   p(0.06), i(0.0), d(0.0)
@@ -60,11 +61,17 @@ bool GearPickup::IsGearAlligned() const{
 
 void GearPickup::SetRollerSpeedRPM(double RPM)
 {
+  bool estophappened = false;
   if (eStop.ShouldStop(RPM, GetGearIntakeRPM())) {
-    CancelCurrentCommand(GetCurrentCommand());
+//    CancelCurrentCommand(GetCurrentCommand());
+    roller.Set(RPM);
+    estophappened = true;
+
   } else {
     roller.Set(RPM);
+
   }
+  SmartDashboard::PutBoolean("ESTOP", estophappened);
 }
 
 double GearPickup::GetGearIntakeRPM() const{
