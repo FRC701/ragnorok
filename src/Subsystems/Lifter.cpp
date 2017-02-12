@@ -1,6 +1,7 @@
 #include "Lifter.h"
 #include "../RobotMap.h"
 #include "CANTalon.h"
+#include "../Commands/SetLifter.h"
 
 const char Lifter::kSubsystemName[] = "Lifter";
 
@@ -17,8 +18,7 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
   leftClimber(RobotMap::kIDLeftClimber),
   rightClimber(RobotMap::kIDRightClimber) {
 
-  leftClimber.Set(CANTalon::kNeutralMode_Brake);
-  rightClimber.Set(CANTalon::kNeutralMode_Brake);
+  SetBrake();
 
   leftClimber.SetInverted(true);
 }
@@ -26,6 +26,7 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
 void Lifter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
+ SetDefaultCommand(new ::SetLifter(0.0));
 }
 
 void Lifter::SetLifter(double speed){
