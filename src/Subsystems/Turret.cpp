@@ -9,7 +9,7 @@ std::shared_ptr<Turret> Turret::self;
 
 std::shared_ptr<Turret> Turret::getInstance() {
 	if (! self) {
-		self = std::make_shared<Turret>();
+		self = std::shared_ptr<Turret>(new Turret);
 	}
 	return self;
 }

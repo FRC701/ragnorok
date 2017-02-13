@@ -13,6 +13,7 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<Chassis> self;
+  Chassis();
 
   TankDrive* defaultCommand;
 
@@ -29,8 +30,6 @@ public:
 	enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
 	enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
 //TODO Check to make sure shifter is high when forward
-
-	Chassis();
 
 	static std::shared_ptr<Chassis> getInstance();
 

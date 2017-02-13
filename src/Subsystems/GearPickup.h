@@ -11,6 +11,7 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
+  GearPickup();
 
   CANTalon roller;
   DoubleSolenoid actuator;
@@ -23,8 +24,6 @@ public:
   enum PickupValue{kGearUp = DoubleSolenoid::kForward,kGearDown = DoubleSolenoid::kReverse};
 //TODO Check this value when robot is done
   static std::shared_ptr<GearPickup> getInstance();
-
-  GearPickup();
 
   void InitDefaultCommand();
   void SetGear(PickupValue value);
