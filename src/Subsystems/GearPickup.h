@@ -4,6 +4,8 @@
 #include <Commands/Subsystem.h>
 #include "CANTalon.h"
 
+#include "EStop.h"
+
 class GearPickup : public Subsystem {
 private:
   // It's desirable that everything possible under private except
@@ -13,11 +15,14 @@ private:
   static std::shared_ptr<GearPickup> self;
   GearPickup();
 
+  EStop eStop;
   CANTalon roller;
   DoubleSolenoid actuator;
   double p;
   double i;
   double d;
+
+  GearPickup();
 
 public:
 
@@ -31,6 +36,7 @@ public:
   bool IsGearUp() const;
   bool IsGearAlligned() const;
 
+  void SetRollerSpeedRPM(double RPM);
   double GetGearIntakeRPM() const;
 };
 

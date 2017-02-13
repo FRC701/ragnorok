@@ -12,6 +12,8 @@
 #include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
 #include "Commands/ToggleShifter.h"
+#include "Commands/SetGearRoller.h"
+#include "Subsystems/GearPickup.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -64,6 +66,7 @@ OI::OI()
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
+  SmartDashboard::PutData("Gear Pickup On", new SetGearRoller(1000));
   SmartDashboard::PutData("Calibrate Turret", new Calibrate());
 }
 

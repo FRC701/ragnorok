@@ -18,7 +18,7 @@ public:
   static const int kIDShooterFeeder = 13;
 
   //..........GearPickup..........
-  static const int kIDRoller = 10;
+  static const int kIDRoller = 3; //10
 
   //..........Intake..........
   static const int kIDFloorPickup = 9;
