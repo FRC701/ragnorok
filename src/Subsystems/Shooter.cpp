@@ -19,20 +19,24 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
-  p(0.06), i(0.0001), d(0)
+  Tp(0.08), Ti(0.0001), Td(0),
+  Bp(0.14), Bi(0.0002), Bd(0)
 {
   top1FlyWheel.Enable();
   top1FlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   top1FlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
-  top1FlyWheel.SetPID(p, i, d);
+  top1FlyWheel.SetPID(Tp, Ti, Td);
   top1FlyWheel.SetSensorDirection(false);
     
   top2FlyWheel.Enable();
   top2FlyWheel.SetControlMode(frc::CANSpeedController::kFollower);
-  top2FlyWheel.Set(RobotMap::kIDTop2FlyWheel);
+  top2FlyWheel.Set(RobotMap::kIDTop1FlyWheel);
   
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+  bottomFlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
+  bottomFlyWheel.SetPID(Bp, Bi, Bd);
+  bottomFlyWheel.SetSensorDirection(true);
 }
 
 void Shooter::InitDefaultCommand() {
@@ -49,7 +53,7 @@ robovikes::SetShooter* Shooter::GetSetShooterCommand()
 
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
-  bottomFlyWheel.Set(RPM * .75);
+  bottomFlyWheel.Set(-RPM);
 }
 
 double Shooter::GetOutputCurrent() const {
