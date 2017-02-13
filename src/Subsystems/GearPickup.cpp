@@ -6,16 +6,6 @@
 
 const char GearPickup::kSubsystemName[] = "GearPickup";
 
-// TODO: Utility Function
-void CancelCurrentCommand(Command* command)
-{
-  CommandGroup* group = command->GetGroup();
-  if (group)
-    group->Cancel();
-  else
-    command->Cancel();
-}
-
 std::shared_ptr<GearPickup> GearPickup::self;
 
 std::shared_ptr<GearPickup> GearPickup::getInstance() {
@@ -65,7 +55,7 @@ void GearPickup::SetRollerSpeedRPM(double RPM)
   bool estophappened = false;
 
  if (eStop.ShouldStop(RPM, GetGearIntakeRPM())) {
-    CancelCurrentCommand(GetCurrentCommand());
+    EStop::CancelCurrentCommand(GetCurrentCommand());
 
     estophappened = true;
 

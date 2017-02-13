@@ -4,6 +4,7 @@
 
 #ifndef SRC_SUBSYSTEMS_ESTOP_H_
 #define SRC_SUBSYSTEMS_ESTOP_H_
+#include "Commands/Command.h"
 
 #include "Timer.h"
 
@@ -19,6 +20,8 @@ public:
   };
 
   bool ShouldStop(double setSpeed, double currentSpeed);
+
+  static void CancelCurrentCommand(Command* command);
 private:
     Timer timer;
     double stallTime;
