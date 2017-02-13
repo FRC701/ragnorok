@@ -13,6 +13,7 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<Shooter> self;
+  Shooter();
 
   robovikes::SetShooter* defaultCommand;
 
@@ -24,8 +25,6 @@ private:
   double d;
 
 public:
-
-  Shooter();
 
   static std::shared_ptr<Shooter> getInstance();
 

@@ -13,6 +13,7 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<GearPickup> self;
+  GearPickup();
 
   EStop eStop;
   CANTalon roller;

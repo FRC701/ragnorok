@@ -9,7 +9,7 @@ std::shared_ptr<Turret> Turret::self;
 
 std::shared_ptr<Turret> Turret::getInstance() {
 	if (! self) {
-		self = std::make_shared<Turret>();
+		self = std::shared_ptr<Turret>(new Turret);
 	}
 	return self;
 }
@@ -28,7 +28,7 @@ Turret::Turret() : Subsystem(kSubsystemName),
 void Turret::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-  defaultCommand = new robovikes::SetTurret(0.0);
+  defaultCommand = new robovikes::SetTurret(GetTurretPosition());
 	SetDefaultCommand(defaultCommand);
 }
 
@@ -39,10 +39,13 @@ robovikes::SetTurret* Turret::GetSetPositionCommand(){
 void Turret::SetTurret(double speed){
 
   turretSpinner.Set(speed);
-
 }
-double Turret::GetTurret(){
 
+void Turret::SetTurretPosition(double position) {
+	turretSpinner.SetPosition(position);
+}
+
+double Turret::GetTurret() const {
   return turretSpinner.Get();
 }
 
@@ -51,15 +54,25 @@ double Turret::GetSetPoint() const {
 }
 
 double Turret::GetTurretPosition() const {
-	return turretSpinner.GetEncPosition();
+  return turretSpinner.GetPosition();
 }
 
-bool Turret::IsLeftSwitchPressed() const{
+bool Turret::IsLeftStopperHit() const{
   return turretSpinner.IsFwdLimitSwitchClosed();
 }
 
-bool Turret::IsRightSwitchPressed() const{
+bool Turret::IsRightStopperHit() const{
   return turretSpinner.IsRevLimitSwitchClosed();
+}
+
+void Turret::Calibrate(){
+  turretSpinner.SetControlMode(CANTalon::kPercentVbus);
+}
+
+void Turret::FinishCalibrate(double newPosition){
+  turretSpinner.SetControlMode(CANTalon::kPosition);
+  defaultCommand->SetPosition(newPosition);
+  SetTurretPosition(newPosition);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

@@ -1,16 +1,19 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
-#include <Commands/NudgeShooter.h>
+#include "Commands/Calibrate.h"
+#include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
+#include "Commands/SetLifter.h"
 #include "Commands/SetShooter.h"
+#include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
+#include "Commands/ToggleShifter.h"
 #include "Commands/SetGearRoller.h"
 #include "Subsystems/GearPickup.h"
-
 
 std::shared_ptr<OI> OI::self;
 
@@ -55,16 +58,16 @@ OI::OI()
   dX.WhenPressed(new NudgeTurret(kPositionNudge));
   dY.WhenPressed(new NudgeTurret(-kPositionNudge));
 
-  SmartDashboard::PutData("Tank Drive", new TankDrive());
+  dLB.WhenPressed(new ToggleShifter());
+
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
   SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
-  SmartDashboard::PutData("GearPickup On", new SetGearRoller(1000));
-
-  //SmartDashboard::put
+  SmartDashboard::PutData("Gear Pickup On", new SetGearRoller(1000));
+  SmartDashboard::PutData("Calibrate Turret", new Calibrate());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
@@ -87,8 +90,12 @@ double OI::getDriverRightYAxis() const {
   return driver->GetRawAxis(kRightYAxis_ID);
 }
 
-double OI::getDriverTriggers() const {
-  return driver->GetRawAxis(kTriggers_ID);
+double OI::getDriverLeftTrigger() const {
+  return driver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getDriverRightTrigger() const {
+  return driver->GetRawAxis(kRightTrigger_ID);
 }
 
 
@@ -112,6 +119,10 @@ double OI::getCoDriverRightYAxis() const {
   return coDriver->GetRawAxis(kRightYAxis_ID);
 }
 
-double OI::getCoDriverTriggers() const {
-  return coDriver->GetRawAxis(kTriggers_ID);
+double OI::getCoDriverLeftTrigger() const {
+  return coDriver->GetRawAxis(kLeftTrigger_ID);
+}
+
+double OI::getCoDriverRightTrigger() const {
+  return coDriver->GetRawAxis(kRightTrigger_ID);
 }

@@ -10,6 +10,7 @@ private:
 
 	static const char kSubsystemName[];
 	static std::shared_ptr<Intake> self;
+	Intake();
 
 	CANTalon floorPickup;
 	double p;
@@ -18,8 +19,6 @@ private:
 
 public:
 	static std::shared_ptr<Intake> getInstance();
-
-	Intake();
 
 	void InitDefaultCommand();
 	void SetIntake(double speed);
