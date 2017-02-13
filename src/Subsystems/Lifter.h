@@ -10,14 +10,13 @@ private:
 
 	static const char kSubsystemName[];
 	static std::shared_ptr<Lifter> self;
+	Lifter();
 
 	CANTalon leftClimber;
 	CANTalon rightClimber;
 
 public:
 	static std::shared_ptr<Lifter> getInstance();
-
-	Lifter();
 
 	void InitDefaultCommand();
 

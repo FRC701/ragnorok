@@ -8,7 +8,7 @@ std::shared_ptr<Vision> Vision::self;
 
 std::shared_ptr<Vision> Vision::getInstance() {
 	if (! self) {
-		self = std::make_shared<Vision>();
+		self = std::shared_ptr<Vision>(new Vision);
 	}
 	return self;
 }
