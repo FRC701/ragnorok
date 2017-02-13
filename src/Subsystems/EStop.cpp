@@ -52,7 +52,6 @@ bool EStop::ShouldStop(double setSpeed, double currentSpeed)
   }
 
   wasSetSpeedStopped = isSetSpeedStopped;
-
   return shouldStop;
 }
 

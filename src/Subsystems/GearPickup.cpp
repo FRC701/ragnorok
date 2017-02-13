@@ -61,10 +61,12 @@ bool GearPickup::IsGearAlligned() const{
 
 void GearPickup::SetRollerSpeedRPM(double RPM)
 {
+
   bool estophappened = false;
-  if (eStop.ShouldStop(RPM, GetGearIntakeRPM())) {
-//    CancelCurrentCommand(GetCurrentCommand());
-    roller.Set(RPM);
+
+ if (eStop.ShouldStop(RPM, GetGearIntakeRPM())) {
+    CancelCurrentCommand(GetCurrentCommand());
+
     estophappened = true;
 
   } else {
