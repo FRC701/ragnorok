@@ -9,7 +9,7 @@ std::shared_ptr<Intake> Intake::self;
 
 std::shared_ptr<Intake> Intake::getInstance() {
 	if (! self) {
-		self = std::make_shared<Intake>();
+		self = std::shared_ptr<Intake>(new Intake);
 	}
 	return self;
 }

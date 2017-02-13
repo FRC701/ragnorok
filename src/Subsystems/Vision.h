@@ -10,11 +10,10 @@ private:
 
 	static const char kSubsystemName[];
 	static std::shared_ptr<Vision> self;
+	Vision();
 
 public:
 	static std::shared_ptr<Vision> getInstance();
-
-	Vision();
 
 	void InitDefaultCommand();
 };

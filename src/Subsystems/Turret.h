@@ -13,6 +13,7 @@ private:
 
 	static const char kSubsystemName[];
 	static std::shared_ptr<Turret> self;
+	Turret();
 
 	robovikes::SetTurret* defaultCommand;
 
@@ -24,7 +25,6 @@ private:
 public:
 	static std::shared_ptr<Turret> getInstance();
 
-	Turret();
 	void InitDefaultCommand();
 
 	robovikes::SetTurret* GetSetPositionCommand();

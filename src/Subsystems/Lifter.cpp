@@ -9,7 +9,7 @@ std::shared_ptr<Lifter> Lifter::self;
 
 std::shared_ptr<Lifter> Lifter::getInstance() {
 	if (! self){
-		self = std::make_shared<Lifter>();
+		self = std::shared_ptr<Lifter>(new Lifter);
 	}
 	return self;
 }
