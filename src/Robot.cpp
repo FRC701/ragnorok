@@ -77,7 +77,9 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
   SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
   SmartDashboard::PutNumber("Shooter Current.", Shooter::getInstance()->GetOutputCurrent());
-  SmartDashboard::PutNumber("TurretPosition", Turret::getInstance()->GetSetPoint());
+  SmartDashboard::PutNumber("Turret Position", Turret::getInstance()->GetSetPoint());
+  SmartDashboard::PutNumber("Turret Encoder Position Zero", Turret::getInstance()->GetTurretPosition());
+
   Scheduler::GetInstance()->Run();
 
 }

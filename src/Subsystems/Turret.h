@@ -25,18 +25,28 @@ private:
 public:
 	static std::shared_ptr<Turret> getInstance();
 
-	void InitDefaultCommand();
+  void InitDefaultCommand();
 
 	robovikes::SetTurret* GetSetPositionCommand();
 
 	void SetTurret(double speed);
+	double GetTurret() const;
 
-	double GetTurret();
 	double GetSetPoint() const;
 	double GetTurretPosition() const;
-	//TODO Right Make sure these values correlate with how they go on the robot
-	bool IsLeftSwitchPressed() const;
-	bool IsRightSwitchPressed() const;
+	void SetTurretPosition(double position);
+
+  bool IsRightStopperHit() const;
+  bool IsLeftStopperHit() const;
+
+	void Calibrate();
+	void FinishCalibrate(double newPosition);
+
+	//TODO Make sure these values correlate with how they go on the robot
+	const double kAtLeft = 0;
+	const double kAtRight = 1000;
+  const double kAtBothMags = 500;
+  const double kAt0Mag = 750;
 };
 
 #endif  // Turret_H

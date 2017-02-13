@@ -66,14 +66,16 @@ void Chassis::SetTankDrive(double left, double right) {
   right1Wheel.Set(right);
   left1Wheel.Set(left);
 }
+
 void Chassis::SetShifter(ShifterValue value){
   shifter.Set(static_cast<DoubleSolenoid::Value>(value));
 }
-bool Chassis::IsForwardTurretAlligned() const{
+
+bool Chassis::Is0DegTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
 }
 
-bool Chassis::IsRightTurretAlligned() const{
+bool Chassis::Is90DegTurretAlligned() const{
   return right2Wheel.IsRevLimitSwitchClosed();
 }
 

@@ -1,18 +1,17 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
-#include <Commands/NudgeShooter.h>
+#include "Commands/Calibrate.h"
+#include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
 #include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
 #include "Commands/SetIntake.h"
 #include "Commands/SetLifter.h"
 #include "Commands/SetShooter.h"
-#include "Commands/ToggleGear.h"
-#include "Subsystems/GearPickup.h"
 #include "Commands/ToggleAutoShifting.h"
+#include "Commands/ToggleGear.h"
 #include "Commands/ToggleShifter.h"
-
 
 std::shared_ptr<OI> OI::self;
 
@@ -65,6 +64,7 @@ OI::OI()
   SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
   SmartDashboard::PutData("Intake On", new SetIntake(1.0));
   SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
+  SmartDashboard::PutData("Calibrate Turret", new Calibrate());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
