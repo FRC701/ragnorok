@@ -5,6 +5,7 @@
 
 #include "EStop.h"
 #include <cmath>
+#include "Commands/CommandGroup.h"
 
 EStop::EStop(double defaultStallTime)
 : stallTime(0.0),
@@ -18,6 +19,15 @@ EStop::EStop(double defaultStallTime)
 EStop::~EStop()
 {
 
+}
+
+void EStop::CancelCurrentCommand(Command* command)
+{
+  CommandGroup* group = command->GetGroup();
+  if (group)
+    group->Cancel();
+  else
+    command->Cancel();
 }
 
 static const double kMinStopped = 0.001;

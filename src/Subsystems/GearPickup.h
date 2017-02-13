@@ -22,8 +22,6 @@ private:
   double i;
   double d;
 
-  GearPickup();
-
 public:
 
   enum PickupValue{kGearUp = DoubleSolenoid::kForward,kGearDown = DoubleSolenoid::kReverse};
