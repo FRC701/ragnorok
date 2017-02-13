@@ -38,25 +38,38 @@ The shooter is made of a two-motor transmission to a single drive shaft and a si
 * Talon (13)
 * Encoder
 
+## Pneumatics
+* Shift
+* Gear Intake
+* Gear Squeeze
+
 ## Summary
 
 Disable limit switches, except where noted.
 
-| Subsystem   | Talon       | ID  | Encoder | Switches | Comment  |
-| ----------- | ----------- | --- | ------- | -------- | -------- |
-| Chassis     | Right 1     | 1   | Wobot   | Yes      | WCP Hall Effect Sensors for Turret |
-| Chassis     | Right 2     | 2   | No      | No       | Follower |
-| Chassis     | Left 1      | 3   | Wobot   | Yes      | Gear Intake Pneumatic Switch Sensors |
-| Chassis     | Left 2      | 4   | No      | No       | Follower |
-| Shooter     | Top 1       | 5   | Versa   | No       | |
-| Shooter     | Top 2       | 6   | No      | No       | Follower |
-| Shooter     | Bottom      | 7   | Versa   | No       | |
-| Turret      | Turret      | 8   | Versa   | Yes      | **Enable Limit Switches** |
-| Ball Intake | Intake      | 9   | Versa   | No       | |
-| Gear Intake | Gear Intake | 10  | Versa   | Yes      | 2 Banner Sensors |
-| Climber     | Climber 1   | 11  | No      | No       | |
-| Climber     | Climber 2   | 12  | No      | No       | |
-| Conveyor    | Conveyor    | 13  | Versa   | Yes      | Banner Sensor for Gear Intake |
+| Subsystem   | Talon       | ID  | Encoder | Switches | ConfigNeutralMode | Comment |
+| ----------- | ----------- | --- | ------- | -------- | ----------------- | ------- |
+| Chassis     | Right 1     | 1   | Wobot   | Yes      | kNeutralMode_Coast  | WCP Hall Effect Sensors for Turret |
+| Chassis     | Right 2     | 2   | No      | No       | kNeutralMode_Coast | Follower |
+| Chassis     | Left 1      | 3   | Wobot   | Yes      | kNeutralMode_Coast | Gear Intake Pneumatic Switch Sensors |
+| Chassis     | Left 2      | 4   | No      | No       | kNeutralMode_Coast | Follower |
+| Shooter     | Top 1       | 5   | Versa   | No       | kNeutralMode_Coast | |
+| Shooter     | Top 2       | 6   | No      | No       | kNeutralMode_Coast | Follower |
+| Shooter     | Bottom      | 7   | Versa   | No       | kNeutralMode_Coast | |
+| Turret      | Turret      | 8   | Versa   | Yes      | kNeutralMode_Brake | **Enable Limit Switches** |
+| Ball Intake | Intake      | 9   | Versa   | No       | kNeutralMode_Coast | |
+| Gear Intake | Gear Intake | 10  | Versa   | Yes      | kNeutralMode_Coast | 2 Banner Sensors |
+| Climber     | Climber 1   | 11  | No      | No       | kNeutralMode_Brake | |
+| Climber     | Climber 2   | 12  | No      | No       | kNeutralMode_Brake | |
+| Conveyor    | Conveyor    | 13  | Versa   | Yes      | kNeutralMode_Coast | Banner Sensor for Gear Intake |
+
+
+| Pneumatic    | Left | Right |
+| ------------ | ---- | ----- |
+| Shift        | 0    | 7     |
+| Gear Intake  | 1    | 6     |
+| Gear Squeeze | 2    | 5     |
+| Unused       | 3    | 4     |
 
 * 13 Talons
 * 6 Versa Planetary Encoder Modules
