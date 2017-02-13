@@ -39,7 +39,7 @@ public:
   bool IsLeftStopperHit() const;
 
 	void Calibrate();
-	void FinishCalibrate();
+	void FinishCalibrate(double newPosition);
 
 	//TODO Make sure these values correlate with how they go on the robot
 	const double kAtLeft = 0;

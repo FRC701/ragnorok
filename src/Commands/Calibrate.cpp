@@ -77,8 +77,7 @@ bool Calibrate::IsFinished() {
 // Called once after isFinished returns true
 void Calibrate::End() {
   std::shared_ptr<Turret> turret = Turret::getInstance();
-  turret->SetTurretPosition(GetHeading());
-  turret->FinishCalibrate();
+  turret->FinishCalibrate(GetHeading());
 }
 
 // Called when another command which requires one or more of the same

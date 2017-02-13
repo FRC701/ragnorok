@@ -28,7 +28,7 @@ Turret::Turret() : Subsystem(kSubsystemName),
 void Turret::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-  defaultCommand = new robovikes::SetTurret(0.0);
+  defaultCommand = new robovikes::SetTurret(GetTurretPosition());
 	SetDefaultCommand(defaultCommand);
 }
 
@@ -42,7 +42,7 @@ void Turret::SetTurret(double speed){
 }
 
 void Turret::SetTurretPosition(double position) {
-  turretSpinner.SetPosition(position);
+	turretSpinner.SetPosition(position);
 }
 
 double Turret::GetTurret() const {
@@ -69,8 +69,10 @@ void Turret::Calibrate(){
   turretSpinner.SetControlMode(CANTalon::kPercentVbus);
 }
 
-void Turret::FinishCalibrate(){
-  turretSpinner.SetControlMode(CANTalon::kSpeed);
+void Turret::FinishCalibrate(double newPosition){
+  turretSpinner.SetControlMode(CANTalon::kPosition);
+  defaultCommand->SetPosition(newPosition);
+  SetTurretPosition(newPosition);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
