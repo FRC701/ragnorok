@@ -16,6 +16,7 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
   defaultCommand(nullptr),
+  eStop(0.5),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
@@ -35,7 +36,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top2FlyWheel.Set(RobotMap::kIDTop1FlyWheel);
   top2FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   top2FlyWheel.SetInverted(true);
-  
+
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   bottomFlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
@@ -58,15 +59,33 @@ robovikes::SetShooter* Shooter::GetSetShooterCommand()
   return defaultCommand;
 }
 
-void Shooter::SetShooter(double RPM){
-  top1FlyWheel.Set(RPM);
-  bottomFlyWheel.Set(RPM);
-}
-
 void Shooter::SetCoast() {
   top1FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   top2FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   bottomFlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+}
+
+void Shooter::SetShooterRPM(double RPM){
+	  bool estophappened = false;
+
+	 if (eStop.ShouldStop(RPM, GetTopShooterRPM())) {
+	    EStop::CancelCurrentCommand(GetCurrentCommand());
+
+	    estophappened = true;
+
+	  } else {
+	    top1FlyWheel.Set(RPM);
+
+	  }
+	 if (eStop.ShouldStop(RPM, GetBottomShooterRPM())){
+		 EStop::CancelCurrentCommand(GetCurrentCommand());
+
+		 estophappened = true;
+
+	 }  else  {
+		 bottomFlyWheel.Set(RPM);
+	 }
+	  SmartDashboard::PutBoolean("ESTOP", estophappened);
 }
 
 double Shooter::GetOutputCurrent() const {
