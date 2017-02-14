@@ -24,7 +24,6 @@ public:
 
 	void InitDefaultCommand();
 	void SetConveyor(double conveyorSpeed);
-	void SetBallConveyorSpeedRPM(double conveyorSpeed);
 
 	bool IsGearIn() const;
 

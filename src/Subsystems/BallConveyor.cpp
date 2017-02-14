@@ -30,31 +30,29 @@ void BallConveyor::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
   SetDefaultCommand(new ::SetConveyor(0.0));
 }
-void BallConveyor::SetConveyor(double conveyorSpeed){
 
-  shooterFeeder.Set(conveyorSpeed);
-}
-
-bool BallConveyor::IsGearIn() const {
-  return shooterFeeder.IsFwdLimitSwitchClosed();
-}
-
-void BallConveyor::SetBallConveyorSpeedRPM(double conveyorSpeed)
+void BallConveyor::SetConveyor(double conveyorSpeed)
 {
   bool estophappened = false;
 
   if(eStop.ShouldStop(conveyorSpeed, GetBallConveyorRPM())){
 
-	  EStop::CancelCurrentCommand(GetCurrentCommand());
+    EStop::CancelCurrentCommand(GetCurrentCommand());
 
-	      estophappened = true;
+        estophappened = true;
 
-	    } else {
-	      shooterFeeder.Set(conveyorSpeed);
+      } else {
+        shooterFeeder.Set(conveyorSpeed);
 
-	    }
-	    SmartDashboard::PutBoolean("ESTOP", estophappened);
-	  }
+      }
+      SmartDashboard::PutBoolean("ESTOP", estophappened);
+    }
+
+bool BallConveyor::IsGearIn() const {
+  return shooterFeeder.IsFwdLimitSwitchClosed();
+}
+
+
 double BallConveyor::GetBallConveyorRPM() const{
   return shooterFeeder.GetSpeed();
 }
