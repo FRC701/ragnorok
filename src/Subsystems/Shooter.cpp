@@ -16,6 +16,7 @@ std::shared_ptr<Shooter> Shooter::getInstance() {
 
 Shooter::Shooter() : Subsystem(kSubsystemName),
   defaultCommand(nullptr),
+  eStop(0.5),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
@@ -50,6 +51,29 @@ robovikes::SetShooter* Shooter::GetSetShooterCommand()
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
   bottomFlyWheel.Set(RPM * .75);
+}
+
+void Shooter::SetShooterRPM(double RPM){
+	  bool estophappened = false;
+
+	 if (eStop.ShouldStop(RPM, GetTopShooterRPM())) {
+	    EStop::CancelCurrentCommand(GetCurrentCommand());
+
+	    estophappened = true;
+
+	  } else {
+	    top1FlyWheel.Set(RPM);
+
+	  }
+	 if (eStop.ShouldStop(RPM, GetBottomShooterRPM())){
+		 EStop::CancelCurrentCommand(GetCurrentCommand());
+
+		 estophappened = true;
+
+	 }  else  {
+		 bottomFlyWheel.Set(RPM);
+	 }
+	  SmartDashboard::PutBoolean("ESTOP", estophappened);
 }
 
 double Shooter::GetOutputCurrent() const {

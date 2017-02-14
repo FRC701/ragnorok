@@ -3,7 +3,7 @@
 
 #include "Commands/Subsystem.h"
 #include "CANTalon.h"
-
+#include "EStop.h"
 #include "Commands/SetShooter.h"
 
 class Shooter : public frc::Subsystem {
@@ -16,7 +16,7 @@ private:
   Shooter();
 
   robovikes::SetShooter* defaultCommand;
-
+  EStop eStop;
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
   CANTalon bottomFlyWheel;
@@ -34,6 +34,7 @@ public:
 
 
   void SetShooter(double RPM);
+  void SetShooterRPM(double RPM);
 
   double GetOutputCurrent() const;
 
