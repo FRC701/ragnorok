@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 #include "CANTalon.h"
 #include "Commands/SetIntake.h"
+#include "EStop.h"
 
 const char Intake::kSubsystemName[] = "Intake";
 
@@ -15,6 +16,7 @@ std::shared_ptr<Intake> Intake::getInstance() {
 }
 
 Intake::Intake() : Subsystem(kSubsystemName),
+  eStop(0.5),
   floorPickup(RobotMap::kIDFloorPickup),
   p(0.06), i(0.0), d(0)
   {
@@ -32,6 +34,22 @@ void Intake::InitDefaultCommand() {
 
 void Intake::SetIntake(double speed){
   floorPickup.Set(speed);
+}
+
+void Intake::SetIntakeRPM(double speed) {
+	bool estophappened = false;
+
+	if (eStop.ShouldStop(speed, GetIntakeRPM())) {
+	    EStop::CancelCurrentCommand(GetCurrentCommand());
+
+	    estophappened = true;
+
+	  } else {
+	    floorPickup.Set(speed);
+
+	  }
+	  SmartDashboard::PutBoolean("ESTOP", estophappened);
+
 }
 
 double Intake::GetIntakeRPM() const{
