@@ -23,11 +23,10 @@ EStop::~EStop()
 
 void EStop::CancelCurrentCommand(Command* command)
 {
-  CommandGroup* group = command->GetGroup();
-  if (group)
-    group->Cancel();
-  else
-    command->Cancel();
+  for (Command* group = command->GetGroup(); group; group = command->GetGroup()) {
+    command = group;
+  }
+  command->Cancel();
 }
 
 static const double kMinStopped = 0.001;
