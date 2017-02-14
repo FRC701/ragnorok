@@ -32,11 +32,7 @@ void Intake::InitDefaultCommand() {
   SetDefaultCommand(new ::SetIntake(0.0));
 }
 
-void Intake::SetIntake(double speed){
-  floorPickup.Set(speed);
-}
-
-void Intake::SetIntakeRPM(double speed) {
+void Intake::SetIntake(double speed) {
 	bool estophappened = false;
 
 	if (eStop.ShouldStop(speed, GetIntakeRPM())) {

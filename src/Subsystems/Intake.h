@@ -23,7 +23,6 @@ public:
 
 	void InitDefaultCommand();
 	void SetIntake(double speed);
-	void SetIntakeRPM(double speed);
 
 	double GetIntakeRPM() const;
 };
