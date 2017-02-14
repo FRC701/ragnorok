@@ -38,7 +38,7 @@ void GearPickup::SetGear(PickupValue value) {
 }
 
 void GearPickup::SetSqueeze(SqueezeValue value){
-
+  squeezer.Set(static_cast<DoubleSolenoid::Value>(value));
 }
 
 bool GearPickup::IsGearUp() const {
