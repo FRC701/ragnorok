@@ -2,6 +2,7 @@
 #define BallConveyor_H
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+#include "EStop.h"
 
 class BallConveyor : public frc::Subsystem {
 private:
@@ -12,6 +13,7 @@ private:
 	static std::shared_ptr<BallConveyor> self;
   BallConveyor();
 
+  	EStop eStop;
 	CANTalon shooterFeeder;
 	double p;
 	double i;
@@ -22,6 +24,7 @@ public:
 
 	void InitDefaultCommand();
 	void SetConveyor(double conveyorSpeed);
+	void SetBallConveyorSpeedRPM(double conveyorSpeed);
 
 	bool IsGearIn() const;
 
