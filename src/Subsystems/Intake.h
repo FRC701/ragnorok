@@ -2,6 +2,7 @@
 #define Intake_H
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
+#include "EStop.h"
 
 class Intake : public frc::Subsystem {
 private:
@@ -11,7 +12,7 @@ private:
 	static const char kSubsystemName[];
 	static std::shared_ptr<Intake> self;
 	Intake();
-
+	EStop eStop;
 	CANTalon floorPickup;
 	double p;
 	double i;
