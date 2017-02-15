@@ -1,18 +1,16 @@
-#include "FullGearIntake.h"
+#include "GearQuit.h"
 #include "SetGear.h"
 #include "SetSqueeze.h"
 #include "SetGearRoller.h"
 
-FullGearIntake::FullGearIntake() {
+GearQuit::GearQuit() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-  AddParallel(new SetGear(GearPickup::kGearDown));
-  AddParallel(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddParallel(new SetGearRoller(0.5));
-  AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
-  AddSequential(new SetGear(GearPickup::kGearUp));
+
+  AddParallel(new SetGear(GearPickup::kGearUp));
+  AddSequential(new SetGearRoller(0.0));
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
@@ -25,6 +23,4 @@ FullGearIntake::FullGearIntake() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-
-
 }
