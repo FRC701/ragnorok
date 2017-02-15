@@ -20,9 +20,12 @@ private:
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
   CANTalon bottomFlyWheel;
-  double p;
-  double i;
-  double d;
+  double Tp;
+  double Ti;
+  double Td;
+  double Bp;
+  double Bi;
+  double Bd;
 
 public:
 
