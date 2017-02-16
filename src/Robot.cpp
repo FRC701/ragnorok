@@ -58,14 +58,14 @@ public:
 	bool _btnsLast[10] = {false,false,false,false,false,false,false,false,false,false};
 
 
-	Robot() : leftWheel1(1), leftWheel2(2), leftWheel3(3),
-	    rightWheel1(4), rightWheel2(5), rightWheel3(6),
-	    leftMotionProfileControl(leftWheel1), rightMotionProfileControl(rightWheel1),
+	Robot() : leftWheel1(kLEFTWHEEL1), leftWheel2(kLEFTWHEEL2), leftWheel3(kLEFTWHEEL3),
+	    rightWheel1(kRIGHTWHEEL1), rightWheel2(kRIGHTWHEEL2), rightWheel3(kRIGHTWHEEL3),
+	    leftMotionProfileControl(leftWheel1, 'l'), rightMotionProfileControl(rightWheel1, 'r'),
 	    _joy(0)
 	{
 		leftWheel1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 		leftWheel1.SetSensorDirection(true); /* keep sensor and motor in phase */
-		leftWheel1.SetInverted(false);
+		leftWheel1.SetInverted(true);
 
 		rightWheel1.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
     rightWheel1.SetSensorDirection(false); /* keep sensor and motor in phase */
@@ -99,8 +99,14 @@ public:
 			btns[i] = _joy.GetRawButton(i);
 
 		/* get the left joystick axis on Logitech Gampead */
+
+		//TODO Figure out direction
 		double leftYjoystick = _joy.GetY(); /* multiple by -1 so joystick forward is positive */
 		double rightYjoystick = -1 * _joy.GetRawAxis(5);
+
+		SmartDashboard::PutNumber("Left Stick", _joy.GetY());
+    SmartDashboard::PutNumber("Right Stick", _joy.GetRawAxis(5));
+
 		/* call this periodically, and catch the output.  Only apply it if user wants to run MP. */
 		leftMotionProfileControl.control();
 		rightMotionProfileControl.control();

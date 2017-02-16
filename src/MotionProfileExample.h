@@ -99,9 +99,16 @@ public:
 	 * It doesn't need to be very accurate, just needs to keep pace with the motion
 	 * profiler executer.
 	 */
-	Notifier _notifer;
 
-	MotionProfileExample(CANTalon & talon) : _talon(talon), _notifer(&MotionProfileExample::PeriodicTask, this)
+  Notifier _notifer;
+
+  char mSide;
+
+	MotionProfileExample(CANTalon & talon, char side) :
+	  _talon(talon),
+	  _notifer(&MotionProfileExample::PeriodicTask, this),
+	  mSide(side)
+
 	{
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the
@@ -237,8 +244,14 @@ public:
 	void startFilling()
 	{
 		/* since this example only has one talon, just update that one */
-		startFilling(kMotionProfile, kMotionProfileSz);
-	}
+	  if (mSide == 'l') {
+	    startFilling(leftProfile, leftProfileSize);
+	  }
+	  else {
+	    startFilling(rightProfile, rightProfileSize);
+	  }
+
+  }
 
 	void startFilling(const double profile[][3], int totalCnt)
 	{
