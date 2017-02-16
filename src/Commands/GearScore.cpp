@@ -3,6 +3,7 @@
 #include "SetGear.h"
 #include "SetSqueeze.h"
 #include "SetGearRoller.h"
+#include "Delay.h"
 
 GearScore::GearScore() {
 	// Add Commands here:
@@ -12,10 +13,10 @@ GearScore::GearScore() {
 
   AddSequential(new SetGear(GearPickup::kGearUp));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddSequential(new SetGearRoller(-0.5)); //banner
-  //TODO: delay
-  AddSequential(new SetGear(GearPickup::kGearUp));
-  //TODO: delay or motion profile
+  AddSequential(new SetGearRoller(-0.5));
+  AddSequential(new Delay(0.25));
+  AddSequential(new SetGear(GearPickup::kGearDown));
+  AddSequential(new Delay(0.25)); //TODO: motion profile?
   AddSequential(new GearQuit());
 
 	// To run multiple commands at the same time,

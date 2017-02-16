@@ -20,7 +20,12 @@ void SetGearRoller::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetGearRoller::IsFinished() {
-	return BallConveyor::getInstance()->IsGearIn();
+  if (rollerSpeedRPM > 0)
+    return BallConveyor::getInstance()->IsGearIn();
+  else if (rollerSpeedRPM < 0)
+    return !(BallConveyor::getInstance()->IsGearIn());
+  else
+    return false;
 }
 
 // Called once after isFinished returns true
