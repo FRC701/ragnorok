@@ -22,3 +22,13 @@ Vision::Vision()
 void Vision::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 }
+
+int Vision::GetDistanceInches() const
+{
+  return vision.GetDistanceInches();
+}
+
+int Vision::GetDeviationTicks() const
+{
+  return vision.GetDeviationTicks();
+}
