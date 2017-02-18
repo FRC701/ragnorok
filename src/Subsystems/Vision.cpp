@@ -24,5 +24,16 @@ void Vision::InitDefaultCommand() {
   // SetDefaultCommand(new MySpecialCommand());
 }
 
+int Vision::GetDistanceInches() const
+{
+  return vision.GetDistanceInches();
+}
+
+int Vision::GetDeviationTicks() const
+{
+  return vision.GetDeviationTicks();
+}
+
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

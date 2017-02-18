@@ -4,14 +4,19 @@
 
 #include <Devices/CANVision.h>
 
+namespace {
+  const int32_t kLowMinimumConfidence = 10;
+  const int32_t kMediumMinumumConfidence = 100;
+  const int32_t kHighMinimumConfidence = 500;
+}
+
+
 CANVision::CANVision (int deviceNumber)
 : vision(deviceNumber)
 , m_deviceNumber(deviceNumber)
 , m_tracking(false)
 , m_table(nullptr)
 {
-  // TODO Auto-generated constructor stub
-
 }
 
 CANVision::~CANVision ()
@@ -33,9 +38,23 @@ bool CANVision::IsTrackingEnabled() const {
   return m_tracking;
 }
 
+
+
 CANVision::Confidence CANVision::GetConfidence() const
 {
-  return kConfidenceLow;  // todo: actually get and return the confidence
+  Confidence confidence = kConfidenceLow;
+
+  int32_t deviation = abs(GetDeviationTicks());
+
+  if (deviation < kMediumMinumumConfidence) {
+    confidence = kConfidenceLow;
+  } else if (deviation < kHighMinimumConfidence) {
+    confidence = kConfidenceMedium;
+  } else {
+    confidence = kConfidenceHigh;
+  }
+
+  return confidence;
 }
 
 int CANVision::GetDistanceInches() const
@@ -44,10 +63,22 @@ int CANVision::GetDistanceInches() const
 
   CTR_Code code = vision.GetDistance(&distance);
   if (code) {
-    wpi_setErrorWithContext(code, "Vision.GetDistance failed.");
+    wpi_setErrorWithContext(code, "vision.GetDistance failed.");
   }
   return distance;
 }
+
+int CANVision::GetDeviationTicks() const
+{
+  int32_t deviation;
+
+  CTR_Code code = vision.GetHeading(&deviation);
+  if (code) {
+    wpi_setErrorWithContext(code, "vision.GetHeading failed.");
+  }
+  return deviation;
+}
+
 
 // LiveWindow Methods
 void CANVision::InitTable(std::shared_ptr<ITable> subTable)

@@ -37,6 +37,7 @@ public:
    */
   Confidence GetConfidence() const;
   int GetDistanceInches() const;
+  int GetDeviationTicks() const;
 
 
   // Support LiveWindow.
