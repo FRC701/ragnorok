@@ -9,7 +9,7 @@ std::shared_ptr<Shooter> Shooter::self;
 
 std::shared_ptr<Shooter> Shooter::getInstance() {
   if (! self) {
-    self = std::make_shared<Shooter>();
+    self = std::shared_ptr<Shooter>(new Shooter);
   }
   return self;
 }
