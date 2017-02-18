@@ -1,8 +1,8 @@
 #ifndef Shooter_H
 #define Shooter_H
 
-#include "Commands/Subsystem.h"
-#include "CANTalon.h"
+#include <Commands/Subsystem.h>
+#include <CANTalon.h>
 
 #include "Commands/SetShooter.h"
 
