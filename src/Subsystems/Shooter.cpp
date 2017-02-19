@@ -27,16 +27,19 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top1FlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
   top1FlyWheel.SetPID(Tp, Ti, Td);
   top1FlyWheel.SetSensorDirection(false);
-    
+  top1FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
   top2FlyWheel.Enable();
   top2FlyWheel.SetControlMode(frc::CANSpeedController::kFollower);
   top2FlyWheel.Set(RobotMap::kIDTop1FlyWheel);
+  top2FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   bottomFlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
   bottomFlyWheel.SetPID(Bp, Bi, Bd);
   bottomFlyWheel.SetSensorDirection(true);
+  bottomFlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   SetCoast();
 }

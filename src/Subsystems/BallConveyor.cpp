@@ -24,6 +24,7 @@ BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
   shooterFeeder.SetPID(p, i, d);
   shooterFeeder.SetInverted(true);
   shooterFeeder.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  shooterFeeder.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 }
 
 void BallConveyor::InitDefaultCommand() {

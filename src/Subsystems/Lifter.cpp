@@ -18,6 +18,8 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
   leftClimber(RobotMap::kIDLeftClimber),
   rightClimber(RobotMap::kIDRightClimber) {
 
+  leftClimber.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  rightClimber.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   SetBrake();
 
   leftClimber.SetInverted(true);

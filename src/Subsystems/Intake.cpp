@@ -24,6 +24,7 @@ Intake::Intake() : Subsystem(kSubsystemName),
   floorPickup.SetPID(p, i, d);
   floorPickup.SetInverted(true);
   floorPickup.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  floorPickup.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.

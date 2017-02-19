@@ -27,6 +27,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller.SetControlMode(frc::CANSpeedController::kSpeed);
   roller.SetPID(p, i, d);
   roller.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  roller.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 }
 
 void GearPickup::InitDefaultCommand() {
