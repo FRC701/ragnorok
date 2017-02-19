@@ -59,9 +59,9 @@ void Shooter::SetShooter(double RPM){
 }
 
 void Shooter::SetCoast() {
-  top1FlyWheel.Set(CANTalon::kNeutralMode_Coast);
-  top2FlyWheel.Set(CANTalon::kNeutralMode_Coast);
-  bottomFlyWheel.Set(CANTalon::kNeutralMode_Coast);
+  top1FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  top2FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  bottomFlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 double Shooter::GetOutputCurrent() const {

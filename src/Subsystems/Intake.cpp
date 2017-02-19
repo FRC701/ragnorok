@@ -23,7 +23,7 @@ Intake::Intake() : Subsystem(kSubsystemName),
   floorPickup.SetControlMode(frc::CANSpeedController::kSpeed);
   floorPickup.SetPID(p, i, d);
   floorPickup.SetInverted(true);
-  floorPickup.Set(CANTalon::kNeutralMode_Coast);
+  floorPickup.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.

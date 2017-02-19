@@ -76,10 +76,10 @@ void Chassis::SetShifter(ShifterValue value){
 }
 
 void Chassis::SetCoast() {
-	right1Wheel.Set(CANTalon::kNeutralMode_Coast);
-	right2Wheel.Set(CANTalon::kNeutralMode_Coast);
-	left1Wheel.Set(CANTalon::kNeutralMode_Coast);
-	left2Wheel.Set(CANTalon::kNeutralMode_Coast);
+	right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
