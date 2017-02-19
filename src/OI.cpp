@@ -2,6 +2,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Calibrate.h"
+#include "Commands/FeedingShoot.h"
 #include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
 #include "Commands/SetConveyor.h"
@@ -116,6 +117,9 @@ OI::OI()
 
   SmartDashboard::PutData("Turret Calibrate", new Calibrate());
 //  SmartDashboard::PutData("Turret On", new SetTurret()); TODO
+
+  //..........Group..........
+  SmartDashboard::PutData("Feeding Shoot", new FeedingShoot());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
