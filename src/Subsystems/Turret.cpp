@@ -23,6 +23,7 @@ Turret::Turret() : Subsystem(kSubsystemName),
   turretSpinner.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   turretSpinner.SetControlMode(frc::CANSpeedController::kPosition);
   turretSpinner.SetPID(p, i, d);
+  turretSpinner.Set(CANTalon::kNeutralMode_Brake);
 }
 
 void Turret::InitDefaultCommand() {

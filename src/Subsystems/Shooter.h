@@ -37,6 +37,7 @@ public:
 
 
   void SetShooter(double RPM);
+  void SetCoast();
 
   double GetOutputCurrent() const;
 

@@ -22,6 +22,8 @@ BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
   shooterFeeder.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   shooterFeeder.SetControlMode(frc::CANSpeedController::kSpeed);
   shooterFeeder.SetPID(p, i, d);
+  shooterFeeder.SetInverted(true);
+  shooterFeeder.Set(CANTalon::kNeutralMode_Coast);
 }
 
 void BallConveyor::InitDefaultCommand() {
