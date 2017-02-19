@@ -37,6 +37,8 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   bottomFlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
   bottomFlyWheel.SetPID(Bp, Bi, Bd);
   bottomFlyWheel.SetSensorDirection(true);
+
+  SetCoast();
 }
 
 void Shooter::InitDefaultCommand() {
@@ -54,6 +56,12 @@ robovikes::SetShooter* Shooter::GetSetShooterCommand()
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
   bottomFlyWheel.Set(-RPM);
+}
+
+void Shooter::SetCoast() {
+  top1FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  top2FlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  bottomFlyWheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 double Shooter::GetOutputCurrent() const {

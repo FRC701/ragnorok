@@ -26,6 +26,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   roller.SetControlMode(frc::CANSpeedController::kSpeed);
   roller.SetPID(p, i, d);
+  roller.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 void GearPickup::InitDefaultCommand() {

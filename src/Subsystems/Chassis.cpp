@@ -35,9 +35,11 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 
   right1Wheel.SetInverted(true);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
   right1Wheel.ConfigEncoderCodesPerRev(128);
 
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
   left1Wheel.ConfigEncoderCodesPerRev(128);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
@@ -47,6 +49,8 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
 
   shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+
+  SetCoast();
 }
 
 void Chassis::InitDefaultCommand() {
@@ -69,6 +73,13 @@ void Chassis::SetTankDrive(double left, double right) {
 
 void Chassis::SetShifter(ShifterValue value){
   shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+}
+
+void Chassis::SetCoast() {
+	right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+	left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
