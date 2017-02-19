@@ -22,6 +22,8 @@ Intake::Intake() : Subsystem(kSubsystemName),
   floorPickup.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   floorPickup.SetControlMode(frc::CANSpeedController::kSpeed);
   floorPickup.SetPID(p, i, d);
+  floorPickup.SetInverted(true);
+  floorPickup.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
