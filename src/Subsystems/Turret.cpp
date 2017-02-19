@@ -75,5 +75,13 @@ void Turret::FinishCalibrate(double newPosition){
   defaultCommand->SetPosition(newPosition);
   SetTurretPosition(newPosition);
 }
+
+double Turret::GetTurretVoltage() const{
+  return turretSpinner.GetOutputVoltage();
+}
+
+double Turret::GetTurretCurrent() const{
+  return turretSpinner.GetOutputCurrent();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

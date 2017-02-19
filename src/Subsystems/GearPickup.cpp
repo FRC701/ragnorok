@@ -75,5 +75,13 @@ double GearPickup::GetGearIntakeRPM() const{
   return roller.GetSpeed();
 }
 
+bool GearPickup::IsFwdLimitSwitchClosed() const{
+  return roller.IsFwdLimitSwitchClosed();
+}
+
+bool GearPickup::IsRevLimitSwitchClosed() const{
+  return roller.IsRevLimitSwitchClosed();
+}
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

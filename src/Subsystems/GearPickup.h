@@ -40,6 +40,9 @@ public:
 
   void SetRollerSpeedRPM(double RPM);
   double GetGearIntakeRPM() const;
+
+  bool IsFwdLimitSwitchClosed() const;
+  bool IsRevLimitSwitchClosed() const;
 };
 
 #endif  // GearPickup_H
