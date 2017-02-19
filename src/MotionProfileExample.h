@@ -114,7 +114,7 @@ public:
 		 * since our MP is 10ms per point, set the control frame rate and the
 		 * notifer to half that
 		 */
-		_talon.ChangeMotionControlFramePeriod(10);
+		_talon.ChangeMotionControlFramePeriod(5);
 
 		/* start our tasking */
 		_notifer.StartPeriodic(0.01);
