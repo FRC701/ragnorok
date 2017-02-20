@@ -1,6 +1,7 @@
 #include "FeedingShoot.h"
 #include "NudgeShooter.h"
 #include "SetConveyor.h"
+#include "../RobotMap.h"
 
 FeedingShoot::FeedingShoot() {
 	// Add Commands here:
@@ -9,7 +10,8 @@ FeedingShoot::FeedingShoot() {
 	// these will run in order.
 
 	AddParallel(new NudgeShooter(3000));
-	AddSequential(new SetConveyor(1.0));
+	AddSequential(new SetConveyor(1200));
+
 
 	// To run multiple commands at the same time,
 	// use AddParallel()

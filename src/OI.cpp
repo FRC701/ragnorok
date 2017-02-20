@@ -86,22 +86,22 @@ OI::OI()
 
   //..........Conveyor..........
 
-  SmartDashboard::PutData("Convevor On", new SetConveyor(1000));
-  SmartDashboard::PutData("Convevor Rev", new SetConveyor(-1000));
+  SmartDashboard::PutData("Convevor On", new SetConveyor(RobotMap::kPeakPower));
+  SmartDashboard::PutData("Convevor Rev", new SetConveyor(-RobotMap::kPeakPower));
 
   //..........GearPickup..........
 
   SmartDashboard::PutData("Gear Up", new SetGear(GearPickup::kGearUp));
   SmartDashboard::PutData("Gear Down", new SetGear(GearPickup::kGearDown));
-  SmartDashboard::PutData("Gear Roller On", new SetGearRoller(1000));
-  SmartDashboard::PutData("Gear Roller Rev", new SetGearRoller(-1000));
+  SmartDashboard::PutData("Gear Roller On", new SetGearRoller(RobotMap::kPeakPower));
+  SmartDashboard::PutData("Gear Roller Rev", new SetGearRoller(-RobotMap::kPeakPower));
   SmartDashboard::PutData("Squeeze Open", new SetSqueeze(GearPickup::kSqueezeOpen));
   SmartDashboard::PutData("Squeeze Down", new SetSqueeze(GearPickup::kSqueezeClosed));
 
   //..........Intake..........
 
-  SmartDashboard::PutData("Intake On", new SetIntake(1000));
-  SmartDashboard::PutData("Intake Rev", new SetIntake(-1000));
+  SmartDashboard::PutData("Intake On", new SetIntake(1200));
+  SmartDashboard::PutData("Intake Rev", new SetIntake(-RobotMap::kPeakPower));
 
   //..........Lifter..........
 

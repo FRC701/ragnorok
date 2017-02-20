@@ -4,6 +4,7 @@
 #include "SetSqueeze.h"
 #include "SetGearRoller.h"
 #include "Delay.h"
+#include "../RobotMap.h"
 
 GearScore::GearScore() {
 	// Add Commands here:
@@ -13,10 +14,10 @@ GearScore::GearScore() {
 
   AddSequential(new SetGear(GearPickup::kGearUp));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddSequential(new SetGearRoller(-0.5));
-  AddSequential(new Delay(0.25));
+  AddParallel(new SetGearRoller(-RobotMap::kPeakPower));
+  //AddSequential(new Delay(250));
   AddSequential(new SetGear(GearPickup::kGearDown));
-  AddSequential(new Delay(0.25)); //TODO: motion profile?
+  //AddSequential(new Delay(.25)); //TODO: motion profile?
   AddSequential(new GearQuit());
 
 	// To run multiple commands at the same time,

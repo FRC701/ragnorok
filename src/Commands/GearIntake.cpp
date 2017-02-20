@@ -2,15 +2,17 @@
 #include "SetGear.h"
 #include "SetSqueeze.h"
 #include "SetGearRoller.h"
+#include "../RobotMap.h"
+#include "Delay.h"
 
 GearIntake::GearIntake() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-  AddParallel(new SetGear(GearPickup::kGearDown));
-  AddParallel(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddParallel(new SetGearRoller(0.5));
+  AddSequential(new SetGear(GearPickup::kGearDown));
+  AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
+  AddSequential(new SetGearRoller(1200));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
   AddSequential(new SetGear(GearPickup::kGearUp));
 
