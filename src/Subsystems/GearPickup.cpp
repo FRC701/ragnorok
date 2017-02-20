@@ -20,7 +20,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller(RobotMap::kIDRoller),
   actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
   squeezer(RobotMap::kIDSqueezerForward, RobotMap::kIDSqueezerReverse),
-	p(0.06), i(0.0), d(0.0)
+	p(0.08), i(0.001), d(0.0)
 {
   roller.Enable();
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -28,6 +28,9 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller.SetPID(p, i, d);
   roller.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   roller.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  SetGear(GearPickup::kGearUp);
+  SetSqueeze(GearPickup::kSqueezeOpen);
 }
 
 void GearPickup::InitDefaultCommand() {
@@ -47,8 +50,8 @@ bool GearPickup::IsGearUp() const {
   return actuator.Get() == static_cast<DoubleSolenoid::Value>(kGearUp);
 }
 
-bool GearPickup::IsGearAlligned() const{
-  return (roller.IsFwdLimitSwitchClosed() && roller.IsRevLimitSwitchClosed());
+bool GearPickup::IsGearIn() const{
+  return roller.IsFwdLimitSwitchClosed();
     }
 
 bool GearPickup::IsSqueezeOpen() const{
