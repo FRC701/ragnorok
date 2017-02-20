@@ -64,7 +64,7 @@ void Calibrate::Execute() {
     //Do nothing
   }
   else {
-    turret->SetTurret(1.0);  //TODO check if this is positive or negative
+    turret->SetTurret(0.25);  //TODO check if this is positive or negative
   }
 }
 
