@@ -3,6 +3,9 @@
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Calibrate.h"
 #include "Commands/FeedingShoot.h"
+#include "Commands/GearIntake.h"
+#include "Commands/GearQuit.h"
+#include "Commands/GearScore.h"
 #include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
 #include "Commands/SetConveyor.h"
@@ -96,7 +99,11 @@ OI::OI()
   SmartDashboard::PutData("Gear Roller On", new SetGearRoller(RobotMap::kPeakPower));
   SmartDashboard::PutData("Gear Roller Rev", new SetGearRoller(-RobotMap::kPeakPower));
   SmartDashboard::PutData("Squeeze Open", new SetSqueeze(GearPickup::kSqueezeOpen));
-  SmartDashboard::PutData("Squeeze Down", new SetSqueeze(GearPickup::kSqueezeClosed));
+  SmartDashboard::PutData("Squeeze Close", new SetSqueeze(GearPickup::kSqueezeClosed));
+
+  SmartDashboard::PutData("Gear Score", new GearScore());
+  SmartDashboard::PutData("GearQuit", new GearQuit());
+  SmartDashboard::PutData("Gear Intake", new GearIntake());
 
   //..........Intake..........
 
@@ -106,7 +113,7 @@ OI::OI()
   //..........Lifter..........
 
   SmartDashboard::PutData("Lifter On", new SetLifter(1.0));
-  SmartDashboard::PutData("Lifter Rev", new SetIntake(-1.0));
+  SmartDashboard::PutData("Lifter Rev", new SetLifter(-1.0));
 
   //..........Shooter..........
 
