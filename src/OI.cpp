@@ -6,6 +6,7 @@
 #include "Commands/GearIntake.h"
 #include "Commands/GearQuit.h"
 #include "Commands/GearScore.h"
+#include "Commands/IntakeShoot.h"
 #include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
 #include "Commands/SetConveyor.h"
@@ -127,6 +128,7 @@ OI::OI()
 
   //..........Group..........
   SmartDashboard::PutData("Feeding Shoot", new FeedingShoot());
+  SmartDashboard::PutData("Intake Shoot", new IntakeShoot());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
