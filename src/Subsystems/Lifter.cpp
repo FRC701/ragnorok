@@ -42,3 +42,6 @@ void Lifter::SetBrake() {
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+double Lifter::GetCurrent() const{
+	return leftClimber.GetOutputCurrent();
+}

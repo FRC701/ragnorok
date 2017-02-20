@@ -20,6 +20,7 @@
 #include "Commands/TankDrive.h"
 #include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
+#include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
 #include "Subsystems/GearPickup.h"
@@ -62,7 +63,25 @@ OI::OI()
 
   static const double kRPMNudge = 10.0;
   static const double kPositionNudge = 1.0;
+
 //-------------Driver--------
+
+  dY.WhenPressed(new ToggleLifter(1.0));
+  dLB.WhenPressed(new ToggleShifter());
+  dRB.WhenPressed(new ToggleAutoShifting());
+  dStart.WhenPressed(new GearScore());
+  dBack.WhenPressed(new GearQuit());
+//-------------CoDriver------
+  coA.WhenPressed(new SetIntake(RobotMap::kPeakPower));
+  coB.WhenPressed(new GearQuit());
+  coX.WhenPressed(new GearIntake());
+  coY.WhenPressed(new GearScore());
+  coRB.WhenPressed(new IntakeShoot());
+  coStart.WhenPressed(new AutonomousCommand());
+  coBack.WhenPressed(new AutonomousCommand());
+
+  /*
+//........Driver Buttons....
   dA.WhenPressed(new NudgeShooter(kRPMNudge));
   dB.WhenPressed(new NudgeShooter(-kRPMNudge));
   dX.WhenPressed(new NudgeTurret(kPositionNudge));
@@ -71,7 +90,7 @@ OI::OI()
   dLB.WhenPressed(new ToggleShifter());
 //  dStart.WhenPressed(new ());
 //  dBack.WhenPressed(new ());
-//-------------CoDriver------
+//-------------CoDriver Buttons------
 /*  coA.WhenPressed(new ());
   coB.WhenPressed(new ());
   coX.WhenPressed(new ());

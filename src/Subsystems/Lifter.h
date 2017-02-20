@@ -23,6 +23,8 @@ public:
 	void SetLifter(double speed);
 	void SetBrake();
 
+	double GetCurrent() const;
+
 };
 
 #endif  // Lifter_H
