@@ -48,6 +48,9 @@ public:
   static const int kIDShitftingReverse = 4;
 //TODO Check to make sure these values work on the Robot
 
+//..........Lights..........
+  static const int kIDRelay = 0;
+
 //..........RPMConstants..........
   static const int kPeakPower = 937;
 
