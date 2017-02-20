@@ -9,5 +9,5 @@ SetSqueeze::SetSqueeze(GearPickup::SqueezeValue value) :
 
 // Called just before this Command runs the first time
 void SetSqueeze::Initialize() {
-
+  GearPickup::getInstance()->SetSqueeze(mValue);
 }

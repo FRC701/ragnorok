@@ -1,30 +1,21 @@
-#include "GearScore.h"
-#include "GearQuit.h"
-#include "SetGear.h"
-#include "SetSqueeze.h"
-#include "SetGearRoller.h"
-#include "Delay.h"
+#include "IntakeShoot.h"
+#include "FeedingShoot.h"
+#include "SetIntake.h"
 #include "../RobotMap.h"
 
-GearScore::GearScore() {
+IntakeShoot::IntakeShoot() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
-  AddSequential(new SetGear(GearPickup::kGearUp));
-  AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddParallel(new SetGearRoller(-RobotMap::kPeakPower));
-  //AddSequential(new Delay(250));
-  AddSequential(new SetGear(GearPickup::kGearDown));
-  //AddSequential(new Delay(.25)); //TODO: motion profile?
-  AddSequential(new GearQuit());
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
+  AddParallel(new FeedingShoot());
+  AddSequential(new SetIntake(RobotMap::kPeakPower));
 
 	// A command group will require all of the subsystems that each member
 	// would require.

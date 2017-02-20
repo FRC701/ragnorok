@@ -18,7 +18,7 @@ public:
   static const int kIDShooterFeeder = 13;
 
   //..........GearPickup..........
-  static const int kIDRoller = 3; //10
+  static const int kIDRoller = 10;
 
   //..........Intake..........
   static const int kIDFloorPickup = 9;
@@ -38,15 +38,18 @@ public:
 //..........Pneumatics..........
 
   //..........GearPneumatics..........
-  static const int kIDActuatorForward = 1;
-  static const int kIDActuatorReverse = 6;
-  static const int kIDSqueezerForward = 2;
-  static const int kIDSqueezerReverse = 5;
+  static const int kIDActuatorForward = 5;
+  static const int kIDActuatorReverse = 2;
+  static const int kIDSqueezerForward = 6;
+  static const int kIDSqueezerReverse = 1;
 
   //..........ShiftingPneumatics..........
-  static const int kIDShitftingForward = 0;
-  static const int kIDShitftingReverse = 7;
+  static const int kIDShitftingForward = 3;
+  static const int kIDShitftingReverse = 4;
 //TODO Check to make sure these values work on the Robot
+
+//..........RPMConstants..........
+  static const int kPeakPower = 937;
 
   static void init();
 };

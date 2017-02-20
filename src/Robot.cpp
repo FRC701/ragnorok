@@ -7,6 +7,7 @@
 #include "Subsystems/Turret.h"
 #include "Subsystems/Vision.h"
 #include "Subsystems/Lifter.h"
+#include "Subsystems/GearPickup.h"
 
 #include "Commands/SetShooter.h"
 
@@ -73,12 +74,31 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-
+/*
   SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
   SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
   SmartDashboard::PutNumber("Shooter Current.", Shooter::getInstance()->GetOutputCurrent());
   SmartDashboard::PutNumber("Turret Position", Turret::getInstance()->GetSetPoint());
   SmartDashboard::PutNumber("Turret Encoder Position Zero", Turret::getInstance()->GetTurretPosition());
+*///this is commented out as to eliminate confusion when reading the dashboard
+  SmartDashboard::PutBoolean("Drive Gear false=shifter low", Chassis::getInstance()->IsShifterHigh());
+  SmartDashboard::PutNumber("Left Drive EncoderRPM", Chassis::getInstance()->GetLeftEncRPM());
+  SmartDashboard::PutNumber("Right Drive EncoderRPM", Chassis::getInstance()->GetRightEncRPM());
+  SmartDashboard::PutBoolean("Gear FwdBanner sensor true=triggered" , GearPickup::getInstance()->IsFwdLimitSwitchClosed());
+  SmartDashboard::PutBoolean("Gear RevBanner sensor true=triggered", GearPickup::getInstance()->IsRevLimitSwitchClosed());
+  SmartDashboard::PutBoolean("Gear Pneumatic false=low", GearPickup::getInstance()->IsGearUp());
+  SmartDashboard::PutBoolean("Gear Squeezer false=open", GearPickup::getInstance()->IsSqueezeOpen());
+  SmartDashboard::PutNumber("Gear Roller EncoderRPM", GearPickup::getInstance()->GetGearIntakeRPM());
+  SmartDashboard::PutNumber("Top Shooter EncoderRPM", Shooter::getInstance()->GetTopShooterRPM());
+  SmartDashboard::PutNumber("Bot Shooter EncoderRPM", Shooter::getInstance()->GetBottomShooterRPM());
+  SmartDashboard::PutNumber("Ball Intake EncoderRPM", Intake::getInstance()->GetIntakeRPM());
+  SmartDashboard::PutNumber("Ball Conveyor EncoderRPM", BallConveyor::getInstance()->GetBallConveyorRPM());
+
+
+  SmartDashboard::PutNumber("Turret Current", Turret::getInstance()->GetTurretCurrent());
+  SmartDashboard::PutNumber("Turret Voltage", Turret::getInstance()->GetTurretVoltage());
+
+  SmartDashboard::PutNumber("Intake Current", Intake::getInstance()->GetIntakeCurrent());
 
   Scheduler::GetInstance()->Run();
 

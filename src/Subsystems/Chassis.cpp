@@ -37,16 +37,20 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.SetControlMode(CANTalon::kPercentVbus);
   right1Wheel.ConfigEncoderCodesPerRev(128);
+  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
   left1Wheel.ConfigEncoderCodesPerRev(128);
+  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRight1Wheel);
+  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   left2Wheel.SetControlMode(CANTalon::kFollower);
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
+  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 

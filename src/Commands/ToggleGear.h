@@ -1,16 +1,12 @@
 #ifndef ToggleGear_H
 #define ToggleGear_H
 
-#include "Commands/Command.h"
+#include "Commands/InstantCommand.h"
 
-class ToggleGear : public frc::Command {
+class ToggleGear : public frc::InstantCommand {
 public:
 	ToggleGear();
 	void Initialize();
-	void Execute();
-	bool IsFinished();
-	void End();
-	void Interrupted();
 };
 
 #endif  // ToggleGear_H

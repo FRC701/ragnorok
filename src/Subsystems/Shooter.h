@@ -51,6 +51,7 @@ public:
 
   double GetTopShooterRPM() const;
   double GetBottomShooterRPM() const;
+
 };
 
 #endif  // Shooter_H

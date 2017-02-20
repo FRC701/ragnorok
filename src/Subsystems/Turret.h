@@ -42,6 +42,9 @@ public:
 	void Calibrate();
 	void FinishCalibrate(double newPosition);
 
+	double GetTurretVoltage() const;
+	double GetTurretCurrent() const;
+
 	//TODO Make sure these values correlate with how they go on the robot
 	const double kAtLeft = 0;
 	const double kAtRight = 1000;

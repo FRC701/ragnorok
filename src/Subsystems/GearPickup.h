@@ -35,11 +35,14 @@ public:
   void SetSqueeze(SqueezeValue value);
 
   bool IsGearUp() const;
-  bool IsGearAlligned() const;
   bool IsSqueezeOpen() const;
+  bool IsGearIn() const;
 
   void SetRollerSpeedRPM(double RPM);
   double GetGearIntakeRPM() const;
+
+  bool IsFwdLimitSwitchClosed() const;
+  bool IsRevLimitSwitchClosed() const;
 };
 
 #endif  // GearPickup_H

@@ -10,6 +10,7 @@ public:
 
 private:
   double mNudge;
+
 };
 
 #endif  // NudgeShooter_H

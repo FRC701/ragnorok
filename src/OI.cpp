@@ -2,17 +2,26 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Calibrate.h"
+#include "Commands/FeedingShoot.h"
+#include "Commands/GearIntake.h"
+#include "Commands/GearQuit.h"
+#include "Commands/GearScore.h"
+#include "Commands/IntakeShoot.h"
 #include "Commands/NudgeShooter.h"
 #include "Commands/NudgeTurret.h"
-#include "Commands/TankDrive.h"
 #include "Commands/SetConveyor.h"
+#include "Commands/SetGear.h"
+#include "Commands/SetGearRoller.h"
 #include "Commands/SetIntake.h"
 #include "Commands/SetLifter.h"
 #include "Commands/SetShooter.h"
+#include "Commands/SetSqueeze.h"
+#include "Commands/SetTurret.h"
+#include "Commands/TankDrive.h"
 #include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
 #include "Commands/ToggleShifter.h"
-#include "Commands/SetGearRoller.h"
+#include "Commands/ToggleSqueeze.h"
 #include "Subsystems/GearPickup.h"
 
 std::shared_ptr<OI> OI::self;
@@ -53,21 +62,73 @@ OI::OI()
 
   static const double kRPMNudge = 10.0;
   static const double kPositionNudge = 1.0;
+//-------------Driver--------
   dA.WhenPressed(new NudgeShooter(kRPMNudge));
   dB.WhenPressed(new NudgeShooter(-kRPMNudge));
   dX.WhenPressed(new NudgeTurret(kPositionNudge));
   dY.WhenPressed(new NudgeTurret(-kPositionNudge));
-
+//  dRB.WhenPressed(new ());
   dLB.WhenPressed(new ToggleShifter());
+//  dStart.WhenPressed(new ());
+//  dBack.WhenPressed(new ());
+//-------------CoDriver------
+/*  coA.WhenPressed(new ());
+  coB.WhenPressed(new ());
+  coX.WhenPressed(new ());
+  coY.WhenPressed(new ());
+  coRB.WhenPressed(new ());
+  coLB.WhenPressed(new ());
+  coStart.WhenPressed(new ());
+  coBack.WhenPressed(new ()); */
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("Feeder On", new SetConveyor(1.0));
-  SmartDashboard::PutData("Mover On", new SetConveyor(0.0));
-  SmartDashboard::PutData("Convevor On", new SetConveyor(1.0));
-  SmartDashboard::PutData("Intake On", new SetIntake(1.0));
-  SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(1.0));
-  SmartDashboard::PutData("Gear Pickup On", new SetGearRoller(1000));
-  SmartDashboard::PutData("Calibrate Turret", new Calibrate());
+
+  //..........Chassis..........
+
+  SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
+  SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
+
+  //..........Conveyor..........
+
+  SmartDashboard::PutData("Convevor On", new SetConveyor(RobotMap::kPeakPower));
+  SmartDashboard::PutData("Convevor Rev", new SetConveyor(-RobotMap::kPeakPower));
+
+  //..........GearPickup..........
+
+  SmartDashboard::PutData("Gear Up", new SetGear(GearPickup::kGearUp));
+  SmartDashboard::PutData("Gear Down", new SetGear(GearPickup::kGearDown));
+  SmartDashboard::PutData("Gear Roller On", new SetGearRoller(RobotMap::kPeakPower));
+  SmartDashboard::PutData("Gear Roller Rev", new SetGearRoller(-RobotMap::kPeakPower));
+  SmartDashboard::PutData("Squeeze Open", new SetSqueeze(GearPickup::kSqueezeOpen));
+  SmartDashboard::PutData("Squeeze Close", new SetSqueeze(GearPickup::kSqueezeClosed));
+
+  SmartDashboard::PutData("Gear Score", new GearScore());
+  SmartDashboard::PutData("GearQuit", new GearQuit());
+  SmartDashboard::PutData("Gear Intake", new GearIntake());
+
+  //..........Intake..........
+
+  SmartDashboard::PutData("Intake On", new SetIntake(1200));
+  SmartDashboard::PutData("Intake Rev", new SetIntake(-RobotMap::kPeakPower));
+
+  //..........Lifter..........
+
+  SmartDashboard::PutData("Lifter On", new SetLifter(1.0));
+  SmartDashboard::PutData("Lifter Rev", new SetLifter(-1.0));
+
+  //..........Shooter..........
+
+  SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(3000));
+  SmartDashboard::PutData("Shooter Rev", new robovikes::SetShooter(-3000));
+
+  //..........Turret..........
+
+  SmartDashboard::PutData("Turret Calibrate", new Calibrate());
+//  SmartDashboard::PutData("Turret On", new SetTurret()); TODO
+
+  //..........Group..........
+  SmartDashboard::PutData("Feeding Shoot", new FeedingShoot());
+  SmartDashboard::PutData("Intake Shoot", new IntakeShoot());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {
