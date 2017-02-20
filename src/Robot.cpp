@@ -7,6 +7,7 @@
 #include "Subsystems/Turret.h"
 #include "Subsystems/Vision.h"
 #include "Subsystems/Lifter.h"
+#include "Subsystems/Lights.h"
 #include "Subsystems/GearPickup.h"
 
 #include "Commands/SetShooter.h"
@@ -30,6 +31,7 @@ void Robot::RobotInit() {
   Turret::getInstance();
   Vision::getInstance();
   Lifter::getInstance();
+  Lights::getInstance();
   OI::getInstance();
 
   // instantiate the command used for the autonomous period
