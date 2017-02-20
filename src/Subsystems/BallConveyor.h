@@ -23,7 +23,7 @@ public:
 	void InitDefaultCommand();
 	void SetConveyor(double conveyorSpeed);
 
-	bool IsGearIn() const;
+  bool IsGearAlligned() const;
 
 	double GetBallConveyorRPM() const;
 };

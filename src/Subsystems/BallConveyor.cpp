@@ -16,13 +16,14 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
   shooterFeeder(RobotMap::kIDShooterFeeder),
-  p(0.06), i(0.0), d(0.0)
+  p(0.12), i(0.0), d(0.0)
 {
   shooterFeeder.Enable();
   shooterFeeder.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   shooterFeeder.SetControlMode(frc::CANSpeedController::kSpeed);
   shooterFeeder.SetPID(p, i, d);
   shooterFeeder.SetInverted(true);
+  shooterFeeder.SetSensorDirection(true);
   shooterFeeder.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   shooterFeeder.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 }
@@ -37,7 +38,7 @@ void BallConveyor::SetConveyor(double conveyorSpeed){
   shooterFeeder.Set(conveyorSpeed);
 }
 
-bool BallConveyor::IsGearIn() const {
+bool BallConveyor::IsGearAlligned() const {
   return shooterFeeder.IsFwdLimitSwitchClosed();
 }
 
