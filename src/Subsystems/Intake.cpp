@@ -16,7 +16,7 @@ std::shared_ptr<Intake> Intake::getInstance() {
 
 Intake::Intake() : Subsystem(kSubsystemName),
   floorPickup(RobotMap::kIDFloorPickup),
-  p(0.06), i(0.0), d(0)
+  p(0.09), i(0.0), d(0)
   {
   floorPickup.Enable();
   floorPickup.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -40,5 +40,9 @@ void Intake::SetIntake(double speed){
 double Intake::GetIntakeRPM() const{
   return floorPickup.GetSpeed();
   }
+
+double Intake::GetIntakeCurrent() const {
+  return floorPickup.GetOutputCurrent();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

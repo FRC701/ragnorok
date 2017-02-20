@@ -24,6 +24,7 @@ public:
 	void SetIntake(double speed);
 
 	double GetIntakeRPM() const;
+	double GetIntakeCurrent() const;
 };
 
 #endif  // Intake_H
