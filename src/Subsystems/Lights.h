@@ -19,6 +19,8 @@ public:
   static std::shared_ptr<Lights> getInstance();
 
 	void InitDefaultCommand();
+
+	void SetGlow();
 };
 
 #endif  // Lights_H

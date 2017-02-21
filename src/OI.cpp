@@ -2,6 +2,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Calibrate.h"
+#include "Commands/Cancel.h"
 #include "Commands/FeedingShoot.h"
 #include "Commands/GearIntake.h"
 #include "Commands/GearQuit.h"
@@ -47,7 +48,7 @@ OI::OI()
 , dR3(driver.get(), kButtonR3_ID)
 , dStart(driver.get(), kButtonStart_ID)
 , dBack(driver.get(), kButtonBack_ID)
-, coDriver(new Joystick(0))
+, coDriver(new Joystick(1))
 , coA(coDriver.get(), kButtonA_ID)
 , coB(coDriver.get(), kButtonB_ID)
 , coX(coDriver.get(), kButtonX_ID)
@@ -66,7 +67,8 @@ OI::OI()
 
 //-------------Driver--------
 
-  dY.WhenPressed(new ToggleLifter(1.0));
+  dB.WhenPressed(new SetLifter(0.0));
+  dY.WhenPressed(new SetLifter(1.0));
   dLB.WhenPressed(new ToggleShifter());
   dRB.WhenPressed(new ToggleAutoShifting());
   dStart.WhenPressed(new GearScore());
@@ -77,8 +79,8 @@ OI::OI()
   coX.WhenPressed(new GearIntake());
   coY.WhenPressed(new GearScore());
   coRB.WhenPressed(new IntakeShoot());
-  coStart.WhenPressed(new AutonomousCommand());
-  coBack.WhenPressed(new AutonomousCommand());
+  coStart.WhenPressed(new Cancel());
+  coBack.WhenPressed(new Cancel());
 
   /*
 //........Driver Buttons....
@@ -91,7 +93,7 @@ OI::OI()
 //  dStart.WhenPressed(new ());
 //  dBack.WhenPressed(new ());
 //-------------CoDriver Buttons------
-/*  coA.WhenPressed(new ());
+    coA.WhenPressed(new ());
   coB.WhenPressed(new ());
   coX.WhenPressed(new ());
   coY.WhenPressed(new ());
@@ -139,6 +141,9 @@ OI::OI()
 
   SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(3000));
   SmartDashboard::PutData("Shooter Rev", new robovikes::SetShooter(-3000));
+
+  SmartDashboard::PutData("Shooter Nudge -100", new NudgeShooter(-100));
+  SmartDashboard::PutData("Shooter Nudge 100", new NudgeShooter(100));
 
   //..........Turret..........
 

@@ -22,7 +22,7 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
   rightClimber.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   SetBrake();
 
-  leftClimber.SetInverted(true);
+  rightClimber.SetInverted(true);
 }
 
 void Lifter::InitDefaultCommand() {

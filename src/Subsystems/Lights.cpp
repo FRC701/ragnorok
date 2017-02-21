@@ -15,8 +15,7 @@ std::shared_ptr<Lights> Lights::getInstance() {
 Lights::Lights() : Subsystem(kSubsystemName),
   glow(RobotMap::kIDRelay)
     {
-  glow.Set(Relay::kOn);
-
+  SetGlow();
 }
 
 void Lights::InitDefaultCommand() {
@@ -26,3 +25,7 @@ void Lights::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+
+void Lights::SetGlow() {
+  glow.Set(Relay::kOn);
+}

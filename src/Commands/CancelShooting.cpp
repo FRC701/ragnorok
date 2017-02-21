@@ -1,23 +1,22 @@
-#include "FeedingShoot.h"
-#include "NudgeShooter.h"
+#include "CancelShooting.h"
+#include "SetShooter.h"
 #include "SetConveyor.h"
-#include "../RobotMap.h"
+#include "NudgeShooter.h"
+#include "../Subsystems/Shooter.h"
 
-FeedingShoot::FeedingShoot() {
+CancelShooting::CancelShooting() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
-	AddParallel(new NudgeShooter(3000));
-	AddSequential(new SetConveyor(1500));
-
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
+  AddParallel(new NudgeShooter(0));
+  AddSequential(new SetConveyor(0.0));
 
 	// A command group will require all of the subsystems that each member
 	// would require.
