@@ -105,6 +105,8 @@ void Robot::TeleopPeriodic() {
 
   SmartDashboard::PutNumber("Top Shooter Setpoint", Shooter::getInstance()->GetSetPoint());
 
+  SmartDashboard::PutBoolean("Is Gear In", GearPickup::getInstance()->IsGearIn());
+
   Scheduler::GetInstance()->Run();
 
 }
