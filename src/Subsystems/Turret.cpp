@@ -1,7 +1,7 @@
 #include "Turret.h"
 #include "../RobotMap.h"
 #include "CANTalon.h"
-#include "Commands/SetTurret.h"
+#include "../Commands/SetTurret.h"
 
 const char Turret::kSubsystemName[] = "Turret";
 
@@ -17,13 +17,14 @@ std::shared_ptr<Turret> Turret::getInstance() {
 Turret::Turret() : Subsystem(kSubsystemName),
 		defaultCommand(nullptr),
     turretSpinner(RobotMap::kIDTurretSpinner),
-    p(0.06), i(0.0), d(0.0)
+    p(0.0), i(0.0), d(0.0)
     {
   turretSpinner.Enable();
   turretSpinner.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-  turretSpinner.SetControlMode(frc::CANSpeedController::kPosition);
+  turretSpinner.SetControlMode(frc::CANSpeedController::kSpeed);
+ // turretSpinner.SetControlMode(frc::CANSpeedController::kPercentVbus);
   turretSpinner.SetPID(p, i, d);
-  turretSpinner.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
+  turretSpinner.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   turretSpinner.ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
 }
 
@@ -31,7 +32,8 @@ void Turret::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
   defaultCommand = new robovikes::SetTurret(GetTurretPosition());
-	SetDefaultCommand(defaultCommand);
+  SetDefaultCommand(defaultCommand);
+  //SetDefaultCommand(new robovikes::SetTurret(0.0));
 }
 
 robovikes::SetTurret* Turret::GetSetPositionCommand(){
@@ -60,11 +62,11 @@ double Turret::GetTurretPosition() const {
 }
 
 bool Turret::IsLeftStopperHit() const{
-  return turretSpinner.IsFwdLimitSwitchClosed();
+  return turretSpinner.IsRevLimitSwitchClosed();
 }
 
 bool Turret::IsRightStopperHit() const{
-  return turretSpinner.IsRevLimitSwitchClosed();
+  return turretSpinner.IsFwdLimitSwitchClosed();
 }
 
 void Turret::Calibrate(){

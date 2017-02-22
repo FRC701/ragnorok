@@ -28,11 +28,13 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top1FlyWheel.SetPID(Tp, Ti, Td);
   top1FlyWheel.SetSensorDirection(false);
   top1FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  top1FlyWheel.SetInverted(true);
 
   top2FlyWheel.Enable();
   top2FlyWheel.SetControlMode(frc::CANSpeedController::kFollower);
   top2FlyWheel.Set(RobotMap::kIDTop1FlyWheel);
   top2FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  top2FlyWheel.SetInverted(true);
   
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -58,7 +60,7 @@ robovikes::SetShooter* Shooter::GetSetShooterCommand()
 
 void Shooter::SetShooter(double RPM){
   top1FlyWheel.Set(RPM);
-  bottomFlyWheel.Set(-RPM);
+  bottomFlyWheel.Set(RPM);
 }
 
 void Shooter::SetCoast() {

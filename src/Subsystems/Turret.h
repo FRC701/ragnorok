@@ -47,9 +47,10 @@ public:
 
 	//TODO Make sure these values correlate with how they go on the robot
 	const double kAtLeft = 0;
-	const double kAtRight = 1000;
-  const double kAtBothMags = 500;
+	const double kAtRight = 1.917;
+  const double kAtBothMags = .958;
   const double kAt0Mag = 750;
+  const double kPNudge = kAtRight/8;
 };
 
 #endif  // Turret_H

@@ -97,12 +97,19 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Bot Shooter EncoderRPM", Shooter::getInstance()->GetBottomShooterRPM());
   SmartDashboard::PutNumber("Ball Intake EncoderRPM", Intake::getInstance()->GetIntakeRPM());
   SmartDashboard::PutNumber("Ball Conveyor EncoderRPM", BallConveyor::getInstance()->GetBallConveyorRPM());
+  SmartDashboard::PutNumber("Lifter OutPut Voltage", Lifter::getInstance()->GetCurrent());
 
 
   SmartDashboard::PutNumber("Turret Current", Turret::getInstance()->GetTurretCurrent());
   SmartDashboard::PutNumber("Turret Voltage", Turret::getInstance()->GetTurretVoltage());
+  SmartDashboard::PutNumber("Turret Position", Turret::getInstance()->GetTurretPosition());
+  SmartDashboard::PutNumber("Turret SetPoint", Turret::getInstance()->GetSetPoint());
 
   SmartDashboard::PutNumber("Intake Current", Intake::getInstance()->GetIntakeCurrent());
+
+  SmartDashboard::PutNumber("Top Shooter Setpoint", Shooter::getInstance()->GetSetPoint());
+
+  SmartDashboard::PutBoolean("Is Gear In", GearPickup::getInstance()->IsGearIn());
 
   Scheduler::GetInstance()->Run();
 
