@@ -100,6 +100,8 @@ void Robot::TeleopPeriodic() {
 
   SmartDashboard::PutNumber("Turret Current", Turret::getInstance()->GetTurretCurrent());
   SmartDashboard::PutNumber("Turret Voltage", Turret::getInstance()->GetTurretVoltage());
+  SmartDashboard::PutNumber("Turret Position", Turret::getInstance()->GetTurretPosition());
+  SmartDashboard::PutNumber("Turret SetPoint", Turret::getInstance()->GetSetPoint());
 
   SmartDashboard::PutNumber("Intake Current", Intake::getInstance()->GetIntakeCurrent());
 

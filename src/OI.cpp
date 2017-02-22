@@ -25,6 +25,7 @@
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
 #include "Subsystems/GearPickup.h"
+#include "Subsystems/Turret.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -63,8 +64,7 @@ OI::OI()
   // Process operator interface input here.
 
   static const double kRPMNudge = 10.0;
-  static const double kPositionNudge = 1.0;
-
+  static const double kPositionNudge = 0.;
 //-------------Driver--------
 
   dB.WhenPressed(new SetLifter(0.0));
@@ -86,8 +86,8 @@ OI::OI()
 //........Driver Buttons....
   dA.WhenPressed(new NudgeShooter(kRPMNudge));
   dB.WhenPressed(new NudgeShooter(-kRPMNudge));
-  dX.WhenPressed(new NudgeTurret(kPositionNudge));
-  dY.WhenPressed(new NudgeTurret(-kPositionNudge));
+  dX.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
+  dY.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
 //  dRB.WhenPressed(new ());
   dLB.WhenPressed(new ToggleShifter());
 //  dStart.WhenPressed(new ());
@@ -148,6 +148,8 @@ OI::OI()
   //..........Turret..........
 
   SmartDashboard::PutData("Turret Calibrate", new Calibrate());
+  SmartDashboard::PutData("Turret Set half", new  robovikes::SetTurret(Turret::getInstance()->kAtBothMags));
+  SmartDashboard::PutData("Turret Set 0", new  robovikes::SetTurret(0));
 //  SmartDashboard::PutData("Turret On", new SetTurret()); TODO
 
   //..........Group..........

@@ -62,11 +62,11 @@ double Turret::GetTurretPosition() const {
 }
 
 bool Turret::IsLeftStopperHit() const{
-  return turretSpinner.IsFwdLimitSwitchClosed();
+  return turretSpinner.IsRevLimitSwitchClosed();
 }
 
 bool Turret::IsRightStopperHit() const{
-  return turretSpinner.IsRevLimitSwitchClosed();
+  return turretSpinner.IsFwdLimitSwitchClosed();
 }
 
 void Turret::Calibrate(){
