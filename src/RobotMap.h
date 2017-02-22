@@ -37,6 +37,10 @@ public:
 
 //..........Pneumatics..........
 
+  //..........Agitator..........
+  static const int kIDAgitatorForward = 7;
+  static const int kIDAgitatorReverse = 0;
+
   //..........GearPneumatics..........
   static const int kIDActuatorForward = 5;
   static const int kIDActuatorReverse = 2;

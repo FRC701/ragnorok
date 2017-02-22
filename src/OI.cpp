@@ -1,6 +1,8 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
+#include "Commands/AgitatorOn.h"
+#include "Commands/ShootAgitated.h"
 #include "Commands/Calibrate.h"
 #include "Commands/Cancel.h"
 #include "Commands/FeedingShoot.h"
@@ -78,7 +80,7 @@ OI::OI()
   coB.WhenPressed(new GearQuit());
   coX.WhenPressed(new GearIntake());
   coY.WhenPressed(new GearScore());
-  coRB.WhenPressed(new IntakeShoot());
+  coRB.WhenPressed(new ShootAgitated());
   coStart.WhenPressed(new Cancel());
   coBack.WhenPressed(new Cancel());
 
@@ -136,6 +138,10 @@ OI::OI()
 
   SmartDashboard::PutData("Lifter On", new SetLifter(1.0));
   SmartDashboard::PutData("Lifter Rev", new SetLifter(-1.0));
+
+  //..........Magazine..........
+
+  SmartDashboard::PutData("Agitator On", new AgitatorOn);
 
   //..........Shooter..........
 
