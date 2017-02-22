@@ -3,6 +3,7 @@
 #include "Subsystems/Chassis.h"
 #include "Subsystems/BallConveyor.h"
 #include "Subsystems/Intake.h"
+#include "Subsystems/Magazine.h"
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Turret.h"
 #include "Subsystems/Vision.h"
@@ -27,6 +28,7 @@ void Robot::RobotInit() {
   Chassis::getInstance();
   BallConveyor::getInstance();
   Intake::getInstance();
+  Magazine::getInstance();
   Shooter::getInstance();
   Turret::getInstance();
   Vision::getInstance();
