@@ -58,6 +58,9 @@ public:
 //..........RPMConstants..........
   static const int kPeakPower = 937;
 
+//..........Vision..........
+  static const int kIDPi = 0;
+
   static void init();
 };
 #endif

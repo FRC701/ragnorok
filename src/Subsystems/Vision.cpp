@@ -13,14 +13,27 @@ std::shared_ptr<Vision> Vision::getInstance() {
 	return self;
 }
 
-Vision::Vision() : Subsystem(kSubsystemName) {
-
+Vision::Vision()
+: Subsystem(kSubsystemName)
+, vision(RobotMap::kIDPi)
+{
 }
 
 void Vision::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+  // Set the default command for a subsystem here.
+  // SetDefaultCommand(new MySpecialCommand());
 }
+
+int Vision::GetDistanceInches() const
+{
+  return vision.GetDistanceInches();
+}
+
+int Vision::GetDeviationTicks() const
+{
+  return vision.GetDeviationTicks();
+}
+
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
