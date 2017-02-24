@@ -10,6 +10,7 @@
 #include "Subsystems/Lifter.h"
 #include "Subsystems/Lights.h"
 #include "Subsystems/GearPickup.h"
+#include "Subsystems/Vision.h"
 
 #include "Commands/SetShooter.h"
 
@@ -110,6 +111,9 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Top Shooter Setpoint", Shooter::getInstance()->GetSetPoint());
 
   SmartDashboard::PutBoolean("Is Gear In", GearPickup::getInstance()->IsGearIn());
+
+  SmartDashboard::PutNumber("Vision Distance (inches)", Vision::getInstance()->GetDistanceInches());
+  SmartDashboard::PutNumber("Vision Deviation (ticks)", Vision::getInstance()->GetDeviationTicks());
 
   Scheduler::GetInstance()->Run();
 
