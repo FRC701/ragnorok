@@ -140,6 +140,10 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Top Shooter Setpoint", Shooter::getInstance()->GetSetPoint());
 
   SmartDashboard::PutBoolean("Is Gear In", GearPickup::getInstance()->IsGearIn());
+
+  SmartDashboard::PutNumber("Vision Distance (inches)", Vision::getInstance()->GetDistanceInches());
+  SmartDashboard::PutNumber("Vision Deviation (ticks)", Vision::getInstance()->GetDeviationTicks());
+
   OI::getInstance()->SetRumble(1.0);
  ///*
   if(GearPickup::getInstance()->IsGearIn() && !rumbled) {
@@ -157,7 +161,6 @@ void Robot::TeleopPeriodic() {
       OI::getInstance()->SetRumble(1.0);
     }
   }
-
   else {
     //dont rumble
     OI::getInstance()->SetRumble(0.0);
