@@ -16,11 +16,17 @@ private:
   Relay glow;
 public:
 
+  enum LightValue{
+    kLightOn = Relay::kOn,
+    kLightOff = Relay::kOff};
+
   static std::shared_ptr<Lights> getInstance();
 
 	void InitDefaultCommand();
 
-	void SetGlow();
+	void SetGlow(LightValue value);
+
+	bool IsLightOn() const;
 };
 
 #endif  // Lights_H
