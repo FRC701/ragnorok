@@ -6,7 +6,6 @@ SetIntake::SetIntake(double speed)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-
    Requires(Intake::getInstance().get());
 }
 
@@ -35,4 +34,3 @@ void SetIntake::End() {
 void SetIntake::Interrupted() {
 
 }
-

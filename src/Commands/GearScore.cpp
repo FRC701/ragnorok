@@ -11,7 +11,6 @@ GearScore::GearScore() {
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
   AddSequential(new SetGear(GearPickup::kGearUp));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
   AddParallel(new SetGearRoller(-RobotMap::kPeakPower));
@@ -19,7 +18,6 @@ GearScore::GearScore() {
   AddSequential(new SetGear(GearPickup::kGearDown));
   //AddSequential(new Delay(.25)); //TODO: motion profile?
   AddSequential(new GearQuit());
-
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());

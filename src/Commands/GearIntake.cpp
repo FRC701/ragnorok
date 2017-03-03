@@ -15,7 +15,6 @@ GearIntake::GearIntake() {
   AddSequential(new SetGearRoller(1200));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
   AddSequential(new SetGear(GearPickup::kGearUp));
-
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
@@ -27,6 +26,4 @@ GearIntake::GearIntake() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-
-
 }

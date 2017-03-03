@@ -16,7 +16,6 @@ IntakeShoot::IntakeShoot() {
 	// Command1 and Command2 will run in parallel.
   AddParallel(new FeedingShoot());
   AddSequential(new SetIntake(RobotMap::kPeakPower));
-
 	// A command group will require all of the subsystems that each member
 	// would require.
 	// e.g. if Command1 requires chassis, and Command2 requires arm,

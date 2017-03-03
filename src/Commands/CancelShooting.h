@@ -7,5 +7,4 @@ class CancelShooting : public CommandGroup {
 public:
 	CancelShooting();
 };
-
 #endif  // CancelShooting_H

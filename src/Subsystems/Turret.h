@@ -30,20 +30,18 @@ public:
 	robovikes::SetTurret* GetSetPositionCommand();
 
 	void SetTurret(double speed);
-	double GetTurret() const;
+  void SetTurretPosition(double position);
+  void Calibrate();
+  void FinishCalibrate(double newPosition);
 
 	double GetSetPoint() const;
 	double GetTurretPosition() const;
-	void SetTurretPosition(double position);
+  double GetTurret() const;
+  double GetTurretVoltage() const;
+  double GetTurretCurrent() const;
 
   bool IsRightStopperHit() const;
   bool IsLeftStopperHit() const;
-
-	void Calibrate();
-	void FinishCalibrate(double newPosition);
-
-	double GetTurretVoltage() const;
-	double GetTurretCurrent() const;
 
 	//TODO Make sure these values correlate with how they go on the robot
 	const double kAtLeft = 0;

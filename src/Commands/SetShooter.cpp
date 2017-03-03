@@ -12,6 +12,7 @@ SetShooter::SetShooter(double speed) :
 
 // Called once when the command executes
 void SetShooter::Initialize() {
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -28,7 +29,6 @@ bool SetShooter::IsFinished() {
 void SetShooter::End() {
 
 }
-
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void SetShooter::Interrupted() {
@@ -42,4 +42,3 @@ double SetShooter::GetSpeed() const {
 void SetShooter::SetSpeed(double speed) {
   mSpeed = speed;
 }
-

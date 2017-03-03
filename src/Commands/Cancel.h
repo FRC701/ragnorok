@@ -7,5 +7,4 @@ class Cancel : public CommandGroup {
 public:
 	Cancel();
 };
-
 #endif  // Cancel_H
