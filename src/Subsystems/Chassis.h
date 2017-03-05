@@ -48,6 +48,17 @@ public:
 
 	double GetLeftEncRPM() const;
 	double GetRightEncRPM() const;
+
+	/* Motion Profile Mode Support */
+	void SetModeMotionProfile();
+	void SetModePercentVBus();
+
+	void SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue);
+	void PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& rightTrajectoryPoint,
+	                                 const CANTalon::TrajectoryPoint& leftTrajectoryPoint);
+	void GetMotionProfileStatus(CANTalon::MotionProfileStatus* rightStatus,
+	                            CANTalon::MotionProfileStatus* leftStatus);
+	void ProcessMotionProfileBuffer();
 };
 
 #endif

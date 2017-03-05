@@ -103,9 +103,42 @@ double Chassis::GetRightEncRPM() const {
 }
 
 bool Chassis::IsShifterHigh() const {
- return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
+ return shifter.Get() == static_cast<frc::DoubleSolenoid::Value>(kShifterHigh);
 }
 
 bool Chassis::IsAutoShifterOn() const {
   return defaultCommand->IsAutoShifterEnabled();
 }
+
+void Chassis::SetModeMotionProfile() {
+  right1Wheel.SetControlMode(CANTalon::kMotionProfile);
+  left1Wheel.SetControlMode(CANTalon::kMotionProfile);
+}
+
+void Chassis::SetModePercentVBus() {
+  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+}
+
+void Chassis::SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue) {
+  right1Wheel.Set(setValue);
+  left1Wheel.Set(setValue);
+}
+
+void Chassis::PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& rightTrajectoryPoint,
+                                          const CANTalon::TrajectoryPoint& leftTrajectoryPoint) {
+  right1Wheel.PushMotionProfileTrajectory(rightTrajectoryPoint);
+  left1Wheel.PushMotionProfileTrajectory(rightTrajectoryPoint);
+}
+
+void Chassis::GetMotionProfileStatus(CANTalon::MotionProfileStatus* rightStatus,
+                                     CANTalon::MotionProfileStatus* leftStatus) {
+  right1Wheel.GetMotionProfileStatus(*rightStatus);
+  left1Wheel.GetMotionProfileStatus(*leftStatus);
+}
+
+void Chassis::ProcessMotionProfileBuffer() {
+  right1Wheel.ProcessMotionProfileBuffer();
+  left1Wheel.ProcessMotionProfileBuffer();
+}
+
