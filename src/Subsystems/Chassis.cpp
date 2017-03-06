@@ -18,7 +18,7 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
-	defaultCommand(nullptr),
+  defaultCommand(nullptr),
   right1Wheel(RobotMap::kIDRight1Wheel),
   right2Wheel(RobotMap::kIDRight2Wheel),
   left1Wheel(RobotMap::kIDLeft1Wheel),
@@ -52,7 +52,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
   left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
-  shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 
   SetCoast();
 }
@@ -76,14 +76,14 @@ void Chassis::SetTankDrive(double left, double right) {
 }
 
 void Chassis::SetShifter(ShifterValue value){
-  shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(value));
 }
 
 void Chassis::SetCoast() {
-	right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
