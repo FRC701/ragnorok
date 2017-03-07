@@ -26,6 +26,7 @@
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
+
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
 
@@ -65,8 +66,10 @@ OI::OI()
 {
   // Process operator interface input here.
 
+/*    We'll need these later but keep this like this for now.
   static const double kRPMNudge = 10.0;
-  static const double kPositionNudge = 0.;
+  static const double kPositionNudge = 0.0;
+*/
 //-------------Driver--------
 
   dB.WhenPressed(new SetLifter(0.0));

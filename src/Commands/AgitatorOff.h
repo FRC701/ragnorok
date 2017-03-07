@@ -9,5 +9,4 @@ public:
 	AgitatorOff();
 	void Initialize();
 };
-
 #endif  // AgitatorOff_H

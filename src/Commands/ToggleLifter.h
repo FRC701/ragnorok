@@ -13,6 +13,7 @@ public:
 	void Interrupted();
 private:
 	double mSpeed;
+
 	bool turnOn;
 };
 

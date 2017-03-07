@@ -43,4 +43,3 @@ double SetTurret::GetPosition() const {
 void SetTurret::SetPosition(double position) {
 	mPosition = position;
 }
-

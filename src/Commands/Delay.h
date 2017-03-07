@@ -11,5 +11,4 @@ public:
 	void End();
 	void Interrupted();
 };
-
 #endif  // Delay_H

@@ -8,11 +8,8 @@ ShootAgitated::ShootAgitated() {
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
 	AddParallel(new IntakeShoot);
 	AddSequential(new AgitatorOn);
-
-
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());

@@ -15,5 +15,4 @@ public:
 private:
 
 };
-
 #endif  // Calibrate_H

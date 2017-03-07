@@ -7,5 +7,4 @@ class FeedingShoot : public CommandGroup {
 public:
 	FeedingShoot();
 };
-
 #endif  // FeedingShoot_H
