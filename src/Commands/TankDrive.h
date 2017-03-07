@@ -3,11 +3,6 @@
 
 #include "Commands/Command.h"
 
-/**
- *
- *
- * @author ExampleAuthor
- */
 class TankDrive: public frc::Command {
 public:
 	TankDrive(bool automaticShifting);

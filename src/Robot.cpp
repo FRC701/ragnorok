@@ -119,7 +119,7 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Ball Conveyor EncoderRPM", BallConveyor::getInstance()->GetBallConveyorRPM());
 
   //...............Lifter SmartDashboard.......
-  SmartDashboard::PutNumber("Lifter OutPut Voltage", Lifter::getInstance()->GetCurrent());
+  SmartDashboard::PutNumber("Lifter Current", Lifter::getInstance()->GetCurrent());
 
   Scheduler::GetInstance()->Run();
 

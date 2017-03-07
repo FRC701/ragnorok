@@ -4,11 +4,6 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 
-/**
- *
- *
- * @author ExampleAuthor
- */
 class AutonomousCommand: public Command {
 public:
  	AutonomousCommand();
