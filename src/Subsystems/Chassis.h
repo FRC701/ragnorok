@@ -53,6 +53,7 @@ public:
   void SetModeMotionProfile();
   void SetModePercentVBus();
 
+  void ClearMotionProfileTrajectories();
   void SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue);
   void PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& rightTrajectoryPoint,
                                    const CANTalon::TrajectoryPoint& leftTrajectoryPoint);

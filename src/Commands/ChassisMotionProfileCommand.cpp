@@ -64,6 +64,7 @@ namespace {
   {
   public:
     void run(const ChassisMotionProfileCommand* motionProfile) {
+      Chassis::getInstance()->ClearMotionProfileTrajectories();
       Chassis::getInstance()->SetMotionProfileSetValue(CANTalon::SetValueMotionProfileDisable);
     }
 

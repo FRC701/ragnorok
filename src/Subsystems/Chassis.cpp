@@ -125,6 +125,11 @@ void Chassis::SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue)
   left1Wheel.Set(setValue);
 }
 
+void Chassis::ClearMotionProfileTrajectories() {
+  right1Wheel.ClearMotionProfileTrajectories();
+  left1Wheel.ClearMotionProfileTrajectories();
+}
+
 void Chassis::PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& rightTrajectoryPoint,
                                           const CANTalon::TrajectoryPoint& leftTrajectoryPoint) {
   right1Wheel.PushMotionProfileTrajectory(rightTrajectoryPoint);
