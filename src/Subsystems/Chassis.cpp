@@ -18,7 +18,7 @@ std::shared_ptr<Chassis> Chassis::getInstance() {
 
 
 Chassis::Chassis() : Subsystem(kSubsystemName),
-	defaultCommand(nullptr),
+  defaultCommand(nullptr),
   right1Wheel(RobotMap::kIDRight1Wheel),
   right2Wheel(RobotMap::kIDRight2Wheel),
   left1Wheel(RobotMap::kIDLeft1Wheel),
@@ -52,7 +52,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
   left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
-  shifter.Set(static_cast<DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 
   SetCoast();
 }
@@ -76,14 +76,14 @@ void Chassis::SetTankDrive(double left, double right) {
 }
 
 void Chassis::SetShifter(ShifterValue value){
-  shifter.Set(static_cast<DoubleSolenoid::Value>(value));
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(value));
 }
 
 void Chassis::SetCoast() {
-	right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
-	left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
@@ -103,9 +103,47 @@ double Chassis::GetRightEncRPM() const {
 }
 
 bool Chassis::IsShifterHigh() const {
- return shifter.Get() == static_cast<DoubleSolenoid::Value>(kShifterHigh);
+ return shifter.Get() == static_cast<frc::DoubleSolenoid::Value>(kShifterHigh);
 }
 
 bool Chassis::IsAutoShifterOn() const {
   return defaultCommand->IsAutoShifterEnabled();
 }
+
+void Chassis::SetModeMotionProfile() {
+  right1Wheel.SetControlMode(CANTalon::kMotionProfile);
+  left1Wheel.SetControlMode(CANTalon::kMotionProfile);
+}
+
+void Chassis::SetModePercentVBus() {
+  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+}
+
+void Chassis::SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue) {
+  right1Wheel.Set(setValue);
+  left1Wheel.Set(setValue);
+}
+
+void Chassis::ClearMotionProfileTrajectories() {
+  right1Wheel.ClearMotionProfileTrajectories();
+  left1Wheel.ClearMotionProfileTrajectories();
+}
+
+void Chassis::PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& rightTrajectoryPoint,
+                                          const CANTalon::TrajectoryPoint& leftTrajectoryPoint) {
+  right1Wheel.PushMotionProfileTrajectory(rightTrajectoryPoint);
+  left1Wheel.PushMotionProfileTrajectory(rightTrajectoryPoint);
+}
+
+void Chassis::GetMotionProfileStatus(CANTalon::MotionProfileStatus* rightStatus,
+                                     CANTalon::MotionProfileStatus* leftStatus) {
+  right1Wheel.GetMotionProfileStatus(*rightStatus);
+  left1Wheel.GetMotionProfileStatus(*leftStatus);
+}
+
+void Chassis::ProcessMotionProfileBuffer() {
+  right1Wheel.ProcessMotionProfileBuffer();
+  left1Wheel.ProcessMotionProfileBuffer();
+}
+
