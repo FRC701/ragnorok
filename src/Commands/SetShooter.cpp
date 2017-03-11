@@ -16,7 +16,7 @@ void SetShooter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void SetShooter::Execute() {
-  Shooter::getInstance()->SetShooter(mSpeed);
+  Shooter::getInstance()->SetShooterRPM(mSpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()

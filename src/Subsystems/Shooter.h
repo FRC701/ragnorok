@@ -1,9 +1,9 @@
 #ifndef Shooter_H
 #define Shooter_H
 
-#include <Commands/Subsystem.h>
-#include <CANTalon.h>
-
+#include "Commands/Subsystem.h"
+#include "CANTalon.h"
+#include "EStop.h"
 #include "Commands/SetShooter.h"
 
 class Shooter : public frc::Subsystem {
@@ -16,7 +16,7 @@ private:
   Shooter();
 
   robovikes::SetShooter* defaultCommand;
-
+  EStop eStop;
   CANTalon top1FlyWheel;
   CANTalon top2FlyWheel;
   CANTalon bottomFlyWheel;
@@ -35,9 +35,9 @@ public:
 
   robovikes::SetShooter* GetSetShooterCommand();
 
-
-  void SetShooter(double RPM);
   void SetCoast();
+
+  void SetShooterRPM(double RPM);
 
   double GetOutputCurrent() const;
 

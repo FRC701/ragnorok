@@ -15,6 +15,7 @@ std::shared_ptr<BallConveyor> BallConveyor::getInstance() {
 }
 
 BallConveyor::BallConveyor() : Subsystem(kSubsystemName),
+  eStop(0.5),
   shooterFeeder(RobotMap::kIDShooterFeeder),
   p(0.12), i(0.0), d(0.0)
 {
@@ -33,14 +34,28 @@ void BallConveyor::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
   SetDefaultCommand(new ::SetConveyor(0.0));
 }
-void BallConveyor::SetConveyor(double conveyorSpeed){
 
-  shooterFeeder.Set(conveyorSpeed);
-}
+void BallConveyor::SetConveyor(double conveyorSpeed)
+{
+  bool estophappened = false;
 
-bool BallConveyor::IsGearAlligned() const {
+  if(eStop.ShouldStop(conveyorSpeed, GetBallConveyorRPM())){
+
+    EStop::CancelCurrentCommand(GetCurrentCommand());
+
+        estophappened = true;
+
+      } else {
+        shooterFeeder.Set(conveyorSpeed);
+
+      }
+      SmartDashboard::PutBoolean("ESTOP BallConveyor", estophappened);
+    }
+
+bool BallConveyor::IsGearIn() const {
   return shooterFeeder.IsFwdLimitSwitchClosed();
 }
+
 
 double BallConveyor::GetBallConveyorRPM() const{
   return shooterFeeder.GetSpeed();
