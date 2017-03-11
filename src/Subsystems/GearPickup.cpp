@@ -20,7 +20,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller(RobotMap::kIDRoller),
   actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
   squeezer(RobotMap::kIDSqueezerForward, RobotMap::kIDSqueezerReverse),
-  p(0.0), i(0.0), d(0.0), f(0.08)
+  p(0.008), i(0.00009), d(0.0), f(0.08)
 {
   roller.Enable();
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
