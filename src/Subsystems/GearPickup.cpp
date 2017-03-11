@@ -10,7 +10,7 @@ std::shared_ptr<GearPickup> GearPickup::self;
 
 std::shared_ptr<GearPickup> GearPickup::getInstance() {
   if(! self) {
-  	self = std::shared_ptr<GearPickup>(new GearPickup);
+    self = std::shared_ptr<GearPickup>(new GearPickup);
   }
   return self;
 }
@@ -20,12 +20,12 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller(RobotMap::kIDRoller),
   actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
   squeezer(RobotMap::kIDSqueezerForward, RobotMap::kIDSqueezerReverse),
-	p(0.08), i(0.001), d(0.0)
+  p(0.0), i(0.0), d(0.0), f(0.08)
 {
   roller.Enable();
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   roller.SetControlMode(frc::CANSpeedController::kSpeed);
-  roller.SetPID(p, i, d);
+  roller.SetPID(p, i, d, f);
   roller.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   roller.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
@@ -55,7 +55,7 @@ bool GearPickup::IsGearIn() const{
     }
 
 bool GearPickup::IsSqueezeOpen() const{
-	return squeezer.Get() == static_cast<DoubleSolenoid::Value>(kSqueezeOpen);
+  return squeezer.Get() == static_cast<DoubleSolenoid::Value>(kSqueezeOpen);
 }
 
 void GearPickup::SetRollerSpeedRPM(double RPM)

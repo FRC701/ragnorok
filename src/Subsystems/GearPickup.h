@@ -22,6 +22,7 @@ private:
   double p;
   double i;
   double d;
+  double f;
 
 public:
 
