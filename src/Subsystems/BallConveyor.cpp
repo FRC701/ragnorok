@@ -49,7 +49,7 @@ void BallConveyor::SetConveyor(double conveyorSpeed)
         shooterFeeder.Set(conveyorSpeed);
 
       }
-      SmartDashboard::PutBoolean("ESTOP", estophappened);
+      SmartDashboard::PutBoolean("ESTOP BallConveyor", estophappened);
     }
 
 bool BallConveyor::IsGearIn() const {

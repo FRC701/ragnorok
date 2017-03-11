@@ -85,7 +85,8 @@ void Shooter::SetShooterRPM(double RPM){
 	 }  else  {
 		 bottomFlyWheel.Set(RPM);
 	 }
-	  SmartDashboard::PutBoolean("ESTOP", estophappened);
+
+	  SmartDashboard::PutBoolean("ESTOP Shooter", estophappened);
 }
 
 double Shooter::GetOutputCurrent() const {

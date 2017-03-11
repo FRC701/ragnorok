@@ -47,7 +47,7 @@ void Intake::SetIntake(double speed) {
 	    floorPickup.Set(speed);
 
 	  }
-	  SmartDashboard::PutBoolean("ESTOP", estophappened);
+	  SmartDashboard::PutBoolean("ESTOP Intake", estophappened);
 
 }
 

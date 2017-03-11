@@ -72,7 +72,7 @@ void GearPickup::SetRollerSpeedRPM(double RPM)
     roller.Set(RPM);
 
   }
-  SmartDashboard::PutBoolean("ESTOP", estophappened);
+  SmartDashboard::PutBoolean("ESTOP GearPickup", estophappened);
 }
 
 double GearPickup::GetGearIntakeRPM() const{
