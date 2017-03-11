@@ -131,7 +131,7 @@ OI::OI()
 
   //..........Intake..........
 
-  SmartDashboard::PutData("Intake On", new SetIntake(1200));
+  SmartDashboard::PutData("Intake On", new SetIntake(RobotMap::kPeakPower));
   SmartDashboard::PutData("Intake Rev", new SetIntake(-RobotMap::kPeakPower));
 
   //..........Lifter..........

@@ -18,13 +18,14 @@ std::shared_ptr<Intake> Intake::getInstance() {
 Intake::Intake() : Subsystem(kSubsystemName),
   eStop(0.5),
   floorPickup(RobotMap::kIDFloorPickup),
-  p(0.09), i(0.0), d(0)
+  p(0.008), i(0.00009), d(0), f(0.08)
   {
   floorPickup.Enable();
   floorPickup.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   floorPickup.SetControlMode(frc::CANSpeedController::kSpeed);
-  floorPickup.SetPID(p, i, d);
+  floorPickup.SetPID(p, i, d, f);
   floorPickup.SetInverted(true);
+  floorPickup.SetSensorDirection(true);
   floorPickup.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   floorPickup.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   }
