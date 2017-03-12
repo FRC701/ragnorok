@@ -28,6 +28,7 @@ private:
 
   std::shared_ptr<Joystick> coDriver;
 
+  //..........Xbox..........
   JoystickButton coA;
   JoystickButton coB;
   JoystickButton coX;
@@ -38,6 +39,27 @@ private:
   JoystickButton coR3;
   JoystickButton coStart;
   JoystickButton coBack;
+
+  //..........Custom..........
+  /*
+  JoystickButton coTurretNeg90;
+  JoystickButton coTurret0;
+  JoystickButton coTurret90;
+  JoystickButton coTurretMinus;
+  JoystickButton coTurretPlus;
+
+  JoystickButton coShooterMinus;
+  JoystickButton coShooterPlus;
+
+  JoystickButton coShoot;
+  JoystickButton coBallIntake;
+  JoystickButton coGearScore;
+  JoystickButton coGearPickup;
+  JoystickButton coGearToggle;
+  JoystickButton coBallOuttake;
+  JoystickButton coFloorOuttake;
+  JoystickButton coCancel;
+  */
 
 public:
   static std::shared_ptr<OI> getInstance();
@@ -73,6 +95,7 @@ public:
 
 //..........ids..........
 
+  //..........Xbox..........
   static const int kButtonA_ID = 1;
   static const int kButtonB_ID = 2;
   static const int kButtonX_ID = 3;
@@ -92,6 +115,9 @@ public:
 
   static const int kLeftTrigger_ID = 2;
   static const int kRightTrigger_ID = 3;
+
+  //..........Custom..........
+
 };
 
 #endif
