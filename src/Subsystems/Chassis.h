@@ -22,6 +22,9 @@ private:
   CANTalon left1Wheel;
   CANTalon left2Wheel;
   DoubleSolenoid shifter;
+  double p;
+  double i;
+  double d;
 
 public:
 
@@ -40,6 +43,9 @@ public:
   void SetTankDrive(double left, double right);
   void SetShifter(ShifterValue value);
   void SetCoast();
+  void SetupPID();
+  void ZeroPosition(); //This method is to be used in kPosition mode only
+  void SetupDrive();
 
   bool Is0DegTurretAlligned() const;
   bool Is90DegTurretAlligned() const;
@@ -48,6 +54,9 @@ public:
 
   double GetLeftEncRPM() const;
   double GetRightEncRPM() const;
+  double GetDrivePosition() const;
+  double GetDriveSetPoint() const;
+  double GetPosition() const;
 
   /* Motion Profile Mode Support */
   void SetModeMotionProfile();

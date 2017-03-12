@@ -2,6 +2,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AgitatorOn.h"
+#include "Commands/AutoDrive.h"
 #include "Commands/ShootAgitated.h"
 #include "Commands/Calibrate.h"
 #include "Commands/Cancel.h"
@@ -149,6 +150,7 @@ OI::OI()
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(24.5,-24.5));
 
   //..........Conveyor..........
 
