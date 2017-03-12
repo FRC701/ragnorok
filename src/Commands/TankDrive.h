@@ -36,7 +36,9 @@ public:
 
 private:
   bool mAutomaticShifting;
-  static const int kShiftUpVelocity =  1000;
+  static const int kMaxLowGearRPM = 270;
+  static const int kMaxHighGearRPM = 580;
+  static const int kShiftUpVelocity =  0.75 * kMaxLowGearRPM;
   static const int kShiftDownVelocity = 0.75 * kShiftUpVelocity;
 
   void AutoShifting();

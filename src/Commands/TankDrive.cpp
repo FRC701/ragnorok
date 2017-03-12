@@ -59,14 +59,14 @@ void TankDrive::AutoShifting() {
   std::shared_ptr<Chassis> chassis = Chassis::getInstance();
 
   if (chassis->IsShifterHigh()) {
-  	if (chassis->GetLeftEncRPM() <= kShiftDownVelocity
-        || chassis->GetRightEncRPM() <= kShiftDownVelocity) {
+  	if (fabs(chassis->GetLeftEncRPM()) <= kShiftDownVelocity
+        && fabs(chassis->GetRightEncRPM()) <= kShiftDownVelocity) {
       chassis->SetShifter(Chassis::kShifterLow);
     }
   }
   else {
-    if (chassis->GetLeftEncRPM() >= kShiftUpVelocity
-        || chassis->GetRightEncRPM() >= kShiftUpVelocity) {
+    if (fabs(chassis->GetLeftEncRPM()) >= kShiftUpVelocity
+        || fabs(chassis->GetRightEncRPM()) >= kShiftUpVelocity) {
     chassis->SetShifter(Chassis::kShifterHigh);
     }
   }
