@@ -23,8 +23,9 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   right2Wheel(RobotMap::kIDRight2Wheel),
   left1Wheel(RobotMap::kIDLeft1Wheel),
   left2Wheel(RobotMap::kIDLeft2Wheel),
-  shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse)
-  {
+  shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse),
+  p(1.0), i(0), d(0)
+{
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
 
@@ -33,29 +34,9 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   lw->AddActuator(kSubsystemName , "Left1Wheel", left1Wheel);
   lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
 
-  right1Wheel.SetInverted(true);
-  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
-  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
-  right1Wheel.ConfigEncoderCodesPerRev(128);
-  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
-  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
-  left1Wheel.ConfigEncoderCodesPerRev(128);
-  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  left1Wheel.SetSensorDirection(true);
-
-  right2Wheel.SetControlMode(CANTalon::kFollower);
-  right2Wheel.Set(RobotMap::kIDRight1Wheel);
-  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  left2Wheel.SetControlMode(CANTalon::kFollower);
-  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
-  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
-
+  SetupDrive();
   SetCoast();
+  ZeroPosition();
 }
 
 void Chassis::InitDefaultCommand() {
@@ -87,6 +68,61 @@ void Chassis::SetCoast() {
   left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
+void Chassis::SetupPID() {
+  right1Wheel.SetInverted(true);
+  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.SetControlMode(CANTalon::kPosition);
+  right1Wheel.ConfigEncoderCodesPerRev(128);
+  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  right1Wheel.SetPID(p, i ,d);
+
+  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.SetControlMode(CANTalon::kPosition);
+  left1Wheel.ConfigEncoderCodesPerRev(128);
+  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  left1Wheel.SetSensorDirection(true);
+  left1Wheel.SetPID(p, i ,d);
+
+  right2Wheel.SetControlMode(CANTalon::kFollower);
+  right2Wheel.Set(RobotMap::kIDRight1Wheel);
+  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  left2Wheel.SetControlMode(CANTalon::kFollower);
+  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
+  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+}
+
+void Chassis::ZeroPosition(){
+  right1Wheel.SetPosition(0);
+  left1Wheel.SetPosition(0);
+}
+
+void Chassis::SetupDrive() {
+  right1Wheel.SetInverted(true);
+  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  right1Wheel.ConfigEncoderCodesPerRev(128);
+  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.ConfigEncoderCodesPerRev(128);
+  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  left1Wheel.SetSensorDirection(true);
+
+  right2Wheel.SetControlMode(CANTalon::kFollower);
+  right2Wheel.Set(RobotMap::kIDRight1Wheel);
+  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  left2Wheel.SetControlMode(CANTalon::kFollower);
+  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
+  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+}
+
 bool Chassis::Is0DegTurretAlligned() const{
   return right2Wheel.IsFwdLimitSwitchClosed();
 }
@@ -101,6 +137,14 @@ double Chassis::GetLeftEncRPM() const {
 
 double Chassis::GetRightEncRPM() const {
   return right1Wheel.GetSpeed();
+}
+
+double Chassis::GetDrivePosition() const {
+  return right1Wheel.GetEncPosition();
+}
+
+double Chassis::GetDriveSetPoint() const {
+  return right1Wheel.GetSetpoint();
 }
 
 bool Chassis::IsShifterHigh() const {

@@ -85,6 +85,8 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Turret Position", Turret::getInstance()->GetSetPoint());
   SmartDashboard::PutNumber("Turret Encoder Position Zero", Turret::getInstance()->GetTurretPosition());
 *///this is commented out as to eliminate confusion when reading the dashboard
+  SmartDashboard::PutNumber("Drive SetPosition", Chassis::getInstance()->GetDriveSetPoint());
+  SmartDashboard::PutNumber("Drive CurrentPosition", Chassis::getInstance()->GetDrivePosition());
   SmartDashboard::PutBoolean("Drive Gear false=shifter low", Chassis::getInstance()->IsShifterHigh());
   SmartDashboard::PutNumber("Left Drive EncoderRPM", Chassis::getInstance()->GetLeftEncRPM());
   SmartDashboard::PutNumber("Right Drive EncoderRPM", Chassis::getInstance()->GetRightEncRPM());
