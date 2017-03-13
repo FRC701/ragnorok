@@ -41,7 +41,7 @@ private:
   JoystickButton coBack;
 
   //..........Custom..........
-  /*
+
   JoystickButton coTurretNeg90;
   JoystickButton coTurret0;
   JoystickButton coTurret90;
@@ -59,7 +59,6 @@ private:
   JoystickButton coBallOuttake;
   JoystickButton coFloorOuttake;
   JoystickButton coCancel;
-  */
 
 public:
   static std::shared_ptr<OI> getInstance();
@@ -117,6 +116,24 @@ public:
   static const int kRightTrigger_ID = 3;
 
   //..........Custom..........
+
+  static const int kButtonCoTurretNeg90_ID = 10;
+  static const int kButtonCoTurret0_ID = 11;
+  static const int kButtonCoTurret90_ID = 13;
+  static const int kButtonCoTurretPlus_ID = 3;
+  static const int kButtonCoTurretMinus_ID = 16;
+
+  static const int kButtonCoShooterPlus_ID = 9;
+  static const int kButtonCoShooterMinus_ID = 15;
+
+  static const int kButtonCoShoot_ID = 5;
+  static const int kButtonCoBallIntake_ID = 8;
+  static const int kButtonCoGearScore_ID = 12;
+  static const int kButtonCoGearPickup_ID = 6;
+  static const int kButtonCoGearToggle_ID = 7;
+  static const int kButtonCoBallOuttake_ID = 1;
+  static const int kButtonCoFloorOuttake_ID = 2;
+  static const int kButtonCoCancel_ID = 4;
 
 };
 

@@ -51,6 +51,7 @@ OI::OI()
 , dR3(driver.get(), kButtonR3_ID)
 , dStart(driver.get(), kButtonStart_ID)
 , dBack(driver.get(), kButtonBack_ID)
+
 , coDriver(new Joystick(1))
 , coA(coDriver.get(), kButtonA_ID)
 , coB(coDriver.get(), kButtonB_ID)
@@ -62,6 +63,25 @@ OI::OI()
 , coR3(coDriver.get(), kButtonR3_ID)
 , coStart(coDriver.get(), kButtonStart_ID)
 , coBack(coDriver.get(), kButtonBack_ID)
+
+,coTurretNeg90(coDriver.get(), kButtonCoTurretNeg90_ID)
+,coTurret0(coDriver.get(), kButtonCoTurret0_ID)
+,coTurret90(coDriver.get(), kButtonCoTurret90_ID )
+,coTurretMinus(coDriver.get(), kButtonCoTurretMinus_ID)
+,coTurretPlus(coDriver.get(), kButtonCoTurretPlus_ID)
+
+,coShooterMinus(coDriver.get(), kButtonCoShooterMinus_ID)
+,coShooterPlus(coDriver.get(), kButtonCoShooterPlus_ID)
+
+,coShoot(coDriver.get(), kButtonCoShoot_ID)
+,coBallIntake(coDriver.get(), kButtonCoBallIntake_ID)
+,coGearScore(coDriver.get(), kButtonCoGearScore_ID)
+,coGearPickup(coDriver.get(), kButtonCoGearPickup_ID)
+,coGearToggle(coDriver.get(), kButtonCoGearToggle_ID)
+,coBallOuttake(coDriver.get(), kButtonCoBallOuttake_ID)
+,coFloorOuttake(coDriver.get(), kButtonCoFloorOuttake_ID)
+,coCancel(coDriver.get(), kButtonCoCancel_ID)
+
 {
   // Process operator interface input here.
 
@@ -76,6 +96,7 @@ OI::OI()
   dStart.WhenPressed(new GearScore());
   dBack.WhenPressed(new GearQuit());
 //-------------CoDriver------
+  /*
   coA.WhenPressed(new SetIntake(RobotMap::kPeakPower));
   coB.WhenPressed(new GearQuit());
   coX.WhenPressed(new GearIntake());
@@ -83,6 +104,16 @@ OI::OI()
   coRB.WhenPressed(new ShootAgitated());
   coStart.WhenPressed(new Cancel());
   coBack.WhenPressed(new Cancel());
+  */
+
+  coShoot.WhenPressed(new ShootAgitated);
+  coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
+  coGearScore.WhenPressed(new GearScore);
+  coGearPickup.WhenPressed(new GearIntake);
+  coGearToggle.WhenPressed(new ToggleGear);
+  coFloorOuttake.WhenPressed(new SetIntake(-(   RobotMap::kPeakPower)));
+  coCancel.WhenPressed((new Cancel));
+
 
   /*
 //........Driver Buttons....
