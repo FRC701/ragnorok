@@ -154,8 +154,13 @@ OI::OI()
   //..........Turret..........
 
   SmartDashboard::PutData("Turret Calibrate", new Calibrate());
-  SmartDashboard::PutData("Turret Set half", new  robovikes::SetTurret(Turret::getInstance()->kAtBothMags));
-  SmartDashboard::PutData("Turret Set 0", new  robovikes::SetTurret(0));
+  SmartDashboard::PutData("Turret Set Half", new  robovikes::SetTurret(Turret::getInstance()->kAtRight/2));
+  SmartDashboard::PutData("Turret Set Left", new  robovikes::SetTurret(Turret::getInstance()->kAtLeft));
+  SmartDashboard::PutData("Turret Set Right", new robovikes::SetTurret(Turret::getInstance()->kAtRight));
+
+  SmartDashboard::PutData("Turret Nudge Right", new NudgeTurret(Turret::kPNudge));
+  SmartDashboard::PutData("Turret Nudge Left", new NudgeTurret(-(Turret::kPNudge)));
+
 //  SmartDashboard::PutData("Turret On", new SetTurret()); TODO
 
   //..........Group..........
