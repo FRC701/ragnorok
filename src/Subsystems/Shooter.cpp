@@ -20,13 +20,13 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   top1FlyWheel(RobotMap::kIDTop1FlyWheel),
   top2FlyWheel(RobotMap::kIDTop2FlyWheel),
   bottomFlyWheel(RobotMap::kIDBottomFlyWheel),
-  Tp(0.08), Ti(0.0001), Td(0),
-  Bp(0.14), Bi(0.0002), Bd(0)
+  Tp(0.0001), Ti(0.00005), Td(0), Tf(0.021),
+  Bp(0.01), Bi(0.000005), Bd(0), Bf(0.025)
 {
   top1FlyWheel.Enable();
   top1FlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   top1FlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
-  top1FlyWheel.SetPID(Tp, Ti, Td);
+  top1FlyWheel.SetPID(Tp, Ti, Td, Tf);
   top1FlyWheel.SetSensorDirection(false);
   top1FlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
   top1FlyWheel.SetInverted(true);
@@ -40,7 +40,7 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
   bottomFlyWheel.Enable();
   bottomFlyWheel.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   bottomFlyWheel.SetControlMode(frc::CANSpeedController::kSpeed);
-  bottomFlyWheel.SetPID(Bp, Bi, Bd);
+  bottomFlyWheel.SetPID(Bp, Bi, Bd, Bf);
   bottomFlyWheel.SetSensorDirection(true);
   bottomFlyWheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
