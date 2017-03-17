@@ -150,7 +150,7 @@ OI::OI()
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
-  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(24.5,-24.5));
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-0, 0));
 
   //..........Conveyor..........
 
