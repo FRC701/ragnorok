@@ -24,7 +24,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left1Wheel(RobotMap::kIDLeft1Wheel),
   left2Wheel(RobotMap::kIDLeft2Wheel),
   shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse),
-  p(1.0), i(0), d(0)
+  p(8.5), i(0), d(0)
 {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -80,7 +80,7 @@ void Chassis::SetupPID() {
   left1Wheel.SetControlMode(CANTalon::kPosition);
   left1Wheel.ConfigEncoderCodesPerRev(128);
   left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  left1Wheel.SetSensorDirection(true);
+  left1Wheel.SetSensorDirection(false);
   left1Wheel.SetPID(p, i ,d);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
@@ -140,7 +140,7 @@ double Chassis::GetRightEncRPM() const {
 }
 
 double Chassis::GetDrivePosition() const {
-  return right1Wheel.GetEncPosition();
+  return right1Wheel.GetPosition();
 }
 
 double Chassis::GetDriveSetPoint() const {
