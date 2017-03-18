@@ -16,7 +16,7 @@ void AutoDrive::Initialize() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoDrive::IsFinished() {
-	  return (Chassis::getInstance()->GetDrivePosition() == Chassis::getInstance()->GetDriveSetPoint());
+	  return (fabs(Chassis::getInstance()->GetDrivePosition()) >= fabs(Chassis::getInstance()->GetDriveSetPoint()));
 }
 
 // Called once after isFinished returns true
