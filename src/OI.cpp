@@ -30,6 +30,7 @@
 #include "Commands/AutoLine.h"
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
+#include "Commands/AutoCenterGear.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -109,11 +110,13 @@ OI::OI()
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Auto Line", new AutoLine());
 
+  SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
+
   //..........Chassis..........
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
-  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-0, 0));
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-5.971, 5.767));
 
   //..........Conveyor..........
 
