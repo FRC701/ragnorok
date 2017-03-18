@@ -29,7 +29,7 @@ public:
   public:
     virtual void run(const ChassisMotionProfileCommand*) = 0;
     virtual bool isFinished() const = 0;
-    virtual MotionProfileState& getNextState() = 0;
+    virtual MotionProfileState* getNextState() = 0;
 
     virtual ~MotionProfileState() { };
   };
@@ -39,7 +39,7 @@ public:
   public:
     void run(const ChassisMotionProfileCommand* motionProfile);
     bool isFinished() const;
-    ChassisMotionProfileCommand::MotionProfileState& getNextState();
+    ChassisMotionProfileCommand::MotionProfileState* getNextState();
     virtual ~MotionProfileLoad();
   };
 
@@ -53,7 +53,7 @@ private:
   bool velocityOnly;
 
   Notifier notifier;
-  MotionProfileState& state;
+  MotionProfileState* state;
 
   void PeriodicTask();
 };

@@ -1,5 +1,6 @@
 #include "Robot.h"
 #include "OI.h"
+#include <iostream>
 #include "Subsystems/Chassis.h"
 #include "Subsystems/BallConveyor.h"
 #include "Subsystems/Intake.h"
@@ -13,9 +14,10 @@
 
 #include "Commands/SetShooter.h"
 #include "Commands/AutoDrive.h"
+#include "Commands/AutoLine.h"
 
 std::unique_ptr<OI> Robot::oi;
-frc::SendableChooser<frc::Command*> Robot::chooser;
+//frc::SendableChooser<frc::Command*> Robot::chooser;
 
 void Robot::RobotInit() {
   RobotMap::init();
@@ -39,12 +41,13 @@ void Robot::RobotInit() {
   OI::getInstance();
 
   // instantiate the command used for the autonomous period
-
+  std::cout<<"RobotInit"<<std::endl;
+  printf("RobotInit here\n");
 //  chooser = new SendableChooser();
-  chooser.AddDefault("Do Nothing", new AutonomousCommand);
-  chooser.AddObject("Drive to Line", new AutoDrive(0,0));
+//  chooser.AddDefault("Do Nothing", new AutonomousCommand);
+//  chooser.AddObject("Drive to Line", new AutoDrive(0,0));
 
-  autonomousCommand.reset(chooser.GetSelected());
+  autonomousCommand.reset(new AutoLine());
   }
 
 /**

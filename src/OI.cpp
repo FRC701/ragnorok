@@ -27,6 +27,7 @@
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
+#include "Commands/AutoLine.h"
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
 
@@ -106,6 +107,7 @@ OI::OI()
   coBack.WhenPressed(new ()); */
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+  SmartDashboard::PutData("Auto Line", new AutoLine());
 
   //..........Chassis..........
 
