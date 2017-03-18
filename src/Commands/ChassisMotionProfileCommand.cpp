@@ -28,7 +28,9 @@ namespace {
     const ChassisMotionProfileCommand::TrajectoryPoint* chassisRight,
     const ChassisMotionProfileCommand::TrajectoryPoint* chassisLeft,
     unsigned int trajectoryPointCount,
-    unsigned int pointDurationMillis)
+    unsigned int pointDurationMillis,
+    bool velocityOnly)
+
   {
     unsigned int lastPoint = trajectoryPointCount - 1;
 
@@ -38,7 +40,7 @@ namespace {
       rightTrajectoryPoint.velocity = chassisRight[point].velocity;
       rightTrajectoryPoint.timeDurMs = pointDurationMillis;
       rightTrajectoryPoint.profileSlotSelect = 1;   // always slot 1
-      rightTrajectoryPoint.velocityOnly = false;    // always both velocity and position
+      rightTrajectoryPoint.velocityOnly = velocityOnly;    // always both velocity and position
       rightTrajectoryPoint.isLastPoint = (point == lastPoint);
       rightTrajectoryPoint.zeroPos = (point == 0);
 
@@ -181,7 +183,7 @@ namespace {
 
 void ChassisMotionProfileCommand::MotionProfileLoad::run(const ChassisMotionProfileCommand* motionProfile) {
   LoadPoints(motionProfile->chassisRight, motionProfile->chassisLeft,
-             motionProfile->trajectoryPointCount, motionProfile->pointDurationMillis);
+             motionProfile->trajectoryPointCount, motionProfile->pointDurationMillis, motionProfile->velocityOnly);
 }
 
 bool ChassisMotionProfileCommand::MotionProfileLoad::isFinished() const {
@@ -201,11 +203,13 @@ ChassisMotionProfileCommand::ChassisMotionProfileCommand(
   const TrajectoryPoint* _chassisRight,
   const TrajectoryPoint* _chassisLeft,
   unsigned int _trajectoryPointCount,
-  unsigned int _pointDurationMillis)
+  unsigned int _pointDurationMillis,
+  bool _velocityOnly)
 : chassisRight(_chassisRight),
   chassisLeft(_chassisLeft),
   trajectoryPointCount(_trajectoryPointCount),
   pointDurationMillis(_pointDurationMillis),
+  velocityOnly(_velocityOnly),
   notifier(&ChassisMotionProfileCommand::PeriodicTask, this),
   state(motionProfileStart)
 {

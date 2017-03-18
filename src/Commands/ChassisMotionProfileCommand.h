@@ -16,7 +16,8 @@ public:
       const TrajectoryPoint* chassisRight,
       const TrajectoryPoint* chassisLeft,
       unsigned int trajectoryPointCount,
-      unsigned int pointDurationMillis);
+      unsigned int pointDurationMillis,
+      bool velocityOnly = true);
   void Initialize();
   void Execute();
   bool IsFinished();
@@ -49,6 +50,7 @@ private:
   const TrajectoryPoint* chassisLeft;
   unsigned int trajectoryPointCount;
   unsigned int pointDurationMillis;
+  bool velocityOnly;
 
   Notifier notifier;
   MotionProfileState& state;
