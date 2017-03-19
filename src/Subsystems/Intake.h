@@ -17,6 +17,7 @@ private:
 	double p;
 	double i;
 	double d;
+	double f;
 
 public:
 	static std::shared_ptr<Intake> getInstance();

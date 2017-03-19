@@ -29,7 +29,7 @@ public:
 
 	robovikes::SetTurret* GetSetPositionCommand();
 
-	void SetTurret(double speed);
+	void SetTurret(double position);
 	double GetTurret() const;
 
 	double GetSetPoint() const;
@@ -46,11 +46,12 @@ public:
 	double GetTurretCurrent() const;
 
 	//TODO Make sure these values correlate with how they go on the robot
-	const double kAtLeft = 0;
-	const double kAtRight = 1.917;
-  const double kAtBothMags = .958;
-  const double kAt0Mag = 750;
-  const double kPNudge = kAtRight/8;
+	static const double kAtLeft;
+	static const double kAtRight;
+  static const double kAtBothMags;
+  static const double kAt0Mag;
+public:
+  static const double kPNudge;
 };
 
 #endif  // Turret_H

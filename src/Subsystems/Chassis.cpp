@@ -43,6 +43,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
   left1Wheel.ConfigEncoderCodesPerRev(128);
   left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  left1Wheel.SetSensorDirection(true);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRight1Wheel);
