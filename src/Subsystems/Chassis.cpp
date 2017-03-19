@@ -37,6 +37,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   SetupDrive();
   SetCoast();
   ZeroPosition();
+  SetShifter(kShifterLow);
 }
 
 void Chassis::InitDefaultCommand() {
