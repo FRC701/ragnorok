@@ -7,6 +7,7 @@
 #include "SetGearRoller.h"
 #include "../RobotMap.h"
 #include "SetSqueeze.h"
+#include "SetGear.h"
 
 AutoCenterGear::AutoCenterGear() {
 	// Add Commands here:
@@ -23,9 +24,11 @@ AutoCenterGear::AutoCenterGear() {
   AddSequential(new SetShifter(Chassis::kShifterLow));
   AddSequential(new AutoDrive(-5.771, 5.567));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddSequential(new Delay(1));
-  AddParallel(new GearScore());
+  AddParallel(new Delay(1));
+  AddSequential(new SetGear(GearPickup::kGearDown));
+  //AddParallel(new GearScore());
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
+  AddSequential(new SetGear(GearPickup::kGearDown));
   AddParallel(new AutoDrive(2,-2));
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
 
