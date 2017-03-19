@@ -23,9 +23,11 @@ private:
   double Tp;
   double Ti;
   double Td;
+  double Tf;
   double Bp;
   double Bi;
   double Bd;
+  double Bf;
 
 public:
 

@@ -23,19 +23,19 @@ double GetHeading() {
   std::shared_ptr<Turret> turret = Turret::getInstance();
   std::shared_ptr<Chassis> chassis = Chassis::getInstance();
 
-  bool isRightStopperHit = turret->IsRightStopperHit();
   bool isLeftStopperHit = turret->IsLeftStopperHit();
+  bool isRightStopperHit = turret->IsRightStopperHit();
 
   bool isBothMagsHit = (chassis->Is0DegTurretAlligned() && chassis->Is90DegTurretAlligned());
 
   bool isJustZeroMagHit = (chassis->Is0DegTurretAlligned() && !(chassis->Is90DegTurretAlligned()));
 
-  if(isRightStopperHit){
-      return turret->kAtRight;
+  if(isLeftStopperHit){
+      return turret->kAtLeft;
     }
 
-  else if(isLeftStopperHit){
-    return turret->kAtLeft;
+  else if(isRightStopperHit){
+    return turret->kAtRight;
   }
 
   else if(isBothMagsHit) {
@@ -64,7 +64,7 @@ void Calibrate::Execute() {
     //Do nothing
   }
   else {
-    turret->SetTurret(0.5);  //TODO check if this is positive or negative
+    turret->SetTurret(0.25);  //TODO check if this is positive or negative
   }
 }
 

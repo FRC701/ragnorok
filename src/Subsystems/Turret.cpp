@@ -5,6 +5,13 @@
 
 const char Turret::kSubsystemName[] = "Turret";
 
+const double Turret::kAtLeft = 0;
+//  const double Turret::]\[kAtRight = 1.917; Comp Bot Value
+const double Turret::kAtRight = 1.800;
+const double Turret::kAtBothMags = .958;
+const double Turret::kAt0Mag = 750;
+const double Turret::kPNudge = kAtRight/8;
+
 std::shared_ptr<Turret> Turret::self;
 
 std::shared_ptr<Turret> Turret::getInstance() {
@@ -17,11 +24,11 @@ std::shared_ptr<Turret> Turret::getInstance() {
 Turret::Turret() : Subsystem(kSubsystemName),
 		defaultCommand(nullptr),
     turretSpinner(RobotMap::kIDTurretSpinner),
-    p(0.0), i(0.0), d(0.0)
+    p(0.25), i(0.0001), d(0.0)
     {
   turretSpinner.Enable();
   turretSpinner.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-  turretSpinner.SetControlMode(frc::CANSpeedController::kSpeed);
+  turretSpinner.SetControlMode(frc::CANSpeedController::kPosition);
  // turretSpinner.SetControlMode(frc::CANSpeedController::kPercentVbus);
   turretSpinner.SetPID(p, i, d);
   turretSpinner.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
@@ -40,9 +47,10 @@ robovikes::SetTurret* Turret::GetSetPositionCommand(){
 	return defaultCommand;
 }
 
-void Turret::SetTurret(double speed){
+void Turret::SetTurret(double position){
 
-  turretSpinner.Set(speed);
+  turretSpinner.Set(position);
+  defaultCommand->SetPosition(position);
 }
 
 void Turret::SetTurretPosition(double position) {
