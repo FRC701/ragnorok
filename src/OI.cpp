@@ -94,7 +94,8 @@ OI::OI()
   dLB.WhenPressed(new ToggleShifter());
   dRB.WhenPressed(new ToggleAutoShifting());
   dStart.WhenPressed(new GearScore());
-  dBack.WhenPressed(new GearQuit());
+  dBack.WhenPressed(new Calibrate());
+
 //-------------CoDriver------
   /*
   coA.WhenPressed(new SetIntake(RobotMap::kPeakPower));
@@ -113,7 +114,13 @@ OI::OI()
   coGearToggle.WhenPressed(new ToggleGear);
   coFloorOuttake.WhenPressed(new SetIntake(-(   RobotMap::kPeakPower)));
   coCancel.WhenPressed((new Cancel));
-
+  coTurretNeg90.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtLeft));
+  coTurret0.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtRight/2));
+  coTurret90.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtRight));
+  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::kPNudge));
+  coTurretPlus.WhenPressed(new NudgeTurret(Turret::kPNudge));
+  coShooterPlus.WhenPressed(new NudgeShooter(100));
+  coShooterMinus.WhenPressed(new NudgeShooter(-100));
 
   /*
 //........Driver Buttons....
