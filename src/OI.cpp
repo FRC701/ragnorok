@@ -20,6 +20,7 @@
 #include "Commands/SetShooter.h"
 #include "Commands/SetSqueeze.h"
 #include "Commands/SetTurret.h"
+#include "Commands/SetSetTurret.h"
 #include "Commands/TankDrive.h"
 #include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
@@ -114,9 +115,9 @@ OI::OI()
   coGearToggle.WhenPressed(new ToggleGear);
   coFloorOuttake.WhenPressed(new SetIntake(-(   RobotMap::kPeakPower)));
   coCancel.WhenPressed((new Cancel));
-  coTurretNeg90.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtLeft));
-  coTurret0.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtRight/2));
-  coTurret90.WhenPressed(new robovikes::SetTurret(Turret::getInstance()->kAtRight));
+  coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
+  coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
+  coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
   coTurretMinus.WhenPressed(new NudgeTurret(-Turret::kPNudge));
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
