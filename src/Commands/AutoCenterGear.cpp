@@ -8,6 +8,7 @@
 #include "../RobotMap.h"
 #include "SetSqueeze.h"
 #include "SetGear.h"
+#include "TimedDrive.h"
 
 AutoCenterGear::AutoCenterGear() {
 	// Add Commands here:
@@ -29,7 +30,7 @@ AutoCenterGear::AutoCenterGear() {
   //AddParallel(new GearScore());
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
   AddSequential(new SetGear(GearPickup::kGearDown));
-  AddParallel(new AutoDrive(2,-2));
+  AddParallel(new TimedDrive(1,.5,.5));
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
 
 	// A command group will require all of the subsystems that each member
