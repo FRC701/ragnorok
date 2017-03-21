@@ -11,12 +11,14 @@ AutoDrive::AutoDrive(double leftDistance, double rightDistance):
 // Called just before this Command runs the first time
 void AutoDrive::Initialize() {
   Chassis::getInstance()->SetupPID();
+  Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetTankDrive(mLeftDistance, mRightDistance);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoDrive::IsFinished() {
-	  return (fabs(Chassis::getInstance()->GetDrivePosition()) >= fabs(Chassis::getInstance()->GetDriveSetPoint()));
+	  return (fabs(Chassis::getInstance()->GetRightDrivePosition()) >= fabs(Chassis::getInstance()->GetRightDriveSetPoint()))
+	   && (fabs(Chassis::getInstance()->GetLeftDrivePosition()) >= fabs(Chassis::getInstance()->GetLeftDriveSetPoint()));
 }
 
 // Called once after isFinished returns true

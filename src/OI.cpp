@@ -31,6 +31,8 @@
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
 #include "Commands/AutoCenterGear.h"
+#include "Commands/AutoLeftGear.h"
+#include "Commands/AutoRightGear.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -111,6 +113,8 @@ OI::OI()
   SmartDashboard::PutData("Auto Line", new AutoLine());
 
   SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
+  SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);
+  SmartDashboard::PutData("Auto Right Gear", new AutoRightGear);
 
   //..........Chassis..........
 
