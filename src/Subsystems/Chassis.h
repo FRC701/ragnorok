@@ -56,6 +56,10 @@ public:
   double GetRightEncRPM() const;
   double GetDrivePosition() const;
   double GetDriveSetPoint() const;
+  double GetRightDrivePosition() const;
+  double GetLeftDrivePosition() const;
+  double GetRightDriveSetPoint() const;
+  double GetLeftDriveSetPoint() const;
   double GetPosition() const;
 
   /* Motion Profile Mode Support */

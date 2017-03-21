@@ -144,8 +144,24 @@ double Chassis::GetDrivePosition() const {
   return right1Wheel.GetPosition();
 }
 
+double Chassis::GetRightDrivePosition() const {
+  return right1Wheel.GetPosition();
+}
+
+double Chassis::GetLeftDrivePosition() const {
+  return left1Wheel.GetPosition();
+}
+
 double Chassis::GetDriveSetPoint() const {
   return right1Wheel.GetSetpoint();
+}
+
+double Chassis::GetRightDriveSetPoint() const {
+  return right1Wheel.GetSetpoint();
+}
+
+double Chassis::GetLeftDriveSetPoint() const {
+  return left1Wheel.GetSetpoint();
 }
 
 bool Chassis::IsShifterHigh() const {
