@@ -51,12 +51,13 @@ void Robot::RobotInit()
   // instantiate the command used for the autonomous period
   std::cout<<"RobotInit"<<std::endl;
   printf("RobotInit here\n");
-//  chooser = new SendableChooser();
-//  chooser.AddDefault("Do Nothing", new AutonomousCommand);
-//  chooser.AddObject("Drive to Line", new AutoDrive(0,0));
 
-  autonomousCommand.reset(new AutoLine());
-  }
+  chooser.AddDefault("Do Nothing", new AutonomousCommand);
+  chooser.AddObject("Drive to Line", new AutoLine);
+  chooser.AddObject("Center Gear", new AutoCenterGear);
+  chooser.AddObject("Left Gear", new AutoLeftGearDispatch);
+  chooser.AddObject("Right Gear", new AutoRightGearDispatch);
+}
 
 /**
  * This function is called when the disabled button is hit.
@@ -75,6 +76,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+  autonomousCommand = chooser.GetSelected();
   if (autonomousCommand != nullptr) {
     autonomousCommand->Start();
   }
