@@ -18,6 +18,7 @@ GearScore::GearScore() {
   AddSequential(new SetGear(GearPickup::kGearDown));
   AddParallel(new Delay(1)); //TODO: motion profile?
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
+  AddSequential(new GearQuit());
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
