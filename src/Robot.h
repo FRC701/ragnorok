@@ -43,6 +43,7 @@ public:
 private:
   static std::unique_ptr<OI> oi;
   LiveWindow *lw = LiveWindow::GetInstance();
+  frc::SendableChooser<frc::Command*> chooser;
   Command* autonomousCommand;
 };
 #endif
