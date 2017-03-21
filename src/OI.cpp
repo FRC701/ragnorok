@@ -123,8 +123,8 @@ OI::OI()
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
   coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
-  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::kPNudge));
-  coTurretPlus.WhenPressed(new NudgeTurret(Turret::kPNudge));
+  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
+  coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
 

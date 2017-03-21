@@ -14,9 +14,11 @@
 #include "Subsystems/Vision.h"
 
 #include "Commands/AutoCenterGear.h"
-#include "Commands/AutoLeftGearDispatch.h"
+#include "Commands/AutoLeftGear.h"
+#include "Commands/AutoRightGear.h"
+//#include "Commands/AutoLeftGearDispatch.h"
 #include "Commands/AutoLine.h"
-#include "Commands/AutoRightGearDispatch.h"
+//#include "Commands/AutoRightGearDispatch.h"
 #include "Commands/SetShooter.h"
 
 std::unique_ptr<OI> Robot::oi;
@@ -55,8 +57,9 @@ void Robot::RobotInit()
   chooser.AddDefault("Do Nothing", new AutonomousCommand);
   chooser.AddObject("Drive to Line", new AutoLine);
   chooser.AddObject("Center Gear", new AutoCenterGear);
-  chooser.AddObject("Left Gear", new AutoLeftGearDispatch);
-  chooser.AddObject("Right Gear", new AutoRightGearDispatch);
+  chooser.AddObject("Left Gear", new AutoLeftGear/*AutoLeftGearDispatch*/);
+  chooser.AddObject("Right Gear", new AutoRightGear/*AutoRightGearDispatch*/);
+  //TODO: Finish this. Temporary for current autos.
 }
 
 /**
@@ -80,6 +83,10 @@ void Robot::AutonomousInit() {
   if (autonomousCommand != nullptr) {
     autonomousCommand->Start();
   }
+
+//  Chassis::getInstance()->SetBrake();
+//  Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
+//  GearPickup::getInstance()->SetSqueeze(GearPickup::kSqueezeClosed);
 }
 
 void Robot::AutonomousPeriodic() {
