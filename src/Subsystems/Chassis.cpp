@@ -37,7 +37,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   SetupDrive();
   SetCoast();
   ZeroPosition();
-  SetShifter(kShifterLow);
+//  SetShifter(kShifterLow);
 }
 
 void Chassis::InitDefaultCommand() {
@@ -99,7 +99,7 @@ void Chassis::SetupPID() {
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
   left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
-  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+  //shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
 void Chassis::ZeroPosition(){
@@ -128,7 +128,7 @@ void Chassis::SetupDrive() {
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
   left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
-  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
+  //shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
