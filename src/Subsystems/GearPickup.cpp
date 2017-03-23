@@ -30,7 +30,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   SetGear(GearPickup::kGearUp);
-  SetSqueeze(GearPickup::kSqueezeOpen);
+  SetSqueeze(GearPickup::kSqueezeClosed);
 }
 
 void GearPickup::InitDefaultCommand() {
