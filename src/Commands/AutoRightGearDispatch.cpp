@@ -1,5 +1,4 @@
 #include "AutoRightGearDispatch.h"
-#include "AutoLeftGear.h"
 #include "AutoRightGear.h"
 
 #include "DriverStation.h"
@@ -22,10 +21,11 @@ AutoRightGearDispatch::AutoRightGearDispatch() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+  // Both side are the same until we have autos that are not mirrors.
   if (DriverStation::GetInstance().GetAlliance() == DriverStation::kRed) {
     AddSequential(new AutoRightGear);
   } else {
-    AddSequential(new AutoLeftGear);
+    AddSequential(new AutoRightGear);
   }
 
 }
