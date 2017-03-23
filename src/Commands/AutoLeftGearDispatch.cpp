@@ -1,24 +1,13 @@
-#include "GearScore.h"
-#include "GearQuit.h"
-#include "SetGear.h"
-#include "SetSqueeze.h"
-#include "SetGearRoller.h"
-#include "Delay.h"
-#include "../RobotMap.h"
+#include "AutoLeftGearDispatch.h"
+#include "AutoLeftGear.h"
 
-GearScore::GearScore() {
+#include "DriverStation.h"
+
+AutoLeftGearDispatch::AutoLeftGearDispatch() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
-  AddSequential(new SetGear(GearPickup::kGearUp));
-  AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddParallel(new SetGearRoller(-RobotMap::kPeakPower));
-  AddSequential(new SetGear(GearPickup::kGearDown));
-  AddParallel(new Delay(1)); //TODO: motion profile?
-  AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
-  AddSequential(new GearQuit());
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
@@ -31,4 +20,11 @@ GearScore::GearScore() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+
+  // For now both sides are the same until we have autos that are not mirrors.
+  if (DriverStation::GetInstance().GetAlliance() == DriverStation::kRed) {
+    AddSequential(new AutoLeftGear);
+  } else {
+    AddSequential(new AutoLeftGear);
+  }
 }

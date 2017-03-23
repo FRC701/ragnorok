@@ -2,6 +2,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AgitatorOn.h"
+#include "Commands/AutoDrive.h"
 #include "Commands/ShootAgitated.h"
 #include "Commands/Calibrate.h"
 #include "Commands/Cancel.h"
@@ -27,8 +28,12 @@
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
+#include "Commands/AutoLine.h"
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
+#include "Commands/AutoCenterGear.h"
+#include "Commands/AutoLeftGear.h"
+#include "Commands/AutoRightGear.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -118,8 +123,8 @@ OI::OI()
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
   coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
-  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::kPNudge));
-  coTurretPlus.WhenPressed(new NudgeTurret(Turret::kPNudge));
+  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
+  coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
 
@@ -144,11 +149,17 @@ OI::OI()
   coBack.WhenPressed(new ()); */
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+  SmartDashboard::PutData("Auto Line", new AutoLine());
+
+  SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
+  SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);
+  SmartDashboard::PutData("Auto Right Gear", new AutoRightGear);
 
   //..........Chassis..........
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-5.971, 5.767));
 
   //..........Conveyor..........
 

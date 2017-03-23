@@ -16,7 +16,8 @@ public:
       const TrajectoryPoint* chassisRight,
       const TrajectoryPoint* chassisLeft,
       unsigned int trajectoryPointCount,
-      unsigned int pointDurationMillis);
+      unsigned int pointDurationMillis,
+      bool velocityOnly = true);
   void Initialize();
   void Execute();
   bool IsFinished();
@@ -28,7 +29,7 @@ public:
   public:
     virtual void run(const ChassisMotionProfileCommand*) = 0;
     virtual bool isFinished() const = 0;
-    virtual MotionProfileState& getNextState() = 0;
+    virtual MotionProfileState* getNextState() = 0;
 
     virtual ~MotionProfileState() { };
   };
@@ -38,7 +39,7 @@ public:
   public:
     void run(const ChassisMotionProfileCommand* motionProfile);
     bool isFinished() const;
-    ChassisMotionProfileCommand::MotionProfileState& getNextState();
+    ChassisMotionProfileCommand::MotionProfileState* getNextState();
     virtual ~MotionProfileLoad();
   };
 
@@ -49,9 +50,10 @@ private:
   const TrajectoryPoint* chassisLeft;
   unsigned int trajectoryPointCount;
   unsigned int pointDurationMillis;
+  bool velocityOnly;
 
   Notifier notifier;
-  MotionProfileState& state;
+  MotionProfileState* state;
 
   void PeriodicTask();
 };
