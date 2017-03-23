@@ -43,6 +43,7 @@ public:
   void SetTankDrive(double left, double right);
   void SetShifter(ShifterValue value);
   void SetCoast();
+  void SetBrake();
   void SetupPID();
   void ZeroPosition(); //This method is to be used in kPosition mode only
   void SetupDrive();

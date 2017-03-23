@@ -69,6 +69,13 @@ void Chassis::SetCoast() {
   left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
 }
 
+void Chassis::SetBrake() {
+  right1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
+  right2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
+  left1Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
+  left2Wheel.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
+}
+
 void Chassis::SetupPID() {
   right1Wheel.SetInverted(true);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
