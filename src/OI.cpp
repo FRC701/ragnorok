@@ -113,7 +113,7 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  coShoot.WhenPressed(new ShootAgitated);
+  //coShoot.WhenPressed(new ShootAgitated);
   coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
@@ -165,7 +165,7 @@ OI::OI()
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
-  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-5.971, 5.767));
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(0, 0));
 
   //..........Conveyor..........
 

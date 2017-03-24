@@ -27,7 +27,7 @@ void TankDrive::Execute() {
   SmartDashboard::PutNumber("Right Drive Encoder Value",chassis->GetRightEncRPM());
 
   if (mAutomaticShifting){
-  	 AutoShifting();
+  	// AutoShifting();
   }
   SmartDashboard::PutBoolean("AutoShifting", mAutomaticShifting);
 }
