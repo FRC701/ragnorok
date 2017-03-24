@@ -35,7 +35,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
 
   SetupDrive();
-  SetCoast();
+  SetBrake();
   ZeroPosition();
   SetShifter(kShifterLow);
 }
@@ -127,8 +127,6 @@ void Chassis::SetupDrive() {
   left2Wheel.SetControlMode(CANTalon::kFollower);
   left2Wheel.Set(RobotMap::kIDLeft1Wheel);
   left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
 bool Chassis::Is0DegTurretAlligned() const{

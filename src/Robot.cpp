@@ -15,8 +15,10 @@
 
 #include "Commands/AutoCenterGear.h"
 #include "Commands/AutoLeftGearDispatch.h"
+#include "Commands/AutoLeftGear.h"
 #include "Commands/AutoLine.h"
 #include "Commands/AutoRightGearDispatch.h"
+#include "Commands/AutoRightGear.h"
 #include "Commands/SetShooter.h"
 
 std::unique_ptr<OI> Robot::oi;
@@ -55,8 +57,8 @@ void Robot::RobotInit()
   chooser.AddDefault("Do Nothing", new AutonomousCommand);
   chooser.AddObject("Drive to Line", new AutoLine);
   chooser.AddObject("Center Gear", new AutoCenterGear);
-  chooser.AddObject("Left Gear", new AutoLeftGearDispatch);
-  chooser.AddObject("Right Gear", new AutoRightGearDispatch);
+  chooser.AddObject("Left Gear", new AutoLeftGear);
+  chooser.AddObject("Right Gear", new AutoRightGear);
   SmartDashboard::PutData("Choose Your Auto", &chooser);
 }
 
@@ -77,6 +79,8 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+  Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
+
   autonomousCommand = chooser.GetSelected();
   if (autonomousCommand != nullptr) {
     autonomousCommand->Start();
@@ -88,15 +92,18 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+
   // This makes sure that the autonomous stops running when
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // these lines or comment it out.
   if (autonomousCommand != nullptr)
     autonomousCommand->Cancel();
+  Chassis::getInstance()->SetCoast();Chassis::getInstance()->SetShifter(Chassis::kShifterHigh);
 }
 
 void Robot::TeleopPeriodic() {
+
 /*
   SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
   SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
