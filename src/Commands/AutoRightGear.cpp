@@ -24,7 +24,7 @@ AutoRightGear::AutoRightGear() {
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
      AddSequential(new SetShifter(Chassis::kShifterLow));
      AddSequential(new AutoDrive(-4.2, 4.2));
-     AddSequential(new AutoDrive(-1.25, 4.2));
+     AddSequential(new AutoDrive(-1.25, 4.5));//orig -1.25, 4.2
      AddSequential(new AutoDrive(-3.6, 3.6));
      AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
      AddParallel(new Delay(1));

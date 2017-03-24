@@ -24,7 +24,7 @@ AutoLeftGear::AutoLeftGear() {
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
     AddSequential(new SetShifter(Chassis::kShifterLow));
     AddSequential(new AutoDrive(-4.2, 4.2));
-    AddSequential(new AutoDrive(-4.0, 1.25));//orig -4.2, 1.25
+    AddSequential(new AutoDrive(-4.2, 1.25));//orig -4.2, 1.25
     AddSequential(new AutoDrive(-3.6, 3.6));
     AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
     AddSequential(new SetGear(GearPickup::kGearDown));
