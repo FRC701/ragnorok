@@ -115,7 +115,7 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  coShoot.WhenPressed(new ShootAgitated);
+  //coShoot.WhenPressed(new ShootAgitated);
   coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);

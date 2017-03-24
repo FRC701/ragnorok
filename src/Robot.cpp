@@ -17,8 +17,8 @@
 #include "Commands/AutoLeftGear.h"
 #include "Commands/AutoLine.h"
 #include "Commands/AutoRightGear.h"
-#include "Commands/SetShooter.h"
 #include "Commands/AutoTimedCenterGear.h"
+#include "Commands/SetShooter.h"
 
 std::unique_ptr<OI> Robot::oi;
 
@@ -79,6 +79,8 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+  Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
+
   autonomousCommand = chooser.GetSelected();
   if (autonomousCommand != nullptr) {
     autonomousCommand->Start();
@@ -91,15 +93,18 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
   Chassis::getInstance()->ConfigPeakOutput(12);
+
   // This makes sure that the autonomous stops running when
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // these lines or comment it out.
   if (autonomousCommand != nullptr)
     autonomousCommand->Cancel();
+  Chassis::getInstance()->SetCoast();Chassis::getInstance()->SetShifter(Chassis::kShifterHigh);
 }
 
 void Robot::TeleopPeriodic() {
+
 /*
   SmartDashboard::PutNumber("Shooter Velocity.", Shooter::getInstance()->GetEncoderVelocity());
   SmartDashboard::PutNumber("Shooter Voltage.", Shooter::getInstance()->GetOutputVoltage());
