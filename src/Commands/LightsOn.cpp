@@ -17,7 +17,7 @@ void LightsOn::Initialize() {
 void LightsOn::Execute() {
   if(GearPickup::getInstance()->IsGearIn()){
     if(! flashed) {
-      flash.StartPeriodic(.25);
+      flash.StartPeriodic(.125);
       flashed = true;
     }
   }
