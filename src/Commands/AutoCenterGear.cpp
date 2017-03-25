@@ -23,14 +23,14 @@ AutoCenterGear::AutoCenterGear() {
 	// Command1 and Command2 will run in parallel.
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
   AddSequential(new SetShifter(Chassis::kShifterLow));
-  AddSequential(new AutoDrive(-5.771, 5.567));
+  AddSequential(new AutoDrive(-5.571, 5.367));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
   AddParallel(new Delay(1));
   AddSequential(new SetGear(GearPickup::kGearDown));
   //AddParallel(new GearScore());
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
   AddSequential(new SetGear(GearPickup::kGearDown));
-  AddParallel(new TimedDrive(1,.5,.5));
+  AddParallel(new TimedDrive(1,-.5,-.5));
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
 
 	// A command group will require all of the subsystems that each member
