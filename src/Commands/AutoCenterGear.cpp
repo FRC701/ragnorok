@@ -30,7 +30,7 @@ AutoCenterGear::AutoCenterGear() {
   //AddParallel(new GearScore());
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
   AddSequential(new SetGear(GearPickup::kGearDown));
-  AddParallel(new TimedDrive(1,.5,.5));
+  AddParallel(new TimedDrive(1,-.5,-.5));
   AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
 
 	// A command group will require all of the subsystems that each member
