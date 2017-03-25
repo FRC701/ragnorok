@@ -24,7 +24,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left1Wheel(RobotMap::kIDLeft1Wheel),
   left2Wheel(RobotMap::kIDLeft2Wheel),
   shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse),
-  p(8.5), i(0), d(0)
+  p(7.0), i(0), d(0)
 {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
@@ -77,13 +77,16 @@ void Chassis::SetBrake() {
 }
 
 void Chassis::SetupPID() {
-  right1Wheel.SetInverted(true);
+//  right1Wheel.SetInverted(true);
+  right1Wheel.SetInverted(false);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.SetControlMode(CANTalon::kPosition);
   right1Wheel.ConfigEncoderCodesPerRev(128);
   right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  right1Wheel.SetSensorDirection(false);
   right1Wheel.SetPID(p, i ,d);
 
+  left1Wheel.SetInverted(false);
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.SetControlMode(CANTalon::kPosition);
   left1Wheel.ConfigEncoderCodesPerRev(128);
@@ -108,17 +111,21 @@ void Chassis::ZeroPosition(){
 }
 
 void Chassis::SetupDrive() {
-  right1Wheel.SetInverted(true);
+//  right1Wheel.SetInverted(true);
+  right1Wheel.SetInverted(false);
   right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.SetControlMode(CANTalon::kPercentVbus);
   right1Wheel.ConfigEncoderCodesPerRev(128);
   right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  right1Wheel.SetSensorDirection(false);
 
+  left1Wheel.SetInverted(true);
   left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
   left1Wheel.ConfigEncoderCodesPerRev(128);
   left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  left1Wheel.SetSensorDirection(true);
+  //left1Wheel.SetSensorDirection(true);
+  left1Wheel.SetSensorDirection(false);
 
   right2Wheel.SetControlMode(CANTalon::kFollower);
   right2Wheel.Set(RobotMap::kIDRight1Wheel);
