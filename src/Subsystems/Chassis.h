@@ -30,7 +30,7 @@ public:
 
 
 
-  enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
+  enum ShifterValue{kShifterHigh = DoubleSolenoid::kReverse, kShifterLow = DoubleSolenoid::kForward};
   enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
 //TODO Check to make sure shifter is high when forward
 
