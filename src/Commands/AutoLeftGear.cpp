@@ -35,7 +35,7 @@ AutoLeftGear::AutoLeftGear() {
     AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
     AddSequential(new SetGear(GearPickup::kGearDown));
     //AddParallel(new GearScore());
-    AddSequential(new TimedDrive(1,.5,.5));
+    AddSequential(new TimedDrive(1,-.5,-.5));
 	// A command group will require all of the subsystems that each member
 	// would require.
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
