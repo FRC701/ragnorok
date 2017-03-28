@@ -154,6 +154,8 @@ OI::OI()
   SmartDashboard::PutData("TEST +-", new AutoDrive(100,-100));
   SmartDashboard::PutData("TEST --", new AutoDrive(-100,-100));
   SmartDashboard::PutData("TEST -+", new AutoDrive(-100,100));
+  SmartDashboard::PutData("TEST Right forw", new AutoDrive(0,10));
+  SmartDashboard::PutData("TEST Right back", new AutoDrive(0,-10));
 
   SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
   SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);

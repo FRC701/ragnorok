@@ -9,6 +9,7 @@
 #include "SetSqueeze.h"
 #include "SetGear.h"
 #include "TimedDrive.h"
+#include "AutoTurn.h"
 
 AutoLeftGear::AutoLeftGear() {
 	// Add Commands here:
@@ -24,7 +25,9 @@ AutoLeftGear::AutoLeftGear() {
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
     AddSequential(new SetShifter(Chassis::kShifterLow));
     AddSequential(new AutoDrive(-4.2, 4.2));
-    AddSequential(new AutoDrive(-4.2, 1.25));//orig -4.2, 1.25
+    //AddSequential(new AutoTurn('r',1.25));
+    AddSequential(new AutoTurn('l',-2.2/3));
+//    AddSequential(new AutoDrive(-4.2, 1.25));//orig -4.2, 1.25
     AddSequential(new AutoDrive(-3.6, 3.6));
     AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
     AddSequential(new SetGear(GearPickup::kGearDown));
