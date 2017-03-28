@@ -63,9 +63,14 @@ public:
   double GetLeftDriveSetPoint() const;
   double GetPosition() const;
 
+  void ConfigPeakOutput(double volt);
+
   /* Motion Profile Mode Support */
   void SetModeMotionProfile();
   void SetModePercentVBus();
+
+  enum DriveSide { kDriveLeftSide, kDriveRightSide };
+  void SetSidePercentVBus(DriveSide side);
 
   void ClearMotionProfileTrajectories();
   void SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue);

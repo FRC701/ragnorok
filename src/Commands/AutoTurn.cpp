@@ -1,7 +1,7 @@
 #include "AutoTurn.h"
 #include "../Subsystems/Chassis.h"
 
-AutoTurn::AutoTurn(char side, double distance)
+AutoTurn::AutoTurn(TurnSide side, double distance)
 : mSide(side),mDistance(distance ){
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
@@ -14,13 +14,16 @@ void AutoTurn::Initialize() {
   Chassis::getInstance()->SetupPID();
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
-  if(mSide == 'l') {
-    Chassis::getInstance()->SetSidePercentVBUS('r');
-    Chassis::getInstance()->SetTankDrive(mDistance, 0.0);
-  }
-  else if(mSide == 'r') {
-    Chassis::getInstance()->SetSidePercentVBUS('l');
-    Chassis::getInstance()->SetTankDrive(0.0,mDistance);
+  switch(mSide)
+  {
+    case kTurnLeftSide:
+      Chassis::getInstance()->SetSidePercentVBus(Chassis::kDriveRightSide);
+      Chassis::getInstance()->SetTankDrive(mDistance, 0.0);
+    break;
+    case kTurnRightSide:
+      Chassis::getInstance()->SetSidePercentVBus(Chassis::kDriveLeftSide);
+      Chassis::getInstance()->SetTankDrive(0.0, mDistance);
+    break;
   }
 
 
@@ -33,14 +36,19 @@ void AutoTurn::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoTurn::IsFinished() {
-  if (mSide == 'l') {
-    return (fabs(Chassis::getInstance()->GetLeftDrivePosition()) >= fabs(Chassis::getInstance()->GetLeftDriveSetPoint()));
+  switch (mSide)
+  {
+    case kTurnLeftSide:
+      return (fabs (Chassis::getInstance ()->GetLeftDrivePosition ())
+           >= fabs (Chassis::getInstance ()->GetLeftDriveSetPoint ()));
+      break;
+    case kTurnRightSide:
+      return (fabs (Chassis::getInstance ()->GetRightDrivePosition ())
+           >= fabs (Chassis::getInstance ()->GetRightDriveSetPoint ()));
+      break;
   }
 
-  else if (mSide == 'r') {
-    return (fabs(Chassis::getInstance()->GetRightDrivePosition()) >= fabs(Chassis::getInstance()->GetRightDriveSetPoint()));
-  }
- else return false;
+  return false;
 }
 
 // Called once after isFinished returns true

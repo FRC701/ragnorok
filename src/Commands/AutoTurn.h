@@ -5,14 +5,15 @@
 
 class AutoTurn : public Command {
 public:
-	AutoTurn(char side, double distance);
+  enum TurnSide { kTurnLeftSide, kTurnRightSide };
+	AutoTurn(TurnSide side, double distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	char mSide;
+	TurnSide mSide;
 	double mDistance;
 };
 

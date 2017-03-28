@@ -102,6 +102,11 @@ void Chassis::SetupPID() {
   shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
+void Chassis::ConfigPeakOutput(double volt) {
+  left1Wheel.ConfigPeakOutputVoltage(volt,-volt);
+  right1Wheel.ConfigPeakOutputVoltage(volt,-volt);
+}
+
 void Chassis::ZeroPosition(){
   right1Wheel.SetPosition(0);
   left1Wheel.SetPosition(0);
@@ -187,6 +192,18 @@ void Chassis::SetModeMotionProfile() {
 void Chassis::SetModePercentVBus() {
   right1Wheel.SetControlMode(CANTalon::kPercentVbus);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+}
+
+void Chassis::SetSidePercentVBus(DriveSide side) {
+  switch (side)
+  {
+    case kDriveLeftSide:
+      left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+      break;
+    case kDriveRightSide:
+      right1Wheel.SetControlMode(CANTalon::kPercentVbus);
+      break;
+  }
 }
 
 void Chassis::SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue) {
