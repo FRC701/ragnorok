@@ -19,6 +19,7 @@
 #include "Commands/AutoRightGear.h"
 #include "Commands/AutoTimedCenterGear.h"
 #include "Commands/SetShooter.h"
+#include "Commands/AutoTimedCenterGear.h"
 
 std::unique_ptr<OI> Robot::oi;
 

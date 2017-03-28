@@ -68,6 +68,7 @@ public:
   /* Motion Profile Mode Support */
   void SetModeMotionProfile();
   void SetModePercentVBus();
+  void SetSidePercentVBUS(char side);
 
   enum DriveSide { kDriveLeftSide, kDriveRightSide };
   void SetSidePercentVBus(DriveSide side);
