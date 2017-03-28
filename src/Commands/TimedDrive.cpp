@@ -20,11 +20,11 @@ void TimedDrive::Execute() {
 
 // Called once after command times out
 void TimedDrive::End() {
-
+  Chassis::getInstance()->SetTankDrive(0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void TimedDrive::Interrupted() {
-
+  Chassis::getInstance()->SetTankDrive(0.0, 0.0);
 }
