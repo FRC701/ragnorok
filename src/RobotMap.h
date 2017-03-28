@@ -48,8 +48,8 @@ public:
   static const int kIDSqueezerReverse = 1;
 
   //..........ShiftingPneumatics..........
-  static const int kIDShitftingForward = 3;
-  static const int kIDShitftingReverse = 4;
+  static const int kIDShitftingForward = 4;
+  static const int kIDShitftingReverse = 3;
 //TODO Check to make sure these values work on the Robot
 
 //..........Lights..........
