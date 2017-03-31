@@ -63,12 +63,16 @@ void Robot::RobotInit()
   SmartDashboard::PutData("Choose Your Auto", &chooser);
 }
 
+void Robot::RobotPeriodic() {
+  SmartDashboard::PutData("Choose Your Auto", &chooser);
+}
+
 /**
  * This function is called when the disabled button is hit.
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit(){
-
+  SmartDashboard::PutData("Choose Your Auto", &chooser);
 }
 
 void Robot::DisabledPeriodic() {
@@ -77,12 +81,13 @@ void Robot::DisabledPeriodic() {
   // on subsystems or commands.
   Shooter::getInstance()->GetSetShooterCommand()->SetSpeed(0.0);
   Turret::getInstance()->GetSetPositionCommand()->SetPosition(0.0);
+  SmartDashboard::PutData("Choose Your Auto", &chooser);
 }
 
 void Robot::AutonomousInit() {
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
 
-  autonomousCommand = chooser.GetSelected();
+  autonomousCommand = new AutoRightGear;//chooser.GetSelected();
   if (autonomousCommand != nullptr) {
     autonomousCommand->Start();
   }
@@ -93,7 +98,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-  Chassis::getInstance()->ConfigPeakOutput(12);
+  Chassis::getInstance()->ConfigPeakOutput(12,12);
 
   // This makes sure that the autonomous stops running when
   // teleop starts running. If you want the autonomous to
@@ -101,7 +106,7 @@ void Robot::TeleopInit() {
   // these lines or comment it out.
   if (autonomousCommand != nullptr)
     autonomousCommand->Cancel();
-  Chassis::getInstance()->SetCoast();Chassis::getInstance()->SetShifter(Chassis::kShifterHigh);
+ // Chassis::getInstance()->SetCoast();Chassis::getInstance()->SetShifter(Chassis::kShifterHigh);
 }
 
 void Robot::TeleopPeriodic() {

@@ -38,6 +38,7 @@ public:
 	virtual void TeleopInit();
 	virtual void TeleopPeriodic();
 	virtual void TestPeriodic();
+	virtual void RobotPeriodic();
 
 private:
   static std::unique_ptr<OI> oi;

@@ -158,6 +158,7 @@ OI::OI()
   SmartDashboard::PutData("TEST -+", new AutoDrive(-100,100));
   SmartDashboard::PutData("TEST Right forw", new AutoDrive(0,10));
   SmartDashboard::PutData("TEST Right back", new AutoDrive(0,-10));
+  SmartDashboard::PutData("Center Gear Start", new AutoDrive(-5.6371, 5.565));
 
   SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
   SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);
@@ -168,6 +169,7 @@ OI::OI()
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
   SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());
   SmartDashboard::PutData("Set HighGear", new SetShifter(Chassis::kShifterHigh));
+  SmartDashboard::PutData("Set LowGear", new SetShifter(Chassis::kShifterLow));
   SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(0, 0));
   SmartDashboard::PutData("Forward for 5 sec", new TimedDrive(5,1,1));
 
