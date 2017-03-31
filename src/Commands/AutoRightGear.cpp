@@ -24,12 +24,13 @@ AutoRightGear::AutoRightGear() {
 	// Command1 and Command2 will run in parallel.
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
      AddSequential(new SetShifter(Chassis::kShifterLow));
-     AddSequential(new AutoDrive(-3.8, 4.2));
-     AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,-2.2/3));
+     AddSequential(new AutoDrive(-3.862, 3.773));
+    // AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,-2.2/3));
      //AddSequential(new AutoTurn(AutoTurn::kTurnLeftSide,-1.25));
-//     AddSequential(new AutoDrive(-1.25, -4.5));//orig -1.25, 4.2
-     AddSequential(new AutoDrive(-3.6, 3.6));
+     AddSequential(new AutoDrive(-0.656, 3.399));//orig -1.25, 4.2
+     AddSequential(new AutoDrive(-3.980, 4.072));
      AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
+     AddSequential(new SetGear(GearPickup::kGearDown));
      AddParallel(new Delay(1));
      AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
      AddSequential(new SetGear(GearPickup::kGearDown));

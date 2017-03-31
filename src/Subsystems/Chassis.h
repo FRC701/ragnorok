@@ -63,7 +63,7 @@ public:
   double GetLeftDriveSetPoint() const;
   double GetPosition() const;
 
-  void ConfigPeakOutput(double volt);
+  void ConfigPeakOutput(double leftVolt, double rightVolt);
 
   /* Motion Profile Mode Support */
   void SetModeMotionProfile();

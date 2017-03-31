@@ -21,9 +21,9 @@ AutoCenterGear::AutoCenterGear() {
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
-  AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
-  AddSequential(new SetShifter(Chassis::kShifterLow));
-  AddSequential(new AutoDrive(-5.771, 5.771));
+  //AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
+  //AddSequential(new SetShifter(Chassis::kShifterLow));
+  AddSequential(new AutoDrive(-5.7371, 5.765));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
   AddParallel(new Delay(1));
   AddSequential(new SetGear(GearPickup::kGearDown));

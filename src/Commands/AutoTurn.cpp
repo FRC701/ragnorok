@@ -10,7 +10,7 @@ AutoTurn::AutoTurn(TurnSide side, double distance)
 
 // Called just before this Command runs the first time
 void AutoTurn::Initialize() {
-  Chassis::getInstance()->ConfigPeakOutput(8);
+  Chassis::getInstance()->ConfigPeakOutput(9,8.5);
   Chassis::getInstance()->SetupPID();
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
@@ -55,7 +55,7 @@ bool AutoTurn::IsFinished() {
 void AutoTurn::End() {
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetupDrive();
-  Chassis::getInstance()->ConfigPeakOutput(12);
+  Chassis::getInstance()->ConfigPeakOutput(12,12);
 }
 
 // Called when another command which requires one or more of the same
@@ -63,5 +63,5 @@ void AutoTurn::End() {
 void AutoTurn::Interrupted() {
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetupDrive();
-  Chassis::getInstance()->ConfigPeakOutput(12);
+  Chassis::getInstance()->ConfigPeakOutput(12,12);
 }

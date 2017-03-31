@@ -104,9 +104,9 @@ void Chassis::SetupPID() {
   shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
 
-void Chassis::ConfigPeakOutput(double volt) {
-  left1Wheel.ConfigPeakOutputVoltage(volt,-volt);
-  right1Wheel.ConfigPeakOutputVoltage(volt,-volt);
+void Chassis::ConfigPeakOutput(double leftVolt, double rightVolt) {
+  left1Wheel.ConfigPeakOutputVoltage(leftVolt,-leftVolt);
+  right1Wheel.ConfigPeakOutputVoltage(rightVolt,-rightVolt);
 }
 
 void Chassis::ZeroPosition(){
