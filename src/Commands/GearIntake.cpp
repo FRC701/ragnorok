@@ -12,7 +12,7 @@ GearIntake::GearIntake() {
 	// these will run in order.
   AddSequential(new SetGear(GearPickup::kGearDown));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddSequential(new SetGearRoller(1200));
+  AddSequential(new SetGearRoller(1800));
   AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
   AddSequential(new SetGear(GearPickup::kGearUp));
 
