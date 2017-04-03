@@ -24,7 +24,7 @@ AutoRightGear::AutoRightGear() {
 	// Command1 and Command2 will run in parallel.
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
      AddSequential(new SetShifter(Chassis::kShifterLow));
-     AddSequential(new AutoDrive(-3.862, 3.773));
+     AddSequential(new AutoDrive(-3.962, 3.873));
     // AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,-2.2/3));
      //AddSequential(new AutoTurn(AutoTurn::kTurnLeftSide,-1.25));
      AddSequential(new AutoDrive(-0.656, 3.399));//orig -1.25, 4.2

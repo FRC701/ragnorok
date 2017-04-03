@@ -99,10 +99,11 @@ OI::OI()
 
   dB.WhenPressed(new SetLifter(0.0));
   dY.WhenPressed(new SetLifter(1.0));
+  dX.WhenPressed(new SetLifter(0.5));
   dLB.WhenPressed(new ToggleShifter());
   dRB.WhenPressed(new ToggleAutoShifting());
   dStart.WhenPressed(new GearScore());
-  dBack.WhenPressed(new Calibrate());
+  dBack.WhenPressed(new ToggleSqueeze());
 
 //-------------CoDriver------
   /*
