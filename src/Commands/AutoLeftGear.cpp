@@ -25,8 +25,6 @@ AutoLeftGear::AutoLeftGear() {
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
     AddSequential(new SetShifter(Chassis::kShifterLow));
     AddSequential(new AutoDrive(-3.762, 3.673));
-    //AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,1.25));
-    //AddSequential(new AutoTurn(AutoTurn::kTurnLeftSide,-2.2/3));
     AddSequential(new Delay(.25));
     AddSequential(new AutoDrive(-3.349, 0.856));
     AddSequential(new Delay(.25));//orig -4.2, 1.25

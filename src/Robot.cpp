@@ -89,12 +89,6 @@ void Robot::AutonomousInit() {
 
   autonomousCommand = chooser.GetSelected();
 
-  if (autonomousCommand == new AutoCenterGear){
-    SmartDashboard::PutBoolean("Center chosen", true);
-  }
-  if (autonomousCommand == new AutoLeftGear){
-    SmartDashboard::PutBoolean("Left chosen", true);
-  }
   if (autonomousCommand != nullptr) {
       autonomousCommand->Start();
   }
@@ -112,7 +106,6 @@ void Robot::TeleopInit() {
   // these lines or comment it out.
   if (autonomousCommand != nullptr)
     autonomousCommand->Cancel();
- // Chassis::getInstance()->SetCoast();Chassis::getInstance()->SetShifter(Chassis::kShifterHigh);
 }
 
 void Robot::TeleopPeriodic() {
