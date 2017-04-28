@@ -10,8 +10,10 @@ AutoDrive::AutoDrive(double leftDistance, double rightDistance):
 
 // Called just before this Command runs the first time
 void AutoDrive::Initialize() {
+  Chassis::getInstance()->ConfigPeakOutput(8);
   Chassis::getInstance()->SetupPID();
   Chassis::getInstance()->ZeroPosition();
+  Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
   Chassis::getInstance()->SetTankDrive(mLeftDistance, mRightDistance);
 }
 
@@ -25,6 +27,7 @@ bool AutoDrive::IsFinished() {
 void AutoDrive::End() {
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetupDrive();
+  Chassis::getInstance()->ConfigPeakOutput(12);
 }
 
 // Called when another command which requires one or more of the same
@@ -32,4 +35,5 @@ void AutoDrive::End() {
 void AutoDrive::Interrupted() {
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetupDrive();
+  Chassis::getInstance()->ConfigPeakOutput(12);
 }

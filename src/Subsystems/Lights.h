@@ -20,7 +20,11 @@ public:
 
 	void InitDefaultCommand();
 
-	void SetGlow();
+	void SetGlow(Relay::Value value);
+	void ToggleGlow();
+
+	bool IsGlowOn();
+
 };
 
 #endif  // Lights_H

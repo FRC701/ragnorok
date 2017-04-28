@@ -34,6 +34,8 @@
 #include "Commands/AutoCenterGear.h"
 #include "Commands/AutoLeftGear.h"
 #include "Commands/AutoRightGear.h"
+#include "Commands/TimedDrive.h"
+#include "Commands/SetShifter.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -113,7 +115,7 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  coShoot.WhenPressed(new ShootAgitated);
+  //coShoot.WhenPressed(new ShootAgitated);
   coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
@@ -150,6 +152,12 @@ OI::OI()
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Auto Line", new AutoLine());
+  SmartDashboard::PutData("TEST ++", new AutoDrive(100,100));
+  SmartDashboard::PutData("TEST +-", new AutoDrive(100,-100));
+  SmartDashboard::PutData("TEST --", new AutoDrive(-100,-100));
+  SmartDashboard::PutData("TEST -+", new AutoDrive(-100,100));
+  SmartDashboard::PutData("TEST Right forw", new AutoDrive(0,10));
+  SmartDashboard::PutData("TEST Right back", new AutoDrive(0,-10));
 
   SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
   SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);
@@ -158,8 +166,10 @@ OI::OI()
   //..........Chassis..........
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
-  SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
-  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-5.971, 5.767));
+  SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());
+  SmartDashboard::PutData("Set HighGear", new SetShifter(Chassis::kShifterHigh));
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(0, 0));
+  SmartDashboard::PutData("Forward for 5 sec", new TimedDrive(5,1,1));
 
   //..........Conveyor..........
 
