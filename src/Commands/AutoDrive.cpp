@@ -10,7 +10,7 @@ AutoDrive::AutoDrive(double leftDistance, double rightDistance):
 
 // Called just before this Command runs the first time
 void AutoDrive::Initialize() {
-  Chassis::getInstance()->ConfigPeakOutput(9,8.5);
+  Chassis::getInstance()->ConfigPeakOutput(7,6.5);
   Chassis::getInstance()->SetupPID();
   Chassis::getInstance()->ZeroPosition();
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);

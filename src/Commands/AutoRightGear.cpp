@@ -27,8 +27,10 @@ AutoRightGear::AutoRightGear() {
      AddSequential(new AutoDrive(-3.962, 3.873));
     // AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,-2.2/3));
      //AddSequential(new AutoTurn(AutoTurn::kTurnLeftSide,-1.25));
-     AddSequential(new AutoDrive(-0.656, 3.399));//orig -1.25, 4.2
-     AddSequential(new AutoDrive(-3.980, 4.072));
+     AddSequential(new Delay(.25));
+     AddSequential(new AutoDrive(-0.756, 3.499));//orig -1.25, 4.2
+     AddSequential(new Delay(.25));
+     AddSequential(new AutoDrive(-3.930, 4.022));
      AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
      AddSequential(new SetGear(GearPickup::kGearDown));
      AddParallel(new Delay(1));

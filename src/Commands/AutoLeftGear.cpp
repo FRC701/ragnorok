@@ -24,11 +24,13 @@ AutoLeftGear::AutoLeftGear() {
 	// Command1 and Command2 will run in parallel.
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
     AddSequential(new SetShifter(Chassis::kShifterLow));
-    AddSequential(new AutoDrive(-3.862, 3.773));
+    AddSequential(new AutoDrive(-3.762, 3.673));
     //AddSequential(new AutoTurn(AutoTurn::kTurnRightSide,1.25));
     //AddSequential(new AutoTurn(AutoTurn::kTurnLeftSide,-2.2/3));
-    AddSequential(new AutoDrive(-3.299, 0.856));//orig -4.2, 1.25
-    AddSequential(new AutoDrive(-3.980, 4.072 ));
+    AddSequential(new Delay(.25));
+    AddSequential(new AutoDrive(-3.349, 0.856));
+    AddSequential(new Delay(.25));//orig -4.2, 1.25
+    AddSequential(new AutoDrive(-3.630, 3.722 ));
     AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
     AddSequential(new SetGear(GearPickup::kGearDown));
     AddParallel(new Delay(1));
