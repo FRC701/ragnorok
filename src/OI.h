@@ -78,7 +78,10 @@ public:
   double getDriverLeftTrigger() const;
   double getDriverRightTrigger() const;
 
-//..........driver..........
+  void SetRumble(double amount);
+
+
+//..........codriver..........
 
   std::shared_ptr<Joystick> getCoDriver();
 

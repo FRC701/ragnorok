@@ -36,6 +36,7 @@
 #include "Commands/AutoRightGear.h"
 #include "Commands/TimedDrive.h"
 #include "Commands/SetShifter.h"
+#include "GenericHID.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -116,13 +117,14 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  //coShoot.WhenPressed(new ShootAgitated);
-  coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
+  /*
+  coShoot.WhenPressed(new GearScore);
+  coBallIntake.WhenPressed(new SetIntake(970));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
   coGearToggle.WhenPressed(new ToggleGear);
-  coFloorOuttake.WhenPressed(new SetIntake(-(   RobotMap::kPeakPower)));
-  coCancel.WhenPressed((new Cancel));
+  coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
+  coCancel.WhenPressed((new SetIntake(0)));
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
   coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
@@ -130,6 +132,7 @@ OI::OI()
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
+*/
 
   /*
 //........Driver Buttons....
@@ -142,14 +145,17 @@ OI::OI()
 //  dStart.WhenPressed(new ());
 //  dBack.WhenPressed(new ());
 //-------------CoDriver Buttons------
-    coA.WhenPressed(new ());
-  coB.WhenPressed(new ());
-  coX.WhenPressed(new ());
-  coY.WhenPressed(new ());
-  coRB.WhenPressed(new ());
-  coLB.WhenPressed(new ());
-  coStart.WhenPressed(new ());
-  coBack.WhenPressed(new ()); */
+  */
+  ///*
+    coA.WhenPressed(new SetIntake(970));
+  coB.WhenPressed(new Cancel);
+  coX.WhenPressed(new GearIntake);
+  coY.WhenPressed(new GearScore);
+  coRB.WhenPressed(new ToggleGear);
+  //coLB.WhenPressed(new ());
+  //coStart.WhenPressed(new ());
+  //coBack.WhenPressed(new ());
+  //*/
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Auto Line", new AutoLine());
@@ -286,4 +292,9 @@ double OI::getCoDriverLeftTrigger() const {
 
 double OI::getCoDriverRightTrigger() const {
   return coDriver->GetRawAxis(kRightTrigger_ID);
+}
+
+void OI::SetRumble(double amount) {
+  driver->SetRumble(GenericHID::kLeftRumble, amount);
+  coDriver->SetRumble(GenericHID::kLeftRumble, amount);
 }

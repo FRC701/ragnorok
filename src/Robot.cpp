@@ -24,7 +24,7 @@
 std::unique_ptr<OI> Robot::oi;
 
 Robot::Robot()
-: autonomousCommand(nullptr)
+: autonomousCommand(nullptr), rumbler(), rumbled(false),rumbling(false)
 {
 }
 
@@ -145,13 +145,47 @@ void Robot::TeleopPeriodic() {
   SmartDashboard::PutNumber("Top Shooter Setpoint", Shooter::getInstance()->GetSetPoint());
 
   SmartDashboard::PutBoolean("Is Gear In", GearPickup::getInstance()->IsGearIn());
+  OI::getInstance()->SetRumble(1.0);
+ ///*
+  if(GearPickup::getInstance()->IsGearIn() && !rumbled) {
+    //rumble for two
+    if(!rumbling) {
+      rumbler.Start();
+      OI::getInstance()->SetRumble(1.0);
+      rumbling = true;
+    }
+    if(rumbler.HasPeriodPassed(2)) {
+      OI::getInstance()->SetRumble(0.0);
+      rumbled = true;
+    }
+    else {
+      OI::getInstance()->SetRumble(1.0);
+    }
+  }
 
+  else {
+    //dont rumble
+    OI::getInstance()->SetRumble(0.0);
+  }
+
+  if(!GearPickup::getInstance()->IsGearIn()) {
+    OI::getInstance()->SetRumble(0.0);
+    rumbling = false;
+    rumbled = false;
+    rumbler.Stop();
+    rumbler.Reset();
+  }
+//*/
   Scheduler::GetInstance()->Run();
 
 }
 
 void Robot::TestPeriodic() {
   lw->Run();
+}
+
+void Robot::Rumbling(){
+  OI::getInstance()->SetRumble(1.0);
 }
 
 START_ROBOT_CLASS(Robot);

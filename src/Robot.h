@@ -45,5 +45,11 @@ private:
   LiveWindow *lw = LiveWindow::GetInstance();
   frc::SendableChooser<frc::Command*> chooser;
   Command* autonomousCommand;
+
+  Timer rumbler;
+  bool rumbled;
+  bool rumbling;
+
+  void Rumbling();
 };
 #endif
