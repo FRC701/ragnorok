@@ -3,13 +3,14 @@
 #include "Subsystems/BallConveyor.h"
 
 SetGearRoller::SetGearRoller(double _rollerSpeedRPM)
-: rollerSpeedRPM(_rollerSpeedRPM) {
+: rollerSpeedRPM(_rollerSpeedRPM), timeout() {
 	// Use Requires() here to declare subsystem dependencies
 	Requires(GearPickup::getInstance().get());
 }
 
 // Called just before this Command runs the first time
 void SetGearRoller::Initialize() {
+  timeout.Start();
 
 }
 
@@ -23,6 +24,9 @@ bool SetGearRoller::IsFinished() {
   if (rollerSpeedRPM > 0)
     return GearPickup::getInstance()->IsGearIn();
   else if (rollerSpeedRPM < 0)
+    if(timeout.HasPeriodPassed(2))
+      return true;
+    else
     return !(GearPickup::getInstance()->IsGearIn());
   else
     return false;
@@ -31,10 +35,14 @@ bool SetGearRoller::IsFinished() {
 // Called once after isFinished returns true
 void SetGearRoller::End() {
   GearPickup::getInstance()->SetRollerSpeedRPM(0.0);
+  timeout.Stop();
+  timeout.Reset();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void SetGearRoller::Interrupted() {
   GearPickup::getInstance()->SetRollerSpeedRPM(0.0);
+  timeout.Stop();
+  timeout.Reset();
 }

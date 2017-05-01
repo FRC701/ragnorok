@@ -34,6 +34,9 @@
 #include "Commands/AutoCenterGear.h"
 #include "Commands/AutoLeftGear.h"
 #include "Commands/AutoRightGear.h"
+#include "Commands/TimedDrive.h"
+#include "Commands/SetShifter.h"
+#include "GenericHID.h"
 
 std::shared_ptr<OI> OI::self;
 
@@ -97,10 +100,11 @@ OI::OI()
 
   dB.WhenPressed(new SetLifter(0.0));
   dY.WhenPressed(new SetLifter(1.0));
+  dX.WhenPressed(new SetLifter(0.5));
   dLB.WhenPressed(new ToggleShifter());
   dRB.WhenPressed(new ToggleAutoShifting());
   dStart.WhenPressed(new GearScore());
-  dBack.WhenPressed(new Calibrate());
+  dBack.WhenPressed(new ToggleSqueeze());
 
 //-------------CoDriver------
   /*
@@ -113,13 +117,14 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  coShoot.WhenPressed(new ShootAgitated);
-  coBallIntake.WhenPressed(new SetIntake(RobotMap::kPeakPower));
+  /*
+  coShoot.WhenPressed(new GearScore);
+  coBallIntake.WhenPressed(new SetIntake(970));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
   coGearToggle.WhenPressed(new ToggleGear);
-  coFloorOuttake.WhenPressed(new SetIntake(-(   RobotMap::kPeakPower)));
-  coCancel.WhenPressed((new Cancel));
+  coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
+  coCancel.WhenPressed((new SetIntake(0)));
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
   coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
@@ -127,6 +132,7 @@ OI::OI()
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
+*/
 
   /*
 //........Driver Buttons....
@@ -139,17 +145,27 @@ OI::OI()
 //  dStart.WhenPressed(new ());
 //  dBack.WhenPressed(new ());
 //-------------CoDriver Buttons------
-    coA.WhenPressed(new ());
-  coB.WhenPressed(new ());
-  coX.WhenPressed(new ());
-  coY.WhenPressed(new ());
-  coRB.WhenPressed(new ());
-  coLB.WhenPressed(new ());
-  coStart.WhenPressed(new ());
-  coBack.WhenPressed(new ()); */
+  */
+  ///*
+    coA.WhenPressed(new SetIntake(970));
+  coB.WhenPressed(new Cancel);
+  coX.WhenPressed(new GearIntake);
+  coY.WhenPressed(new GearScore);
+  coRB.WhenPressed(new ToggleGear);
+  //coLB.WhenPressed(new ());
+  //coStart.WhenPressed(new ());
+  //coBack.WhenPressed(new ());
+  //*/
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Auto Line", new AutoLine());
+  SmartDashboard::PutData("TEST ++", new AutoDrive(100,100));
+  SmartDashboard::PutData("TEST +-", new AutoDrive(100,-100));
+  SmartDashboard::PutData("TEST --", new AutoDrive(-100,-100));
+  SmartDashboard::PutData("TEST -+", new AutoDrive(-100,100));
+  SmartDashboard::PutData("TEST Right forw", new AutoDrive(0,10));
+  SmartDashboard::PutData("TEST Right back", new AutoDrive(0,-10));
+  SmartDashboard::PutData("Center Gear Start", new AutoDrive(-5.6371, 5.565));
 
   SmartDashboard::PutData("Auto Center Gear", new AutoCenterGear);
   SmartDashboard::PutData("Auto Left Gear", new AutoLeftGear);
@@ -158,8 +174,11 @@ OI::OI()
   //..........Chassis..........
 
   SmartDashboard::PutData("Toggle AutoShift", new ToggleAutoShifting());	//TODO: these
-  SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());	//need set commands
-  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(-5.971, 5.767));
+  SmartDashboard::PutData("Toggle Shifter", new ToggleShifter());
+  SmartDashboard::PutData("Set HighGear", new SetShifter(Chassis::kShifterHigh));
+  SmartDashboard::PutData("Set LowGear", new SetShifter(Chassis::kShifterLow));
+  SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(0, 0));
+  SmartDashboard::PutData("Forward for 5 sec", new TimedDrive(5,1,1));
 
   //..........Conveyor..........
 
@@ -273,4 +292,9 @@ double OI::getCoDriverLeftTrigger() const {
 
 double OI::getCoDriverRightTrigger() const {
   return coDriver->GetRawAxis(kRightTrigger_ID);
+}
+
+void OI::SetRumble(double amount) {
+  driver->SetRumble(GenericHID::kLeftRumble, amount);
+  coDriver->SetRumble(GenericHID::kLeftRumble, amount);
 }

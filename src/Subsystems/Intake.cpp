@@ -41,6 +41,7 @@ void Intake::SetIntake(double speed) {
 
 	if (eStop.ShouldStop(speed, GetIntakeRPM())) {
 	    EStop::CancelCurrentCommand(GetCurrentCommand());
+	    floorPickup.Set(0.0);
 
 	    estophappened = true;
 

@@ -2,6 +2,7 @@
 #define SetGearRoller_H
 
 #include "Commands/Command.h"
+#include "Timer.h"
 
 class SetGearRoller : public Command {
 public:
@@ -14,6 +15,8 @@ public:
 
 private:
 	double rollerSpeedRPM;
+	Timer timeout;
+
 };
 
 #endif  // SetGearRoller_H

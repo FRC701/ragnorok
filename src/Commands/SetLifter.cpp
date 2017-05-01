@@ -1,5 +1,6 @@
 #include "SetLifter.h"
 #include "../Subsystems/Lifter.h"
+#include "OI.h"
 
 SetLifter::SetLifter(double speed) :
 		mSpeed(speed)	{
@@ -15,7 +16,11 @@ void SetLifter::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void SetLifter::Execute() {
-	Lifter::getInstance()->SetLifter(mSpeed);
+	Lifter::getInstance()->SetLifter(mSpeed*-1);
+	if(mSpeed > 0)
+	  OI::getInstance()->SetRumble(1.0);
+	else
+	  OI::getInstance()->SetRumble(0.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()

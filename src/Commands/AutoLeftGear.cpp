@@ -9,6 +9,7 @@
 #include "SetSqueeze.h"
 #include "SetGear.h"
 #include "TimedDrive.h"
+#include "AutoTurn.h"
 
 AutoLeftGear::AutoLeftGear() {
 	// Add Commands here:
@@ -23,17 +24,17 @@ AutoLeftGear::AutoLeftGear() {
 	// Command1 and Command2 will run in parallel.
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
     AddSequential(new SetShifter(Chassis::kShifterLow));
-    AddSequential(new AutoDrive(-4.2, 4.2));
-    AddSequential(new AutoDrive(-4.2, 1.25));
-    AddSequential(new AutoDrive(-3.6, 3.6));
+    AddSequential(new AutoDrive(-3.762, 3.673));
+    AddSequential(new Delay(.25));
+    AddSequential(new AutoDrive(-3.349, 0.856));
+    AddSequential(new Delay(.25));//orig -4.2, 1.25
+    AddSequential(new AutoDrive(-3.630, 3.722 ));
     AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
+    AddSequential(new SetGear(GearPickup::kGearDown));
     AddParallel(new Delay(1));
-    AddSequential(new SetGear(GearPickup::kGearDown));
-    //AddParallel(new GearScore());
     AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
     AddSequential(new SetGear(GearPickup::kGearDown));
-    AddParallel(new TimedDrive(1,.5,.5));
-    AddSequential(new SetGearRoller(-RobotMap::kPeakPower));
+    AddSequential(new TimedDrive(1,-.5,-.5));
 	// A command group will require all of the subsystems that each member
 	// would require.
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
