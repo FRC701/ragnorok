@@ -1,5 +1,5 @@
-#include "ToggleAutoShifting.h"
 #include "TankDrive.h"
+#include "ToggleAutoShifting.h"
 #include "../Subsystems/Chassis.h"
 
 ToggleAutoShifting::ToggleAutoShifting()

@@ -2,9 +2,8 @@
 #include "Subsystems/Chassis.h"
 
 ToggleShifter::ToggleShifter() {
-  Requires(Chassis::getInstance().get());
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+  Requires(Chassis::getInstance().get());
 }
 
 // Called once when the command executes

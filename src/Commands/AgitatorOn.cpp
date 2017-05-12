@@ -3,7 +3,6 @@
 
 AgitatorOn::AgitatorOn() {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
 	Requires(Magazine::getInstance().get());
 }
 

@@ -4,14 +4,14 @@
 using namespace robovikes;
 
 SetShooter::SetShooter(double speed) :
-    mSpeed(speed) {
+  mSpeed(speed) {
   // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(Robot::chassis.get());
   Requires(Shooter::getInstance().get());
 }
 
 // Called once when the command executes
 void SetShooter::Initialize() {
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -42,4 +42,3 @@ double SetShooter::GetSpeed() const {
 void SetShooter::SetSpeed(double speed) {
   mSpeed = speed;
 }
-

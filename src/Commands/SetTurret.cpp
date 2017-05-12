@@ -4,9 +4,8 @@
 using namespace robovikes;
 
 SetTurret::SetTurret(double position) :
-      mPosition(position) {
+  mPosition(position) {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(Turret::getInstance().get());
 }
 

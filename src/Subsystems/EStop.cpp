@@ -1,8 +1,3 @@
-/*
- * EStop.cpp
- *
- */
-
 #include "EStop.h"
 #include <cmath>
 #include "Commands/CommandGroup.h"
@@ -72,6 +67,3 @@ void EStop::StopTimer()
     timer.Reset();
   }
 }
-
-
-

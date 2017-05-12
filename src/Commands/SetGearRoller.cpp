@@ -1,6 +1,6 @@
 #include "SetGearRoller.h"
-#include "Subsystems/GearPickup.h"
 #include "Subsystems/BallConveyor.h"
+#include "Subsystems/GearPickup.h"
 
 SetGearRoller::SetGearRoller(double _rollerSpeedRPM)
 : rollerSpeedRPM(_rollerSpeedRPM), timeout() {
@@ -11,7 +11,6 @@ SetGearRoller::SetGearRoller(double _rollerSpeedRPM)
 // Called just before this Command runs the first time
 void SetGearRoller::Initialize() {
   timeout.Start();
-
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -26,7 +25,7 @@ bool SetGearRoller::IsFinished() {
   else if (rollerSpeedRPM < 0)
     if(timeout.HasPeriodPassed(2))
       return true;
-    else
+  else
     return !(GearPickup::getInstance()->IsGearIn());
   else
     return false;

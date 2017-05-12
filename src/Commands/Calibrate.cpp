@@ -4,7 +4,6 @@
 
 Calibrate::Calibrate() {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(Turret::getInstance().get());
 }
 
@@ -32,7 +31,7 @@ double GetHeading() {
 
   if(isLeftStopperHit){
       return turret->kAtLeft;
-    }
+  }
 
   else if(isRightStopperHit){
     return turret->kAtRight;
@@ -64,13 +63,12 @@ void Calibrate::Execute() {
     //Do nothing
   }
   else {
-    turret->SetTurret(0.25);  //TODO check if this is positive or negative
+    turret->SetTurret(0.25);
   }
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool Calibrate::IsFinished() {
-
     return IsAligned();
 }
 

@@ -45,7 +45,6 @@ public:
 	double GetTurretVoltage() const;
 	double GetTurretCurrent() const;
 
-	//TODO Make sure these values correlate with how they go on the robot
 	static const double kAtLeft;
 	static const double kAtRight;
   static const double kAtBothMags;

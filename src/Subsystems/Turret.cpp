@@ -6,7 +6,7 @@
 const char Turret::kSubsystemName[] = "Turret";
 
 const double Turret::kAtLeft = 0;
-//  const double Turret::]\[kAtRight = 1.917; Comp Bot Value
+// const double Turret::kAtRight = 1.917; Comp Bot Value
 const double Turret::kAtRight = 1.800;
 const double Turret::kAtBothMags = .958;
 const double Turret::kAt0Mag = 750;
@@ -37,10 +37,8 @@ Turret::Turret() : Subsystem(kSubsystemName),
 
 void Turret::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
   defaultCommand = new robovikes::SetTurret(GetTurretPosition());
   SetDefaultCommand(defaultCommand);
-  //SetDefaultCommand(new robovikes::SetTurret(0.0));
 }
 
 robovikes::SetTurret* Turret::GetSetPositionCommand(){
@@ -94,5 +92,3 @@ double Turret::GetTurretVoltage() const{
 double Turret::GetTurretCurrent() const{
   return turretSpinner.GetOutputCurrent();
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.

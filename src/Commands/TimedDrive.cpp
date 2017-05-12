@@ -2,9 +2,8 @@
 #include "Subsystems/Chassis.h"
 
 TimedDrive::TimedDrive(double timeout, double leftSpeed,double rightSpeed) : TimedCommand(timeout),
-mLeftSpeed(leftSpeed), mRightSpeed(rightSpeed) {
+  mLeftSpeed(leftSpeed), mRightSpeed(rightSpeed) {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
 }
 

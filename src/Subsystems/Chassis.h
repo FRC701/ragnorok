@@ -2,9 +2,9 @@
 #define CHASSIS_H
 
 #include "CANTalon.h"
-#include "DoubleSolenoid.h"
 #include "Commands/Subsystem.h"
 #include "Commands/TankDrive.h"
+#include "DoubleSolenoid.h"
 
 class Chassis: public frc::Subsystem {
 private:
@@ -27,9 +27,6 @@ private:
   double d;
 
 public:
-
-
-
   enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
   enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
 //TODO Check to make sure shifter is high when forward
