@@ -31,8 +31,6 @@ Intake::Intake() : Subsystem(kSubsystemName),
   }
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
-
   SetDefaultCommand(new ::SetIntake(0.0));
 }
 
@@ -60,5 +58,3 @@ double Intake::GetIntakeRPM() const{
 double Intake::GetIntakeCurrent() const {
   return floorPickup.GetOutputCurrent();
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.

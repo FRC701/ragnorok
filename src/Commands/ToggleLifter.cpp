@@ -2,9 +2,8 @@
 #include "../Subsystems/Lifter.h"
 
 ToggleLifter::ToggleLifter(double speed) :
-		mSpeed(speed), turnOn(true)	{
+  mSpeed(speed), turnOn(true)	{
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
 	Requires(Lifter::getInstance().get());
 }
 

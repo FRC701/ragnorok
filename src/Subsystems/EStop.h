@@ -1,7 +1,3 @@
-/*
- * EStop.h
- */
-
 #ifndef SRC_SUBSYSTEMS_ESTOP_H_
 #define SRC_SUBSYSTEMS_ESTOP_H_
 #include "Commands/Command.h"

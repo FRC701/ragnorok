@@ -49,7 +49,6 @@ Shooter::Shooter() : Subsystem(kSubsystemName),
 
 void Shooter::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
   defaultCommand = new robovikes::SetShooter(0.0),
   SetDefaultCommand(defaultCommand);
 }
@@ -115,5 +114,3 @@ double Shooter::GetTopShooterRPM() const{
 double Shooter::GetBottomShooterRPM() const{
   return bottomFlyWheel.GetSpeed();
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.

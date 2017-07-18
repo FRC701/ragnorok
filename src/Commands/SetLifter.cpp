@@ -5,7 +5,6 @@
 SetLifter::SetLifter(double speed) :
 		mSpeed(speed)	{
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
 	Requires(Lifter::getInstance().get());
 }
 

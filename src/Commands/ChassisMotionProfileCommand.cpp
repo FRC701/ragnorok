@@ -170,7 +170,8 @@ namespace {
     if (leftStatus.btmBufferCnt > kMinPointsInTalon
         && rightStatus.btmBufferCnt > kMinPointsInTalon) {
       return &motionProfileRun;
-    } else {
+    }
+    else {
       return this;
     }
   }
@@ -184,7 +185,8 @@ namespace {
     if (rightStatus.activePointValid && rightStatus.activePoint.isLastPoint
         && leftStatus.activePointValid && leftStatus.activePoint.isLastPoint) {
       return &motionProfileFinished;
-    } else {
+    }
+    else {
       return this;
     }
   }
@@ -269,6 +271,5 @@ void ChassisMotionProfileCommand::Interrupted() {
 }
 
 void ChassisMotionProfileCommand::PeriodicTask() {
-  // std::cout << "ProcessMotionProfileBuffer" << std::endl;
   Chassis::getInstance()->ProcessMotionProfileBuffer();
 }

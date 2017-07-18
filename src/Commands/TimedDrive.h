@@ -5,7 +5,7 @@
 
 class TimedDrive : public TimedCommand {
 public:
-	TimedDrive(double timeout,double leftSpeed,double rightSpeed);
+	TimedDrive(double timeout, double leftSpeed, double rightSpeed);
 	void Initialize();
 	void Execute();
 	void End();

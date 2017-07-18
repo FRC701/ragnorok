@@ -1,9 +1,9 @@
+#include "DoubleSolenoid.h"
 #include "CANTalon.h"
-#include "LiveWindow/LiveWindow.h"
 #include "Chassis.h"
+#include "LiveWindow/LiveWindow.h"
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
-#include "DoubleSolenoid.h"
 
 const char Chassis::kSubsystemName[] = "Chassis";
 
@@ -42,7 +42,6 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
   defaultCommand = new TankDrive(true);
   SetDefaultCommand(defaultCommand);
 }
@@ -50,12 +49,10 @@ void Chassis::InitDefaultCommand() {
 TankDrive* Chassis::GetTankDriveCommand(){
   return defaultCommand;
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
 
 void Chassis::SetTankDrive(double left, double right) {
-  right1Wheel.Set(right);
   left1Wheel.Set(left);
+  right1Wheel.Set(right);
 }
 
 void Chassis::SetShifter(ShifterValue value){
@@ -234,4 +231,3 @@ void Chassis::ProcessMotionProfileBuffer() {
   right1Wheel.ProcessMotionProfileBuffer();
   left1Wheel.ProcessMotionProfileBuffer();
 }
-

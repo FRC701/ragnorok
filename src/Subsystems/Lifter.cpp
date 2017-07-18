@@ -27,7 +27,6 @@ Lifter::Lifter() : Subsystem(kSubsystemName),
 
 void Lifter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
  SetDefaultCommand(new ::SetLifter(0.0));
 }
 

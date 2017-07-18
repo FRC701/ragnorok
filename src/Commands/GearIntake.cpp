@@ -1,26 +1,26 @@
+#include "Delay.h"
 #include "GearIntake.h"
 #include "SetGear.h"
-#include "SetSqueeze.h"
 #include "SetGearRoller.h"
+#include "SetSqueeze.h"
 #include "../RobotMap.h"
-#include "Delay.h"
 
 GearIntake::GearIntake() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-  AddSequential(new SetGear(GearPickup::kGearDown));
-  AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
-  AddSequential(new SetGearRoller(1800));
-  AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
-  AddSequential(new SetGear(GearPickup::kGearUp));
 
 	// To run multiple commands at the same time,
 	// use AddParallel()
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
+  AddSequential(new SetGear(GearPickup::kGearDown));
+  AddSequential(new SetSqueeze(GearPickup::kSqueezeOpen));
+  AddSequential(new SetGearRoller(1800));
+  AddSequential(new SetSqueeze(GearPickup::kSqueezeClosed));
+  AddSequential(new SetGear(GearPickup::kGearUp));
 
 	// A command group will require all of the subsystems that each member
 	// would require.

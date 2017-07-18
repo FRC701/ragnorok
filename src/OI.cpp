@@ -2,8 +2,11 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AgitatorOn.h"
+#include "Commands/AutoCenterGear.h"
 #include "Commands/AutoDrive.h"
-#include "Commands/ShootAgitated.h"
+#include "Commands/AutoLeftGear.h"
+#include "Commands/AutoLine.h"
+#include "Commands/AutoRightGear.h"
 #include "Commands/Calibrate.h"
 #include "Commands/Cancel.h"
 #include "Commands/FeedingShoot.h"
@@ -18,24 +21,21 @@
 #include "Commands/SetGearRoller.h"
 #include "Commands/SetIntake.h"
 #include "Commands/SetLifter.h"
+#include "Commands/SetShifter.h"
 #include "Commands/SetShooter.h"
 #include "Commands/SetSqueeze.h"
 #include "Commands/SetTurret.h"
 #include "Commands/SetSetTurret.h"
+#include "Commands/ShootAgitated.h"
 #include "Commands/TankDrive.h"
+#include "Commands/TimedDrive.h"
 #include "Commands/ToggleAutoShifting.h"
 #include "Commands/ToggleGear.h"
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
-#include "Commands/AutoLine.h"
 #include "Subsystems/GearPickup.h"
 #include "Subsystems/Turret.h"
-#include "Commands/AutoCenterGear.h"
-#include "Commands/AutoLeftGear.h"
-#include "Commands/AutoRightGear.h"
-#include "Commands/TimedDrive.h"
-#include "Commands/SetShifter.h"
 #include "GenericHID.h"
 
 std::shared_ptr<OI> OI::self;
@@ -46,7 +46,6 @@ std::shared_ptr<OI> OI::getInstance() {
   }
   return self;
  }
-
 
 OI::OI()
 : driver(new Joystick(0))
@@ -93,9 +92,10 @@ OI::OI()
 
 {
   // Process operator interface input here.
-
-  static const double kRPMNudge = 10.0;
+/*
+  static const double kRPMNudge = 10.0; //TODO Put these back in when we need them.
   static const double kPositionNudge = 0.;
+*/
 //-------------Driver--------
 
   dB.WhenPressed(new SetLifter(0.0));
@@ -146,7 +146,7 @@ OI::OI()
 //  dBack.WhenPressed(new ());
 //-------------CoDriver Buttons------
   */
-  ///*
+///*
     coA.WhenPressed(new SetIntake(970));
   coB.WhenPressed(new Cancel);
   coX.WhenPressed(new GearIntake);

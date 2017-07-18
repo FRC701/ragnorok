@@ -4,7 +4,6 @@
 AutoDrive::AutoDrive(double leftDistance, double rightDistance):
   mLeftDistance(leftDistance), mRightDistance(rightDistance) {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
 }
 

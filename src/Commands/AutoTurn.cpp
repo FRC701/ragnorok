@@ -4,7 +4,6 @@
 AutoTurn::AutoTurn(TurnSide side, double distance)
 : mSide(side),mDistance(distance ){
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(Chassis::getInstance().get());
 }
 
@@ -25,8 +24,6 @@ void AutoTurn::Initialize() {
       Chassis::getInstance()->SetTankDrive(0.0, mDistance);
     break;
   }
-
-
 }
 
 // Called repeatedly when this Command is scheduled to run

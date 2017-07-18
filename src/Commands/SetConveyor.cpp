@@ -5,7 +5,6 @@ SetConveyor::SetConveyor(double conveyorSpeed) :
   mConveyorSpeed(conveyorSpeed)
 {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
   Requires(BallConveyor::getInstance().get());
 }
 

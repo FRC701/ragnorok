@@ -23,8 +23,6 @@ Magazine::Magazine() : Subsystem(kSubsystemName),
 
 void Magazine::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
-  //SetDefaultCommand(new );
 	SetDefaultCommand(new AgitatorOff);
 }
 
@@ -49,10 +47,3 @@ void Magazine::ToggleAgitator() {
 bool Magazine::IsAgitatorOut() const {
 	return agitator.Get() == static_cast<DoubleSolenoid::Value>(kAgitatorOut);
 }
-
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-
-
-
-

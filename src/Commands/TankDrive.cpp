@@ -4,8 +4,7 @@
 
 TankDrive::TankDrive(bool automaticShifting) :
   mAutomaticShifting(automaticShifting) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(Robot::chassis.get());
+  // Use requires() here to declare subsystem dependencies
   Requires(Chassis::getInstance().get());
 }
 

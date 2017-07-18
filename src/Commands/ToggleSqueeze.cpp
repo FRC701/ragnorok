@@ -3,7 +3,6 @@
 
 ToggleSqueeze::ToggleSqueeze() {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
 	Requires(GearPickup::getInstance().get());
 }
 

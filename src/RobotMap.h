@@ -50,7 +50,6 @@ public:
   //..........ShiftingPneumatics..........
   static const int kIDShitftingForward = 3;
   static const int kIDShitftingReverse = 4;
-//TODO Check to make sure these values work on the Robot
 
 //..........Lights..........
   static const int kIDRelay = 0;

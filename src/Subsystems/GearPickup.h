@@ -3,7 +3,6 @@
 #include <DoubleSolenoid.h>
 #include <Commands/Subsystem.h>
 #include "CANTalon.h"
-
 #include "EStop.h"
 
 class GearPickup : public Subsystem {

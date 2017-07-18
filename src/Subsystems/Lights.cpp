@@ -21,7 +21,6 @@ Lights::Lights() : Subsystem(kSubsystemName),
 
 void Lights::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
   SetDefaultCommand(new LightsOn);
 }
 

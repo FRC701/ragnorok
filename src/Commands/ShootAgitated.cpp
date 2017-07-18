@@ -1,6 +1,6 @@
 #include "AgitatorOn.h"
-#include "ShootAgitated.h"
 #include "IntakeShoot.h"
+#include "ShootAgitated.h"
 #include "../RobotMap.h"
 
 ShootAgitated::ShootAgitated() {
@@ -8,10 +8,8 @@ ShootAgitated::ShootAgitated() {
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
 	AddParallel(new IntakeShoot);
 	AddSequential(new AgitatorOn);
-
 
 	// To run multiple commands at the same time,
 	// use AddParallel()

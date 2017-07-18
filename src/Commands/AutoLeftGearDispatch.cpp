@@ -24,7 +24,8 @@ AutoLeftGearDispatch::AutoLeftGearDispatch() {
   // For now both sides are the same until we have autos that are not mirrors.
   if (DriverStation::GetInstance().GetAlliance() == DriverStation::kRed) {
     AddSequential(new AutoLeftGear);
-  } else {
+  }
+  else {
     AddSequential(new AutoLeftGear);
   }
 }

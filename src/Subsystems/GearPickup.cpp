@@ -1,8 +1,8 @@
 #include "GearPickup.h"
-#include "../RobotMap.h"
-#include <DoubleSolenoid.h>
 #include "CANTalon.h"
 #include "Commands/SetGearRoller.h"
+#include <DoubleSolenoid.h>
+#include "../RobotMap.h"
 
 const char GearPickup::kSubsystemName[] = "GearPickup";
 
@@ -60,7 +60,6 @@ bool GearPickup::IsSqueezeOpen() const{
 
 void GearPickup::SetRollerSpeedRPM(double RPM)
 {
-
   bool estophappened = false;
 
  if (eStop.ShouldStop(RPM, GetGearIntakeRPM())) {
@@ -86,6 +85,3 @@ bool GearPickup::IsFwdLimitSwitchClosed() const{
 bool GearPickup::IsRevLimitSwitchClosed() const{
   return roller.IsRevLimitSwitchClosed();
 }
-
-// Put methods for controlling this subsystem
-// here. Call these from Commands.

@@ -1,5 +1,5 @@
-#include "IntakeShoot.h"
 #include "FeedingShoot.h"
+#include "IntakeShoot.h"
 #include "SetIntake.h"
 #include "../RobotMap.h"
 
