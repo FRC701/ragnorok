@@ -34,6 +34,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   lw->AddActuator(kSubsystemName , "Left1Wheel", left1Wheel);
   lw->AddActuator(kSubsystemName , "Left2Wheel", left2Wheel);
 
+  SetUpTalon();
   SetupDrive();
   SetBrake();
   ZeroPosition();
@@ -74,29 +75,10 @@ void Chassis::SetBrake() {
 }
 
 void Chassis::SetupPID() {
-  right1Wheel.SetInverted(false);
-  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.SetControlMode(CANTalon::kPosition);
-  right1Wheel.ConfigEncoderCodesPerRev(128);
-  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  right1Wheel.SetSensorDirection(false);
-  right1Wheel.SetPID(p, i ,d);
 
   left1Wheel.SetInverted(false);
-  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.SetControlMode(CANTalon::kPosition);
-  left1Wheel.ConfigEncoderCodesPerRev(128);
-  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  left1Wheel.SetSensorDirection(false);
-  left1Wheel.SetPID(p, i ,d);
-
-  right2Wheel.SetControlMode(CANTalon::kFollower);
-  right2Wheel.Set(RobotMap::kIDRight1Wheel);
-  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  left2Wheel.SetControlMode(CANTalon::kFollower);
-  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
-  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 
   shifter.Set(static_cast<frc::DoubleSolenoid::Value>(ShifterValue::kShifterLow));
 }
@@ -112,27 +94,10 @@ void Chassis::ZeroPosition(){
 }
 
 void Chassis::SetupDrive() {
-  right1Wheel.SetInverted(false);
-  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   right1Wheel.SetControlMode(CANTalon::kPercentVbus);
-  right1Wheel.ConfigEncoderCodesPerRev(128);
-  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  right1Wheel.SetSensorDirection(false);
 
   left1Wheel.SetInverted(true);
-  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
-  left1Wheel.ConfigEncoderCodesPerRev(128);
-  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-  left1Wheel.SetSensorDirection(false);
-
-  right2Wheel.SetControlMode(CANTalon::kFollower);
-  right2Wheel.Set(RobotMap::kIDRight1Wheel);
-  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
-
-  left2Wheel.SetControlMode(CANTalon::kFollower);
-  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
-  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
@@ -230,4 +195,30 @@ void Chassis::GetMotionProfileStatus(CANTalon::MotionProfileStatus* rightStatus,
 void Chassis::ProcessMotionProfileBuffer() {
   right1Wheel.ProcessMotionProfileBuffer();
   left1Wheel.ProcessMotionProfileBuffer();
+}
+
+void Chassis::SetUpTalon() {
+  right1Wheel.SetInverted(false);
+  right1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  right1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  right1Wheel.ConfigEncoderCodesPerRev(128);
+  right1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  right1Wheel.SetSensorDirection(false);
+  right1Wheel.SetPID(p, i ,d);
+
+  left1Wheel.SetInverted(true);
+  left1Wheel.SetFeedbackDevice(CANTalon::QuadEncoder);
+  left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.ConfigEncoderCodesPerRev(128);
+  left1Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  left1Wheel.SetSensorDirection(false);
+  left1Wheel.SetPID(p, i ,d);
+
+  right2Wheel.SetControlMode(CANTalon::kFollower);
+  right2Wheel.Set(RobotMap::kIDRight1Wheel);
+  right2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+
+  left2Wheel.SetControlMode(CANTalon::kFollower);
+  left2Wheel.Set(RobotMap::kIDLeft1Wheel);
+  left2Wheel.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
 }
