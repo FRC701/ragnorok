@@ -117,8 +117,8 @@ OI::OI()
   coBack.WhenPressed(new Cancel());
   */
 
-  /*
-  coShoot.WhenPressed(new GearScore);
+
+  coShoot.WhenPressed(new FeedingShoot);
   coBallIntake.WhenPressed(new SetIntake(970));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
@@ -132,7 +132,7 @@ OI::OI()
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
-*/
+
 
   /*
 //........Driver Buttons....
@@ -152,7 +152,7 @@ OI::OI()
   coX.WhenPressed(new GearIntake);
   coY.WhenPressed(new GearScore);
   coRB.WhenPressed(new ToggleGear);
-  //coLB.WhenPressed(new ());
+  coLB.WhenPressed(new FeedingShoot);
   //coStart.WhenPressed(new ());
   //coBack.WhenPressed(new ());
   //*/
