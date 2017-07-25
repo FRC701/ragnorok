@@ -44,6 +44,7 @@ public:
   void SetupPID();
   void ZeroPosition(); //This method is to be used in kPosition mode only
   void SetupDrive();
+  void SetUpTalon();
 
   bool Is0DegTurretAlligned() const;
   bool Is90DegTurretAlligned() const;

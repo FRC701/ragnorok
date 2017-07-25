@@ -15,9 +15,7 @@ AutoLeftGear::AutoLeftGear() {
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
   AddSequential(new AutoDrive(-3.762, 3.673));
-  AddSequential(new Delay(.25));
-  AddSequential(new AutoDrive(-3.349, 0.856));
-  AddSequential(new Delay(.25));//orig -4.2, 1.25
+  AddSequential(new AutoDrive(-3.349, 0.856));//orig -4.2, 1.25
   AddSequential(new AutoDrive(-3.630, 3.722));
   AddSequential(new AutoGearScore);
 

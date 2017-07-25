@@ -26,9 +26,7 @@ AutoRightGear::AutoRightGear() {
   AddSequential(new SetAutoShifter(Chassis::kAutoShiftOff));
   AddSequential(new SetShifter(Chassis::kShifterLow));
   AddSequential(new AutoDrive(-3.962, 3.873));
-  AddSequential(new Delay(.25));
   AddSequential(new AutoDrive(-0.756, 3.499));//orig -1.25, 4.2
-  AddSequential(new Delay(.25));
   AddSequential(new AutoDrive(-3.930, 4.022));
 
 	// A command group will require all of the subsystems that each member
