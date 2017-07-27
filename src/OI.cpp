@@ -106,19 +106,9 @@ OI::OI()
   dStart.WhenPressed(new GearScore());
   dBack.WhenPressed(new ToggleSqueeze());
 
-//-------------CoDriver------
-  /*
-  coA.WhenPressed(new SetIntake(RobotMap::kPeakPower));
-  coB.WhenPressed(new GearQuit());
-  coX.WhenPressed(new GearIntake());
-  coY.WhenPressed(new GearScore());
-  coRB.WhenPressed(new ShootAgitated());
-  coStart.WhenPressed(new Cancel());
-  coBack.WhenPressed(new Cancel());
-  */
-
-  /*
-  coShoot.WhenPressed(new GearScore);
+#define USE_CODRIVER_BOX true
+  if (USE_CODRIVER_BOX) {
+  coShoot.WhenPressed(new FeedingShoot());
   coBallIntake.WhenPressed(new SetIntake(970));
   coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
@@ -132,22 +122,12 @@ OI::OI()
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(100));
   coShooterMinus.WhenPressed(new NudgeShooter(-100));
-*/
 
-  /*
-//........Driver Buttons....
-  dA.WhenPressed(new NudgeShooter(kRPMNudge));
-  dB.WhenPressed(new NudgeShooter(-kRPMNudge));
-  dX.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
-  dY.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
-//  dRB.WhenPressed(new ());
-  dLB.WhenPressed(new ToggleShifter());
-//  dStart.WhenPressed(new ());
-//  dBack.WhenPressed(new ());
 //-------------CoDriver Buttons------
-  */
-///*
-    coA.WhenPressed(new SetIntake(970));
+  }
+  else {
+    // Use XBox Controller
+  coA.WhenPressed(new SetIntake(970));
   coB.WhenPressed(new Cancel);
   coX.WhenPressed(new GearIntake);
   coY.WhenPressed(new GearScore);
@@ -155,7 +135,7 @@ OI::OI()
   //coLB.WhenPressed(new ());
   //coStart.WhenPressed(new ());
   //coBack.WhenPressed(new ());
-  //*/
+  }
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
   SmartDashboard::PutData("Auto Line", new AutoLine());
