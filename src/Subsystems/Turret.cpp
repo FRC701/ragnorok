@@ -31,7 +31,7 @@ Turret::Turret() : Subsystem(kSubsystemName),
   turretSpinner.SetControlMode(frc::CANSpeedController::kPosition);
  // turretSpinner.SetControlMode(frc::CANSpeedController::kPercentVbus);
   turretSpinner.SetPID(p, i, d);
-  turretSpinner.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
+  turretSpinner.ConfigNeutralMode(CANTalon::kNeutralMode_Brake);
   turretSpinner.ConfigLimitMode(CANTalon::kLimitMode_SwitchInputsOnly);
 }
 

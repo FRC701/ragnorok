@@ -109,19 +109,21 @@ OI::OI()
 #define USE_CODRIVER_BOX true
   if (USE_CODRIVER_BOX) {
   coShoot.WhenPressed(new FeedingShoot());
-  coBallIntake.WhenPressed(new SetIntake(970));
-  coGearScore.WhenPressed(new GearScore);
+  coBallIntake.WhenPressed(new SetIntake(1000));
+  coGearScore.WhenPressed(new ToggleGear);
   coGearPickup.WhenPressed(new GearIntake);
-  coGearToggle.WhenPressed(new ToggleGear);
-  coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
+  coGearToggle.WhenPressed(new GearScore);
+  //coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
+  coFloorOuttake.WhenPressed(new ToggleGear());
   coCancel.WhenPressed((new SetIntake(0)));
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
-  coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
+  //coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
+  coTurret90.WhenPressed(new ToggleGear());
   coTurretMinus.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
-  coShooterPlus.WhenPressed(new NudgeShooter(100));
-  coShooterMinus.WhenPressed(new NudgeShooter(-100));
+  coShooterPlus.WhenPressed(new NudgeShooter(10));
+  coShooterMinus.WhenPressed(new NudgeShooter(-10));
 
 //-------------CoDriver Buttons------
   }
