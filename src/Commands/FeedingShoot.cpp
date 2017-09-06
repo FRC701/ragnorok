@@ -13,8 +13,8 @@ FeedingShoot::FeedingShoot() {
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
-  AddParallel(new NudgeShooter(3000));
-  AddSequential(new SetConveyor(1500));
+  AddParallel(new NudgeShooter(3245));
+  AddSequential(new SetConveyor(1125));
 
 	// A command group will require all of the subsystems that each member
 	// would require.
