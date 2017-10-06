@@ -24,7 +24,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
   left1Wheel(RobotMap::kIDLeft1Wheel),
   left2Wheel(RobotMap::kIDLeft2Wheel),
   shifter(RobotMap::kIDShitftingForward, RobotMap::kIDShitftingReverse),
-  p(7.0), i(0), d(0)
+  p(7.0), i(0), d(0), f(0.1)
 {
 
   frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
