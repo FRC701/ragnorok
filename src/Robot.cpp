@@ -18,6 +18,9 @@
 #include "Commands/AutoLine.h"
 #include "Commands/AutoRightGear.h"
 #include "Commands/SetShooter.h"
+#include "Commands/AutoLeftHopper.h"
+#include "Commands/ShootingCenterGear.h"
+#include "Commands/AutoRightHopper.h"
 
 std::unique_ptr<OI> Robot::oi;
 
@@ -56,6 +59,9 @@ void Robot::RobotInit()
   chooser.AddObject("Center Gear", new AutoCenterGear);
   chooser.AddObject("Left Gear", new AutoLeftGear);
   chooser.AddObject("Right Gear", new AutoRightGear);
+  chooser.AddObject("RedBoiler", new AutoLeftHopper);
+  chooser.AddObject("ShootingCenterGear", new ShootingCenterGear);
+  chooser.AddObject("BlueBoiler", new AutoRightHopper);
 
   SmartDashboard::PutData("Choose Your Auto", &chooser);
 }
@@ -84,6 +90,7 @@ void Robot::AutonomousInit() {
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
 
   autonomousCommand = chooser.GetSelected();
+  autonomousCommand = new AutoRightGear;
 
   if (autonomousCommand != nullptr) {
       autonomousCommand->Start();

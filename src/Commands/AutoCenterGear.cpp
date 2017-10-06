@@ -13,7 +13,7 @@ AutoCenterGear::AutoCenterGear() {
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
-  AddSequential(new AutoDrive(-5.7371, 5.765));
+  AddSequential(new AutoDrive(-5.4371, 5.765));
   AddSequential(new AutoGearScore);
 // A command group will require all of the s
 

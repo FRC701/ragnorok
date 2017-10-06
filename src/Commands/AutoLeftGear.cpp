@@ -14,9 +14,11 @@ AutoLeftGear::AutoLeftGear() {
 	// e.g. AddParallel(new Command1());
 	//      AddSequential(new Command2());
 	// Command1 and Command2 will run in parallel.
-  AddSequential(new AutoDrive(-3.762, 3.673));
-  AddSequential(new AutoDrive(-3.349, 0.856));//orig -4.2, 1.25
-  AddSequential(new AutoDrive(-3.630, 3.722));
+  AddSequential(new AutoDrive(-4.062, 3.973));
+  AddSequential(new Delay(1));
+  AddSequential(new AutoDrive(-3.499, 0.756));
+  AddSequential(new Delay(1));//orig -4.2, 1.25
+  AddSequential(new AutoDrive(-3.930, 4.022));
   AddSequential(new AutoGearScore);
 
 	// A command group will require all of the subsystems that each member

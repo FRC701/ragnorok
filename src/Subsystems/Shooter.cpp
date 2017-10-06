@@ -82,7 +82,7 @@ void Shooter::SetShooterRPM(double RPM){
 		 estophappened = true;
 
 	 }  else  {
-		 bottomFlyWheel.Set(RPM * .5875);
+		 bottomFlyWheel.Set(RPM * .525);
 	 }
 
 	  SmartDashboard::PutBoolean("ESTOP Shooter", estophappened);

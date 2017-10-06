@@ -5,6 +5,7 @@
 #include "Commands/AutoCenterGear.h"
 #include "Commands/AutoDrive.h"
 #include "Commands/AutoLeftGear.h"
+#include "Commands/AutoLeftHopper.h"
 #include "Commands/AutoLine.h"
 #include "Commands/AutoRightGear.h"
 #include "Commands/Calibrate.h"
@@ -110,16 +111,16 @@ OI::OI()
   if (USE_CODRIVER_BOX) {
   coShoot.WhenPressed(new FeedingShoot());
   coBallIntake.WhenPressed(new SetIntake(1000));
-  coGearScore.WhenPressed(new ToggleGear);
+  coGearScore.WhenPressed(new GearScore);
   coGearPickup.WhenPressed(new GearIntake);
-  coGearToggle.WhenPressed(new GearScore);
-  //coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
-  coFloorOuttake.WhenPressed(new ToggleGear());
+  coGearToggle.WhenPressed(new ToggleGear);
+  coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
+  //coFloorOuttake.WhenPressed(new ToggleGear());
   coCancel.WhenPressed((new SetIntake(0)));
   coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
   coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
-  //coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
-  coTurret90.WhenPressed(new ToggleGear());
+  coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
+  //coTurret90.WhenPressed(new ToggleGear());
   coTurretMinus.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
   coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
   coShooterPlus.WhenPressed(new NudgeShooter(10));
@@ -217,6 +218,7 @@ OI::OI()
   //..........Group..........
   SmartDashboard::PutData("Feeding Shoot", new FeedingShoot());
   SmartDashboard::PutData("Intake Shoot", new IntakeShoot());
+  SmartDashboard::PutData("Auto Left Hopper", new AutoLeftHopper());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {

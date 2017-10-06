@@ -9,5 +9,5 @@ StopShooter::StopShooter() {
 // Called once when the command executes
 void StopShooter::Initialize() {
   std::shared_ptr<Shooter> shooter = Shooter::getInstance();
-  shooter->GetSetShooterCommand()->SetSpeed(shooter->GetSetPoint());
+  shooter->GetSetShooterCommand()->SetSpeed(shooter->GetSetPoint() - shooter->GetSetPoint());
 }
