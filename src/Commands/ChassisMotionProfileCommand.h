@@ -1,4 +1,4 @@
-#ifndef ChasisMotionProfileCommand_H
+#ifndef ChassisMotionProfileCommand_H
 #define ChassisMotionProfileCommand_H
 
 #include <Commands/Command.h>

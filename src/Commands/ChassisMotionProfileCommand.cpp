@@ -1,6 +1,8 @@
 #include <Commands/ChassisMotionProfileCommand.h>
+#include "CANTalon.h"
 #include "Subsystems/Chassis.h"
 #include <iostream>
+
 
 /**
  * Notes about Talon Motion Profile
@@ -8,7 +10,7 @@
  * The trajectory point buffer in the Talon Driver (RoboRio) is 2048 points.
  * The typical trajectory point is 10ms. 2048 represents 20.48 seconds of motion profile.
  *
- * Important -- The code in this implemenation does not support more than 2048 trajectory points.
+ * Important -- The code in this implementation does not support more than 2048 trajectory points.
  *
  * The trajectory point buffer in the Talon (bottom buffer) holds 128 points.
  *
@@ -19,6 +21,8 @@
  *
  *
  */
+
+typedef CANTalon::TrajectoryPoint CTrajPoint;
 
 namespace {
 
@@ -42,7 +46,7 @@ namespace {
     for (unsigned int point = 0; point < trajectoryPointCount; ++point) {
       std::cout << "LoadPoints:" << point << "," << chassisRight[point].velocity << "," << chassisLeft[point].velocity<< std::endl;
 
-      CANTalon::TrajectoryPoint rightTrajectoryPoint;
+      ::CANTalon::TrajectoryPoint rightTrajectoryPoint;
       rightTrajectoryPoint.position = chassisRight[point].position;
       rightTrajectoryPoint.velocity = chassisRight[point].velocity;
       rightTrajectoryPoint.timeDurMs = pointDurationMillis;
@@ -51,7 +55,7 @@ namespace {
       rightTrajectoryPoint.isLastPoint = (point == lastPoint);
       rightTrajectoryPoint.zeroPos = (point == 0);
 
-      CANTalon::TrajectoryPoint leftTrajectoryPoint = rightTrajectoryPoint;
+      ::CANTalon::TrajectoryPoint leftTrajectoryPoint = rightTrajectoryPoint;
       leftTrajectoryPoint.position = chassisLeft[point].position;
       leftTrajectoryPoint.velocity = chassisLeft[point].velocity;
 
