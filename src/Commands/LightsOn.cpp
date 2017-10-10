@@ -14,9 +14,9 @@ void LightsOn::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void LightsOn::Execute() {
-  if(GearPickup::getInstance()->IsGearIn()){
+  if(!GearPickup::getInstance()->IsGearIn()){
     if(! flashed) {
-      flash.StartPeriodic(.500);
+      flash.StartPeriodic(120);
       flashed = true;
     }
   }

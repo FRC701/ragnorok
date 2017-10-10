@@ -33,9 +33,11 @@ void Lights::SetGlow(Relay::Value value) {
 
 bool Lights::IsGlowOn() {
   return glow.Get() == Relay::kOn;
+
+
 }
 void Lights::ToggleGlow() {
   Relay::Value value
-    = IsGlowOn() ? Relay::kOff: Relay::kOn;
+    = IsGlowOn() ? Relay::kOff: Relay::kOff;
   SetGlow(value);
 }
