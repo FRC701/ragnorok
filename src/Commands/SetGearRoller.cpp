@@ -1,5 +1,4 @@
 #include "SetGearRoller.h"
-#include "Subsystems/BallConveyor.h"
 #include "Subsystems/GearPickup.h"
 
 SetGearRoller::SetGearRoller(double _rollerSpeedRPM)

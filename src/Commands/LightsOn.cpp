@@ -1,9 +1,10 @@
-#include "LightsOn.h"
-#include "Subsystems/GearPickup.h"
+	#include "LightsOn.h"
 #include "Subsystems/Lights.h"
+#include "Subsystems/GearPickup.h"
 
 LightsOn::LightsOn() : flash(&LightsOn::Notify, this), flashed(false) {
 	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(Robot::chassis.get());
   Requires(Lights::getInstance().get());
 }
 
