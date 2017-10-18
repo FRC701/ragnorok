@@ -47,6 +47,11 @@ void Robot::RobotInit()
   chooser.AddObject("Right Gear", new AutoRightGear);
 
   SmartDashboard::PutData("Choose Your Auto", &chooser);
+
+  //...........Some Test Camera Code.......
+
+  	CameraServer::GetInstance()->StartAutomaticCapture().SetResolution(1280,720);
+
 }
 
 void Robot::RobotPeriodic() {
