@@ -10,12 +10,13 @@ LightsOn::LightsOn() : flash(&LightsOn::Notify, this), flashed(false) {
 
 // Called just before this Command runs the first time
 void LightsOn::Initialize() {
-  Lights::getInstance()->SetGlow(Relay::kOn);
+  Lights::getInstance()->SetGlow(Lights::LightsValue::kLightsOn);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void LightsOn::Execute() {
-  if(GearPickup::getInstance()->IsGearIn()){
+	Lights::getInstance()->SetGlow(Lights::LightsValue::kLightsOn);
+  /*if(GearPickup::getInstance()->IsGearIn()){
     if(! flashed) {
       flash.StartPeriodic(.125);
       flashed = true;
@@ -24,8 +25,8 @@ void LightsOn::Execute() {
   else {
     flash.Stop();
     flashed = false;
-    Lights::getInstance()->SetGlow(Relay::kOn);
-  }
+    Lights::getInstance()->SetGlow(Lights::LightsValue::kLightsOn);
+  }*/
 }
 
 // Make this return true when this Command no longer needs to run execute()

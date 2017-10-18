@@ -52,7 +52,8 @@ public:
   static const int kIDShitftingReverse = 4;
 
 //..........Lights..........
-  static const int kIDRelay = 0;
+  //static const int kIDRelay = 0;
+  static const int kIDDigitalOutput= 1;
 
 //..........RPMConstants..........
   static const int kPeakPower = 937;
