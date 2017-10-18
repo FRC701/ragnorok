@@ -22,6 +22,7 @@
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
+#include "Commands/ToggleTankDriveDirection.h"
 #include "Subsystems/GearPickup.h"
 #include "GenericHID.h"
 
@@ -66,17 +67,17 @@ OI::OI()
   dB.WhenPressed(new SetLifter(0.0));
   dY.WhenPressed(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0.5));
-  dLB.WhenPressed(new ToggleShifter());
-  dRB.WhenPressed(new ToggleAutoShifting());
+  dLB.WhenPressed(new ToggleTankDriveDirection());
+  dRB.WhenPressed(new ToggleShifter());
   dStart.WhenPressed(new GearScore());
-  dBack.WhenPressed(new ToggleSqueeze());
+//  dBack.WhenPressed(new ToggleSqueeze());
 
 //-------------CoDriver------
 
-  coB.WhenPressed(new Cancel);
-  coX.WhenPressed(new GearIntake);
-  coY.WhenPressed(new GearScore);
-  coRB.WhenPressed(new ToggleGear);
+  coA.WhenPressed(new ToggleGear);
+  coB.WhenPressed(new GearIntake);
+  coX.WhenPressed(new GearScore);
+
   //coLB.WhenPressed(new ());
   //coStart.WhenPressed(new ());
   //coBack.WhenPressed(new ());

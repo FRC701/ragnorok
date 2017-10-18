@@ -43,7 +43,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  defaultCommand = new TankDrive(true);
+  defaultCommand = new TankDrive(true,false);
   SetDefaultCommand(defaultCommand);
 }
 
@@ -146,6 +146,10 @@ bool Chassis::IsShifterHigh() const {
 
 bool Chassis::IsAutoShifterOn() const {
   return defaultCommand->IsAutoShifterEnabled();
+}
+
+bool Chassis::isDriveDirectionReversed() const {
+  return defaultCommand->IsTankDriveDirectionRevversed();
 }
 
 void Chassis::SetModeMotionProfile() {

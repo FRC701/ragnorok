@@ -29,6 +29,7 @@ private:
 public:
   enum ShifterValue{kShifterHigh = DoubleSolenoid::kForward, kShifterLow = DoubleSolenoid::kReverse};
   enum AutoShifterValue{kAutoShiftOn = true, kAutoShiftOff = false};
+  enum DriveDirectionValue{kDriveDirectionForward = false, kDriveDirectionReversed = true};
 //TODO Check to make sure shifter is high when forward
 
   static std::shared_ptr<Chassis> getInstance();
@@ -50,6 +51,7 @@ public:
   bool Is90DegTurretAlligned() const;
   bool IsShifterHigh() const;
   bool IsAutoShifterOn() const;
+  bool isDriveDirectionReversed() const;
 
   double GetLeftEncRPM() const;
   double GetRightEncRPM() const;
