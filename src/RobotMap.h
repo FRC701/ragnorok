@@ -42,10 +42,10 @@ public:
   static const int kIDAgitatorReverse = 0;
 
   //..........GearPneumatics..........
-  static const int kIDActuatorForward = 5;
-  static const int kIDActuatorReverse = 2;
-  static const int kIDSqueezerForward = 6;
-  static const int kIDSqueezerReverse = 1;
+  static const int kIDActuatorForward = 6;
+  static const int kIDActuatorReverse = 1;
+  static const int kIDSqueezerForward = 5;
+  static const int kIDSqueezerReverse = 2;
 
   //..........ShiftingPneumatics..........
   static const int kIDShitftingForward = 3;

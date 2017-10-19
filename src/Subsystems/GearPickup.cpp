@@ -22,12 +22,13 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   squeezer(RobotMap::kIDSqueezerForward, RobotMap::kIDSqueezerReverse),
   p(0.008), i(0.00009), d(0.0), f(0.08)
 {
-  roller.Enable();
+
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
   roller.SetControlMode(frc::CANSpeedController::kSpeed);
   roller.SetPID(p, i, d, f);
   roller.ConfigNeutralMode(CANTalon::kNeutralMode_Coast);
   roller.ConfigLimitMode(CANTalon::kLimitMode_SrxDisableSwitchInputs);
+  roller.Enable();
 
   SetGear(GearPickup::kGearUp);
   SetSqueeze(GearPickup::kSqueezeClosed);
@@ -51,7 +52,7 @@ bool GearPickup::IsGearUp() const {
 }
 
 bool GearPickup::IsGearIn() const{
-  return roller.IsFwdLimitSwitchClosed();
+  return roller.IsRevLimitSwitchClosed();
     }
 
 bool GearPickup::IsSqueezeOpen() const{

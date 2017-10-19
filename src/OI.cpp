@@ -75,8 +75,8 @@ OI::OI()
 //-------------CoDriver------
 
   coA.WhenPressed(new ToggleGear);
-  coB.WhenPressed(new GearIntake);
-  coX.WhenPressed(new GearScore);
+  coRB.WhenPressed(new GearIntake);
+  coLB.WhenPressed(new GearScore);
 
   //coLB.WhenPressed(new ());
   //coStart.WhenPressed(new ());

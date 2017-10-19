@@ -16,7 +16,6 @@ void SetGearRoller::Initialize() {
 void SetGearRoller::Execute() {
   GearPickup::getInstance()->SetRollerSpeedRPM(rollerSpeedRPM);
 }
-
 // Make this return true when this Command no longer needs to run execute()
 bool SetGearRoller::IsFinished() {
   if (rollerSpeedRPM > 0)
@@ -28,6 +27,7 @@ bool SetGearRoller::IsFinished() {
     return !(GearPickup::getInstance()->IsGearIn());
   else
     return false;
+
 }
 
 // Called once after isFinished returns true
