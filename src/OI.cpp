@@ -13,6 +13,7 @@
 #include "Commands/SetGear.h"
 #include "Commands/SetGearRoller.h"
 #include "Commands/SetLifter.h"
+#include "Commands/SetLightFlash.h"
 #include "Commands/SetShifter.h"
 #include "Commands/SetSqueeze.h"
 #include "Commands/TankDrive.h"
@@ -67,7 +68,9 @@ OI::OI()
   dB.WhenPressed(new SetLifter(0.0));
   dY.WhenPressed(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0.5));
+  dA.WhenPressed(new GearIntake());
   dLB.WhenPressed(new ToggleTankDriveDirection());
+  dL3.WhenPressed(new SetLightFlash(1));
   dRB.WhenPressed(new ToggleShifter());
   dStart.WhenPressed(new GearScore());
 //  dBack.WhenPressed(new ToggleSqueeze());
@@ -75,8 +78,12 @@ OI::OI()
 //-------------CoDriver------
 
   coA.WhenPressed(new ToggleGear);
+
   coRB.WhenPressed(new GearIntake);
   coLB.WhenPressed(new GearScore);
+
+  coY.WhenPressed(new SetLightFlash(1));
+
 
   //coLB.WhenPressed(new ());
   //coStart.WhenPressed(new ());

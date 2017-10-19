@@ -3,6 +3,7 @@
 
 #include <Commands/Subsystem.h>
 #include <Relay.h>
+#include "Commands/LightsOn.h"
 #include <DigitalOutput.h>
 
 class Lights : public frc::Subsystem {
@@ -17,13 +18,19 @@ private:
 
   Lights();
 
+  LightsOn* defaultCommand;
+
   //Relay glow;
   DigitalOutput glow;
 public:
 
+
+
   enum LightsValue{kLightsOn = true, kLightsOff = false};
 
   static std::shared_ptr<Lights> getInstance();
+
+  LightsOn* GetLightsOnCommand();
 
 	void InitDefaultCommand();
 

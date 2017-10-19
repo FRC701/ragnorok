@@ -14,17 +14,22 @@ std::shared_ptr<Lights> Lights::getInstance() {
 }
 
 Lights::Lights() : Subsystem(kSubsystemName),
+		defaultCommand(nullptr),
   //glow(RobotMap::kIDRelay)
 		glow(RobotMap::kIDDigitalOutput)
     {
-  SetGlow(LightsValue::kLightsOn);
+  SetGlow(LightsValue::kLightsOff);
 }
 
 void Lights::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-  SetDefaultCommand(new LightsOn);
+	defaultCommand = new LightsOn();
+  SetDefaultCommand(defaultCommand);
 }
 
+LightsOn* Lights::GetLightsOnCommand() {
+	return defaultCommand;
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
