@@ -70,7 +70,7 @@ OI::OI()
   dX.WhenPressed(new SetLifter(0.5));
   dA.WhenPressed(new GearIntake());
   dLB.WhenPressed(new ToggleTankDriveDirection());
-  dL3.WhenPressed(new SetLightFlash(1));
+  dL3.WhenPressed(new SetLightFlash(3));
   dRB.WhenPressed(new ToggleShifter());
   dStart.WhenPressed(new GearScore());
 //  dBack.WhenPressed(new ToggleSqueeze());
@@ -82,7 +82,7 @@ OI::OI()
   coRB.WhenPressed(new GearIntake);
   coLB.WhenPressed(new GearScore);
 
-  coY.WhenPressed(new SetLightFlash(1));
+  coY.WhenPressed(new SetLightFlash(3));
 
 
   //coLB.WhenPressed(new ());

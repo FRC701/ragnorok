@@ -98,6 +98,7 @@ void Chassis::SetupDrive() {
 
   left1Wheel.SetInverted(true);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.SetSensorDirection(true);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{

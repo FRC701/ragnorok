@@ -6,6 +6,12 @@
 class RobotMap {
 public:
 
+
+
+//..........Camera..........
+
+  static const int kIDCamera = 2;
+
 //..........Talons..........
 
   //..........Chassis..........
