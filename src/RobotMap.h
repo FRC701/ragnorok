@@ -53,7 +53,8 @@ public:
 
 //..........Lights..........
   //static const int kIDRelay = 0;
-  static const int kIDDigitalOutput= 1;
+  static const int kIDArduinoGlow = 1;
+  static const int kIDDigitalOutput = 1;
 
 //..........RPMConstants..........
   static const int kPeakPower = 937;

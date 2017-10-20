@@ -16,9 +16,12 @@ std::shared_ptr<Lights> Lights::getInstance() {
 Lights::Lights() : Subsystem(kSubsystemName),
 		defaultCommand(nullptr),
   //glow(RobotMap::kIDRelay)
-		glow(RobotMap::kIDDigitalOutput)
+		glow(RobotMap::kIDDigitalOutput),
+		arduinoGlow(RobotMap::kIDArduinoGlow)
     {
-  SetGlow(LightsValue::kLightsOff);
+
+  SetGlow(LightsValue::kLightsOn);
+
 }
 
 void Lights::InitDefaultCommand() {
@@ -35,6 +38,7 @@ LightsOn* Lights::GetLightsOnCommand() {
 
 void Lights::SetGlow(LightsValue value) {
   glow.Set(value);
+  arduinoGlow.Set(value);
 }
 
 bool Lights::IsGlowOn() {

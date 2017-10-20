@@ -22,6 +22,7 @@ private:
 
   //Relay glow;
   DigitalOutput glow;
+  DigitalOutput arduinoGlow;
 public:
 
 
