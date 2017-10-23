@@ -38,8 +38,14 @@ LightsOn* Lights::GetLightsOnCommand() {
 
 void Lights::SetGlow(LightsValue value) {
   glow.Set(value);
-  arduinoGlow.Set(value);
+  arduinoGlow.Pulse(200);
 }
+
+void Lights::SetGlow(LightsValue value, double pulseLenght) {
+  glow.Set(value);
+  arduinoGlow.Pulse(pulseLenght);
+}
+
 
 bool Lights::IsGlowOn() {
   return glow.Get() == LightsValue::kLightsOn;

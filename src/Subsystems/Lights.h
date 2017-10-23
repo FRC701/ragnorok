@@ -36,6 +36,7 @@ public:
 	void InitDefaultCommand();
 
 	void SetGlow(LightsValue value);
+	void SetGlow(LightsValue value, double pulseLenght);
 	void ToggleGlow();
 
 	bool IsGlowOn();
