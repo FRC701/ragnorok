@@ -78,6 +78,7 @@ void Robot::AutonomousInit() {
   Chassis::getInstance()->SetShifter(Chassis::kShifterLow);
 
   autonomousCommand = chooser.GetSelected();
+  autonomousCommand = new AutoRightGear;
 
   if (autonomousCommand != nullptr) {
       autonomousCommand->Start();
