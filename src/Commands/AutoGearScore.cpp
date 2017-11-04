@@ -4,7 +4,6 @@
 #include "SetGearRoller.h"
 #include "SetSqueeze.h"
 #include "TimedDrive.h"
-
 #include "../RobotMap.h"
 
 AutoGearScore::AutoGearScore() {

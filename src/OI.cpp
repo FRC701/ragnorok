@@ -69,10 +69,12 @@ OI::OI()
   dY.WhenPressed(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0.5));
   dA.WhenPressed(new GearIntake());
-  dLB.WhenPressed(new ToggleTankDriveDirection());
+  dR3.WhenPressed(new GearScore);
+  dStart.WhenPressed(new ToggleGear);
+  dRB.WhenPressed(new ToggleTankDriveDirection());
   dL3.WhenPressed(new SetLightFlash(3));
-  dRB.WhenPressed(new ToggleShifter());
-  dStart.WhenPressed(new GearScore());
+  dLB.WhenPressed(new ToggleShifter());
+
 //  dBack.WhenPressed(new ToggleSqueeze());
 
 //-------------CoDriver------
