@@ -25,7 +25,7 @@ private:
 
 public:
 
-  enum PickupValue{kGearUp = DoubleSolenoid::kForward,kGearDown = DoubleSolenoid::kReverse};
+  enum PickupValue{kGearUp = DoubleSolenoid::kReverse,kGearDown = DoubleSolenoid::kForward};
   enum SqueezeValue{kSqueezeOpen = DoubleSolenoid::kForward,kSqueezeClosed = DoubleSolenoid::kReverse};
 //TODO Check this value when robot is done
   static std::shared_ptr<GearPickup> getInstance();

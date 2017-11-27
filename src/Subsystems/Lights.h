@@ -3,6 +3,8 @@
 
 #include <Commands/Subsystem.h>
 #include <Relay.h>
+#include "Commands/LightsOn.h"
+#include <DigitalOutput.h>
 
 class Lights : public frc::Subsystem {
 private:
@@ -11,16 +13,30 @@ private:
 
   static const char kSubsystemName[];
   static std::shared_ptr<Lights> self;
+
+
+
   Lights();
 
-  Relay glow;
+  LightsOn* defaultCommand;
+
+  //Relay glow;
+  DigitalOutput glow;
+  DigitalOutput arduinoGlow;
 public:
+
+
+
+  enum LightsValue{kLightsOn = true, kLightsOff = false};
 
   static std::shared_ptr<Lights> getInstance();
 
+  LightsOn* GetLightsOnCommand();
+
 	void InitDefaultCommand();
 
-	void SetGlow(Relay::Value value);
+	void SetGlow(LightsValue value);
+	void SetGlow(LightsValue value, double pulseLenght);
 	void ToggleGlow();
 
 	bool IsGlowOn();

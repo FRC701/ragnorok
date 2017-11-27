@@ -3,6 +3,7 @@
 
 #include "Commands/Command.h"
 #include <Notifier.h>
+#include "Timer.h"
 
 class LightsOn : public Command {
 public:
@@ -12,9 +13,15 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetTimeFlashing(double timeFlashing);
 private:
+
 	Notifier flash;
 	bool flashed;
+
+	Timer timeToFlash;
+  double mTimeFlashing;
+	bool shouldFlash;
 
 	void Notify();
 };

@@ -2,8 +2,9 @@
 #include "TankDrive.h"
 #include "../Subsystems/Chassis.h"
 
-TankDrive::TankDrive(bool automaticShifting) :
-  mAutomaticShifting(automaticShifting) {
+TankDrive::TankDrive(bool automaticShifting, bool tankDriveDirectionReversed) :
+  mAutomaticShifting(automaticShifting),
+	mTankDriveDirectionReversed(tankDriveDirectionReversed){
   // Use requires() here to declare subsystem dependencies
   Requires(Chassis::getInstance().get());
 }
@@ -18,6 +19,15 @@ void TankDrive::Execute() {
   std::shared_ptr<Chassis> chassis = Chassis::getInstance();
   std::shared_ptr<OI> oi = OI::getInstance();
 
+if (mTankDriveDirectionReversed){
+  double left = oi->getDriverLeftYAxis() * 1.0;
+  double right = oi->getDriverRightYAxis() * 1.0;
+
+  chassis->SetTankDrive(left, right);
+
+  SmartDashboard::PutNumber("Right Drive Encoder Value",chassis->GetRightEncRPM());
+}
+else{
   double left = oi->getDriverLeftYAxis() * -1.0;
   double right = oi->getDriverRightYAxis() * -1.0;
 
@@ -27,9 +37,11 @@ void TankDrive::Execute() {
 
   if (mAutomaticShifting){
   	// AutoShifting();
-  }
+  		}
   SmartDashboard::PutBoolean("AutoShifting", mAutomaticShifting);
-}
+		}
+  }
+
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() {
   return false;
@@ -50,8 +62,16 @@ void TankDrive::SetAutomaticShifting(bool automaticShifting) {
   mAutomaticShifting = automaticShifting;
 }
 
-bool TankDrive::IsAutoShifterEnabled(){
+bool TankDrive::IsAutoShifterEnabled() {
   return mAutomaticShifting;
+}
+
+void TankDrive::SetTankDriveDirection(bool tankDriveDirectionReversed) {
+	mTankDriveDirectionReversed = tankDriveDirectionReversed;
+}
+
+bool TankDrive::IsTankDriveDirectionRevversed() {
+	return mTankDriveDirectionReversed;
 }
 
 void TankDrive::AutoShifting() {

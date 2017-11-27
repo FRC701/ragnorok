@@ -1,32 +1,21 @@
 #include "OI.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/AutonomousCommand.h"
-#include "Commands/AgitatorOn.h"
 #include "Commands/AutoCenterGear.h"
 #include "Commands/AutoDrive.h"
 #include "Commands/AutoLeftGear.h"
 #include "Commands/AutoLine.h"
 #include "Commands/AutoRightGear.h"
-#include "Commands/Calibrate.h"
 #include "Commands/Cancel.h"
-#include "Commands/FeedingShoot.h"
 #include "Commands/GearIntake.h"
 #include "Commands/GearQuit.h"
 #include "Commands/GearScore.h"
-#include "Commands/IntakeShoot.h"
-#include "Commands/NudgeShooter.h"
-#include "Commands/NudgeTurret.h"
-#include "Commands/SetConveyor.h"
 #include "Commands/SetGear.h"
 #include "Commands/SetGearRoller.h"
-#include "Commands/SetIntake.h"
 #include "Commands/SetLifter.h"
+#include "Commands/SetLightFlash.h"
 #include "Commands/SetShifter.h"
-#include "Commands/SetShooter.h"
 #include "Commands/SetSqueeze.h"
-#include "Commands/SetTurret.h"
-#include "Commands/SetSetTurret.h"
-#include "Commands/ShootAgitated.h"
 #include "Commands/TankDrive.h"
 #include "Commands/TimedDrive.h"
 #include "Commands/ToggleAutoShifting.h"
@@ -34,8 +23,8 @@
 #include "Commands/ToggleLifter.h"
 #include "Commands/ToggleShifter.h"
 #include "Commands/ToggleSqueeze.h"
+#include "Commands/ToggleTankDriveDirection.h"
 #include "Subsystems/GearPickup.h"
-#include "Subsystems/Turret.h"
 #include "GenericHID.h"
 
 std::shared_ptr<OI> OI::self;
@@ -72,93 +61,38 @@ OI::OI()
 , coStart(coDriver.get(), kButtonStart_ID)
 , coBack(coDriver.get(), kButtonBack_ID)
 
-,coTurretNeg90(coDriver.get(), kButtonCoTurretNeg90_ID)
-,coTurret0(coDriver.get(), kButtonCoTurret0_ID)
-,coTurret90(coDriver.get(), kButtonCoTurret90_ID )
-,coTurretMinus(coDriver.get(), kButtonCoTurretMinus_ID)
-,coTurretPlus(coDriver.get(), kButtonCoTurretPlus_ID)
-
-,coShooterMinus(coDriver.get(), kButtonCoShooterMinus_ID)
-,coShooterPlus(coDriver.get(), kButtonCoShooterPlus_ID)
-
-,coShoot(coDriver.get(), kButtonCoShoot_ID)
-,coBallIntake(coDriver.get(), kButtonCoBallIntake_ID)
-,coGearScore(coDriver.get(), kButtonCoGearScore_ID)
-,coGearPickup(coDriver.get(), kButtonCoGearPickup_ID)
-,coGearToggle(coDriver.get(), kButtonCoGearToggle_ID)
-,coBallOuttake(coDriver.get(), kButtonCoBallOuttake_ID)
-,coFloorOuttake(coDriver.get(), kButtonCoFloorOuttake_ID)
-,coCancel(coDriver.get(), kButtonCoCancel_ID)
-
 {
   // Process operator interface input here.
-/*
-  static const double kRPMNudge = 10.0; //TODO Put these back in when we need them.
-  static const double kPositionNudge = 0.;
-*/
 //-------------Driver--------
 
   dB.WhenPressed(new SetLifter(0.0));
   dY.WhenPressed(new SetLifter(1.0));
   dX.WhenPressed(new SetLifter(0.5));
+  dA.WhenPressed(new GearIntake());
+  dR3.WhenPressed(new GearScore);
+  dStart.WhenPressed(new ToggleGear);
+  dRB.WhenPressed(new ToggleTankDriveDirection());
+  dL3.WhenPressed(new SetLightFlash(3));
   dLB.WhenPressed(new ToggleShifter());
-  dRB.WhenPressed(new ToggleAutoShifting());
-  dStart.WhenPressed(new GearScore());
-  dBack.WhenPressed(new ToggleSqueeze());
+
+//  dBack.WhenPressed(new ToggleSqueeze());
 
 //-------------CoDriver------
-  /*
-  coA.WhenPressed(new SetIntake(RobotMap::kPeakPower));
-  coB.WhenPressed(new GearQuit());
-  coX.WhenPressed(new GearIntake());
-  coY.WhenPressed(new GearScore());
-  coRB.WhenPressed(new ShootAgitated());
-  coStart.WhenPressed(new Cancel());
-  coBack.WhenPressed(new Cancel());
-  */
 
-  /*
-  coShoot.WhenPressed(new GearScore);
-  coBallIntake.WhenPressed(new SetIntake(970));
-  coGearScore.WhenPressed(new GearScore);
-  coGearPickup.WhenPressed(new GearIntake);
-  coGearToggle.WhenPressed(new ToggleGear);
-  coFloorOuttake.WhenPressed(new SetIntake(-(1200)));
-  coCancel.WhenPressed((new SetIntake(0)));
-  coTurretNeg90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtLeft));
-  coTurret0.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight/2));
-  coTurret90.WhenPressed(new SetSetTurret(Turret::getInstance()->kAtRight));
-  coTurretMinus.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
-  coTurretPlus.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
-  coShooterPlus.WhenPressed(new NudgeShooter(100));
-  coShooterMinus.WhenPressed(new NudgeShooter(-100));
-*/
+  coA.WhenPressed(new ToggleGear);
 
-  /*
-//........Driver Buttons....
-  dA.WhenPressed(new NudgeShooter(kRPMNudge));
-  dB.WhenPressed(new NudgeShooter(-kRPMNudge));
-  dX.WhenPressed(new NudgeTurret(Turret::getInstance()->kPNudge));
-  dY.WhenPressed(new NudgeTurret(-Turret::getInstance()->kPNudge));
-//  dRB.WhenPressed(new ());
-  dLB.WhenPressed(new ToggleShifter());
-//  dStart.WhenPressed(new ());
-//  dBack.WhenPressed(new ());
-//-------------CoDriver Buttons------
-  */
-///*
-    coA.WhenPressed(new SetIntake(970));
-  coB.WhenPressed(new Cancel);
-  coX.WhenPressed(new GearIntake);
-  coY.WhenPressed(new GearScore);
-  coRB.WhenPressed(new ToggleGear);
+  coRB.WhenPressed(new GearIntake);
+  coLB.WhenPressed(new GearScore);
+
+  coY.WhenPressed(new SetLightFlash(3));
+
+
   //coLB.WhenPressed(new ());
   //coStart.WhenPressed(new ());
   //coBack.WhenPressed(new ());
-  //*/
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  SmartDashboard::PutData("Auto Line", new AutoLine());
+  //SmartDashboard::PutData("Auto Line", new AutoLine());
   SmartDashboard::PutData("TEST ++", new AutoDrive(100,100));
   SmartDashboard::PutData("TEST +-", new AutoDrive(100,-100));
   SmartDashboard::PutData("TEST --", new AutoDrive(-100,-100));
@@ -180,11 +114,6 @@ OI::OI()
   SmartDashboard::PutData("Autodrive FWD 5", new AutoDrive(0, 0));
   SmartDashboard::PutData("Forward for 5 sec", new TimedDrive(5,1,1));
 
-  //..........Conveyor..........
-
-  SmartDashboard::PutData("Convevor On", new SetConveyor(RobotMap::kPeakPower));
-  SmartDashboard::PutData("Convevor Rev", new SetConveyor(-RobotMap::kPeakPower));
-
   //..........GearPickup..........
 
   SmartDashboard::PutData("Gear Up", new SetGear(GearPickup::kGearUp));
@@ -198,43 +127,10 @@ OI::OI()
   SmartDashboard::PutData("GearQuit", new GearQuit());
   SmartDashboard::PutData("Gear Intake", new GearIntake());
 
-  //..........Intake..........
-
-  SmartDashboard::PutData("Intake On", new SetIntake(RobotMap::kPeakPower));
-  SmartDashboard::PutData("Intake Rev", new SetIntake(-RobotMap::kPeakPower));
-
   //..........Lifter..........
 
   SmartDashboard::PutData("Lifter On", new SetLifter(1.0));
   SmartDashboard::PutData("Lifter Rev", new SetLifter(-1.0));
-
-  //..........Magazine..........
-
-  SmartDashboard::PutData("Agitator On", new AgitatorOn);
-
-  //..........Shooter..........
-
-  SmartDashboard::PutData("Shooter On", new robovikes::SetShooter(3000));
-  SmartDashboard::PutData("Shooter Rev", new robovikes::SetShooter(-3000));
-
-  SmartDashboard::PutData("Shooter Nudge -100", new NudgeShooter(-100));
-  SmartDashboard::PutData("Shooter Nudge 100", new NudgeShooter(100));
-
-  //..........Turret..........
-
-  SmartDashboard::PutData("Turret Calibrate", new Calibrate());
-  SmartDashboard::PutData("Turret Set Half", new  robovikes::SetTurret(Turret::getInstance()->kAtRight/2));
-  SmartDashboard::PutData("Turret Set Left", new  robovikes::SetTurret(Turret::getInstance()->kAtLeft));
-  SmartDashboard::PutData("Turret Set Right", new robovikes::SetTurret(Turret::getInstance()->kAtRight));
-
-  SmartDashboard::PutData("Turret Nudge Right", new NudgeTurret(Turret::kPNudge));
-  SmartDashboard::PutData("Turret Nudge Left", new NudgeTurret(-(Turret::kPNudge)));
-
-//  SmartDashboard::PutData("Turret On", new SetTurret()); TODO
-
-  //..........Group..........
-  SmartDashboard::PutData("Feeding Shoot", new FeedingShoot());
-  SmartDashboard::PutData("Intake Shoot", new IntakeShoot());
 }
 
 std::shared_ptr<Joystick> OI::getDriver() {

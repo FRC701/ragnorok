@@ -43,7 +43,7 @@ Chassis::Chassis() : Subsystem(kSubsystemName),
 
 void Chassis::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  defaultCommand = new TankDrive(true);
+  defaultCommand = new TankDrive(true,false);
   SetDefaultCommand(defaultCommand);
 }
 
@@ -98,6 +98,7 @@ void Chassis::SetupDrive() {
 
   left1Wheel.SetInverted(true);
   left1Wheel.SetControlMode(CANTalon::kPercentVbus);
+  left1Wheel.SetSensorDirection(true);
 }
 
 bool Chassis::Is0DegTurretAlligned() const{
@@ -146,6 +147,10 @@ bool Chassis::IsShifterHigh() const {
 
 bool Chassis::IsAutoShifterOn() const {
   return defaultCommand->IsAutoShifterEnabled();
+}
+
+bool Chassis::isDriveDirectionReversed() const {
+  return defaultCommand->IsTankDriveDirectionRevversed();
 }
 
 void Chassis::SetModeMotionProfile() {

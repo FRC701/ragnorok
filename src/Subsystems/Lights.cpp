@@ -14,28 +14,44 @@ std::shared_ptr<Lights> Lights::getInstance() {
 }
 
 Lights::Lights() : Subsystem(kSubsystemName),
-  glow(RobotMap::kIDRelay)
+		defaultCommand(nullptr),
+  //glow(RobotMap::kIDRelay)
+		glow(RobotMap::kIDDigitalOutput),
+		arduinoGlow(RobotMap::kIDArduinoGlow)
     {
-  SetGlow(Relay::kOn);
+
+  SetGlow(LightsValue::kLightsOn);
+
 }
 
 void Lights::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-  SetDefaultCommand(new LightsOn);
+	defaultCommand = new LightsOn();
+  SetDefaultCommand(defaultCommand);
 }
 
+LightsOn* Lights::GetLightsOnCommand() {
+	return defaultCommand;
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Lights::SetGlow(Relay::Value value) {
-  glow.Set(static_cast<Relay::Value>(value));
+void Lights::SetGlow(LightsValue value) {
+  glow.Set(value);
+  arduinoGlow.Pulse(200);
 }
 
+void Lights::SetGlow(LightsValue value, double pulseLenght) {
+  glow.Set(value);
+  arduinoGlow.Pulse(pulseLenght);
+}
+
+
 bool Lights::IsGlowOn() {
-  return glow.Get() == Relay::kOn;
+  return glow.Get() == LightsValue::kLightsOn;
 }
 void Lights::ToggleGlow() {
-  Relay::Value value
-    = IsGlowOn() ? Relay::kOff: Relay::kOn;
+  LightsValue value
+    = IsGlowOn() ? LightsValue::kLightsOff: LightsValue::kLightsOn;
   SetGlow(value);
 }
