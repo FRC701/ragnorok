@@ -90,3 +90,33 @@ bool GearPickup::IsFwdLimitSwitchClosed() const{
 bool GearPickup::IsRevLimitSwitchClosed() const{
   return roller.IsRevLimitSwitchClosed();
 }
+
+// NOTE: MotionProfile Support
+void GearPickup::SetModeMotionProfile() {
+	roller.SetControlMode(CANTalon::kMotionProfile);
+}
+
+void GearPickup::SetModeSpeed() {
+  roller.SetControlMode(frc::CANSpeedController::kSpeed);
+}
+
+void GearPickup::ClearMotionProfileTrajectories() {
+	roller.ClearMotionProfileTrajectories();
+}
+
+void GearPickup::SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue) {
+	roller.Set(setValue);
+}
+
+void GearPickup::PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& trajectoryPoint) {
+	roller.PushMotionProfileTrajectory(trajectoryPoint);
+}
+
+void GearPickup::GetMotionProfileStatus(CANTalon::MotionProfileStatus* status) {
+	roller.GetMotionProfileStatus(*status);
+}
+
+void GearPickup::ProcessMotionProfileBuffer() {
+	roller.ProcessMotionProfileBuffer();
+}
+

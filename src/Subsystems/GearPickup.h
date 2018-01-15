@@ -43,6 +43,16 @@ public:
 
   bool IsFwdLimitSwitchClosed() const;
   bool IsRevLimitSwitchClosed() const;
+
+  // MotionProfile Support
+  void SetModeSpeed();
+  void SetModeMotionProfile();
+
+  void ClearMotionProfileTrajectories();
+  void SetMotionProfileSetValue(CANTalon::SetValueMotionProfile setValue);
+  void PushMotionProfileTrajectory(const CANTalon::TrajectoryPoint& trajectoryPoint);
+  void GetMotionProfileStatus(CANTalon::MotionProfileStatus* status);
+  void ProcessMotionProfileBuffer();
 };
 
 #endif  // GearPickup_H
