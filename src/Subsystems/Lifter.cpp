@@ -1,7 +1,7 @@
 #include "Lifter.h"
 #include "../RobotMap.h"
-#include "CANTalon.h"
 #include "../Commands/SetLifter.h"
+#include "CANTalon.h"
 
 const char Lifter::kSubsystemName[] = "Lifter";
 

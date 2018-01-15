@@ -4,6 +4,10 @@
 #include <DoubleSolenoid.h>
 #include "../RobotMap.h"
 
+using frc::DoubleSolenoid;
+using frc::SmartDashboard;
+using frc::Subsystem;
+
 const char GearPickup::kSubsystemName[] = "GearPickup";
 
 std::shared_ptr<GearPickup> GearPickup::self;

@@ -5,6 +5,9 @@
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
 
+using frc::LiveWindow;
+using frc::Subsystem;
+
 const char Chassis::kSubsystemName[] = "Chassis";
 
 std::shared_ptr<Chassis> Chassis::self;

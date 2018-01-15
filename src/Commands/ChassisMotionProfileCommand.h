@@ -4,7 +4,7 @@
 #include <Commands/Command.h>
 #include <Notifier.h>
 
-class ChassisMotionProfileCommand : public Command {
+class ChassisMotionProfileCommand : public frc::Command {
 public:
   struct TrajectoryPoint
   {
@@ -52,7 +52,7 @@ private:
   unsigned int pointDurationMillis;
   bool velocityOnly;
 
-  Notifier notifier;
+  frc::Notifier notifier;
   MotionProfileState* state;
 
   void PeriodicTask();

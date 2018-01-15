@@ -5,7 +5,7 @@
 #include "CANTalon.h"
 #include "EStop.h"
 
-class GearPickup : public Subsystem {
+class GearPickup : public frc::Subsystem {
 private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
@@ -16,8 +16,8 @@ private:
 
   EStop eStop;
   CANTalon roller;
-  DoubleSolenoid actuator;
-  DoubleSolenoid squeezer;
+  frc::DoubleSolenoid actuator;
+  frc::DoubleSolenoid squeezer;
   double p;
   double i;
   double d;
@@ -25,8 +25,8 @@ private:
 
 public:
 
-  enum PickupValue{kGearUp = DoubleSolenoid::kReverse,kGearDown = DoubleSolenoid::kForward};
-  enum SqueezeValue{kSqueezeOpen = DoubleSolenoid::kForward,kSqueezeClosed = DoubleSolenoid::kReverse};
+  enum PickupValue{kGearUp = frc::DoubleSolenoid::kReverse,kGearDown = frc::DoubleSolenoid::kForward};
+  enum SqueezeValue{kSqueezeOpen = frc::DoubleSolenoid::kForward,kSqueezeClosed = frc::DoubleSolenoid::kReverse};
 //TODO Check this value when robot is done
   static std::shared_ptr<GearPickup> getInstance();
 

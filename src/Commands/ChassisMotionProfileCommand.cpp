@@ -20,6 +20,8 @@
  *
  */
 
+using frc::Notifier;
+
 namespace {
 
   const double kSecondsToMillis = 1000.0;
