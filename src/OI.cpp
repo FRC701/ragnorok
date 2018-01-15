@@ -8,6 +8,7 @@
 #include "Commands/AutoRightGear.h"
 #include "Commands/Cancel.h"
 #include "Commands/GearIntake.h"
+#include "Commands/GearPickupInMotion.h"
 #include "Commands/GearQuit.h"
 #include "Commands/GearScore.h"
 #include "Commands/SetGear.h"
@@ -126,6 +127,8 @@ OI::OI()
   SmartDashboard::PutData("Gear Score", new GearScore());
   SmartDashboard::PutData("GearQuit", new GearQuit());
   SmartDashboard::PutData("Gear Intake", new GearIntake());
+
+  SmartDashboard::PutData("Gear Pickup In Motion", new GearPickupInMotion());
 
   //..........Lifter..........
 
