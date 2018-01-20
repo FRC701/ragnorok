@@ -50,7 +50,7 @@ namespace {
       trajectoryPoint.position = trajectory[point].position;
       trajectoryPoint.velocity = trajectory[point].velocity;
       trajectoryPoint.timeDurMs = pointDurationMillis;
-      trajectoryPoint.profileSlotSelect = 0;   // always slot 1
+      trajectoryPoint.profileSlotSelect = 0;   // Just use 0 for this test, usually it's 1 as MP uses the second slot
       trajectoryPoint.velocityOnly = velocityOnly;    // always both velocity and position
       trajectoryPoint.isLastPoint = (point == lastPoint);
       trajectoryPoint.zeroPos = (point == 0);
