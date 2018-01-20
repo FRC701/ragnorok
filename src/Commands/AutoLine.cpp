@@ -1,16 +1,17 @@
-/*#include "AutoLine.h"
+#include "AutoLine.h"
 
-struct CenterGear {
-  static const unsigned int kTrajectoryLength = 93;
-  static const ChassisMotionProfileCommand::TrajectoryPoint* leftTrajectories;
-  static const ChassisMotionProfileCommand::TrajectoryPoint* rightTrajectories;
+namespace CenterGear {
+	extern const unsigned int kTrajectoryLength;
+	extern const ChassisMotionProfileCommand::TrajectoryPoint leftTrajectory[];
+	extern const ChassisMotionProfileCommand::TrajectoryPoint rightTrajectory[];
 };
 
+static const int kMillis_50 = 50;
+
 AutoLine::AutoLine()
-: ChassisMotionProfileCommand(CenterGear::rightTrajectories, CenterGear::leftTrajectories, CenterGear::kTrajectoryLength, 0.05)
+: ChassisMotionProfileCommand(CenterGear::rightTrajectory, CenterGear::leftTrajectory, CenterGear::kTrajectoryLength, kMillis_50)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 
 }
-*/

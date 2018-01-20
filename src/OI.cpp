@@ -93,7 +93,7 @@ OI::OI()
   //coBack.WhenPressed(new ());
 
   SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
-  //SmartDashboard::PutData("Auto Line", new AutoLine());
+  SmartDashboard::PutData("Auto Line", new AutoLine());
   SmartDashboard::PutData("TEST ++", new AutoDrive(100,100));
   SmartDashboard::PutData("TEST +-", new AutoDrive(100,-100));
   SmartDashboard::PutData("TEST --", new AutoDrive(-100,-100));
