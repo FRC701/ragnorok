@@ -40,7 +40,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
 void GearPickup::InitDefaultCommand() {
   // Set the default command for a subsystem here.
- SetDefaultCommand (new SetGearRoller(0.0));
+  SetDefaultCommand(new SetGearRoller(0.0));
 }
 
 void GearPickup::SetGear(PickupValue value) {
