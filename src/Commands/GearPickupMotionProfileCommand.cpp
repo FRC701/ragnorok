@@ -1,5 +1,6 @@
 #include "Commands/GearPickupMotionProfileCommand.h"
 #include "Subsystems/GearPickup.h"
+#include "CANTalon.h"
 #include <iostream>
 
 /**
@@ -20,6 +21,8 @@
  *
  */
 
+using frc::Notifier;
+
 namespace {
 
   const double kSecondsToMillis = 1000.0;
@@ -39,19 +42,21 @@ namespace {
     std::cout << trajectory->velocity << std::endl;
 
     for (unsigned int point = 0; point < trajectoryPointCount; ++point) {
-      std::cout << "LoadPoints:" << point << "," << trajectory[point].velocity << std::endl;
+      if (point % 10 == 0) {
+    	  std::cout << "LoadPoints:" << point << "," << trajectory[point].velocity << std::endl;
+      }
 
       CANTalon::TrajectoryPoint trajectoryPoint;
       trajectoryPoint.position = trajectory[point].position;
       trajectoryPoint.velocity = trajectory[point].velocity;
       trajectoryPoint.timeDurMs = pointDurationMillis;
-      trajectoryPoint.profileSlotSelect = 1;   // always slot 1
+      trajectoryPoint.profileSlotSelect = 0;   // always slot 1
       trajectoryPoint.velocityOnly = velocityOnly;    // always both velocity and position
       trajectoryPoint.isLastPoint = (point == lastPoint);
       trajectoryPoint.zeroPos = (point == 0);
 
       GearPickup::getInstance()->PushMotionProfileTrajectory(trajectoryPoint);
-      std::cout << "LoadPoints:" << point << "," << trajectory[point].velocity << std::endl;
+      // std::cout << "LoadPoints: " << point << "," << trajectory[point].velocity << std::endl;
     }
 
     std::cout << "Load Points Complete"<< std::endl;
@@ -107,7 +112,7 @@ namespace {
   {
   public:
     void run(const GearPickupMotionProfileCommand* motionProfile) {
-      std::cout << "MotionProfileRun" << std::endl;
+      // std::cout << "MotionProfileRun::run" << std::endl;
       GearPickup::getInstance()->SetMotionProfileSetValue(CANTalon::SetValueMotionProfileEnable);
     }
 
@@ -159,10 +164,16 @@ namespace {
      * are added. Presumably, by the time we check here, there are already
      * points in the Talon bottom buffer.
      */
-    std::cout << "MotionProfileLoadTalon::getNextState" << std::endl;
     CANTalon::MotionProfileStatus status;
     GearPickup::getInstance()->GetMotionProfileStatus(&status);
-    std::cout << "MotionProfileStatus" << status.btmBufferCnt << std::endl;
+//    std::cout << "MotionProfileStatus::getNextState" << " " << status.btmBufferCnt << std::endl;
+	std::cout << "MotionProfileStatus::getNextState "
+			<< "activePointValid:" << status.activePointValid << "\n"
+			<< "btmBuffercnt:    " << status.btmBufferCnt << ","
+			<< "hasUnderrun:     " << status.hasUnderrun << ","
+			<< "isUnderrun:      " << status.isUnderrun << ","
+			<< "topBufferCnt:    " << status.topBufferCnt
+			<< std::endl;
     if (status.btmBufferCnt > kMinPointsInTalon) {
       return &motionProfileRun;
     }
@@ -176,7 +187,14 @@ namespace {
     CANTalon::MotionProfileStatus status;
     GearPickup::getInstance()->GetMotionProfileStatus(&status);
     // activePointValid must precede isLastPoint.
-    std::cout << "MotionProfileRun" << status.activePointValid << std::endl;
+    if (status.btmBufferCnt % 10 == 0) {
+		std::cout << "MotionProfileRun::getNextState" << " activePointValid:" << status.activePointValid << "\n"
+				<< "btmBuffercnt: " << status.btmBufferCnt << ","
+				<< "hasUnderrun:  " << status.hasUnderrun << ","
+				<< "isUnderrun:   " << status.isUnderrun << ","
+				<< "topBufferCnt: " << status.topBufferCnt
+				<< std::endl;
+    }
     if (status.activePointValid && status.activePoint.isLastPoint) {
       return &motionProfileFinished;
     } else {

@@ -24,7 +24,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
   roller(RobotMap::kIDRoller),
   actuator(RobotMap::kIDActuatorForward, RobotMap::kIDActuatorReverse),
   squeezer(RobotMap::kIDSqueezerForward, RobotMap::kIDSqueezerReverse),
-  p(0.008), i(0.00009), d(0.0), f(0.08)
+  p(0.008), i(0.00009), d(0.0), f(0.9)
 {
 
   roller.SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
@@ -40,7 +40,7 @@ GearPickup::GearPickup() : Subsystem(kSubsystemName),
 
 void GearPickup::InitDefaultCommand() {
   // Set the default command for a subsystem here.
-  SetDefaultCommand(new SetGearRoller(0.0));
+ SetDefaultCommand (new SetGearRoller(0.0));
 }
 
 void GearPickup::SetGear(PickupValue value) {
